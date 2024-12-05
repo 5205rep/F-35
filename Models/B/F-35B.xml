@@ -313,7 +313,7 @@ if(navStillOn) {
 	
 	<!-- Effects -->
 	<model>
-		<path>Aircraft/daVinci_F-35B/Models/Effects.xml</path>
+		<path>Aircraft/daVinci_F-35A/Models/Effects.xml</path>
 	</model>
 	
 	<!-- MP sound call -->
