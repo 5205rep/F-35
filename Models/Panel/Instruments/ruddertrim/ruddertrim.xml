@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+  <path>ruddertrim.ac</path>
+
+  <animation>
+    <object-name>trimwheel</object-name>
+    <object-name>trimind</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>trimwheel</object-name>
+    <object-name>trimind</object-name>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>trimwheel</object-name>
+    <property>controls/flight/rudder-trim</property>
+    <factor> -180 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>trimind</object-name>
+    <property>controls/flight/rudder-trim</property>
+    <factor> -20 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>trimwheel</object-name>
+    <visible>true</visible>
+    <action>
+      <button>3</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/flight/rudder-trim</property>
+        <step> 0.1 </step>
+        <min> -1.0 </min>
+        <max>  1.0 </max>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>trimwheel</object-name>
+    <visible>true</visible>
+    <action>
+      <button>4</button>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/flight/rudder-trim</property>
+        <step> -0.1 </step>
+        <min>  -1.0 </min>
+        <max>   1.0 </max>
+      </binding>
+    </action>
+  </animation>
+
+</PropertyList>

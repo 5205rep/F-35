@@ -1,0 +1,77 @@
+
+## DECU Attempt (!)
+
+
+## Engines
+
+#Initialise
+
+
+props.globals.initNode("/sim/autostart/started", 0, "BOOL");
+
+var eng1fuelon = func { setprop("/controls/engines/engine[0]/cutoff", 0); }
+var eng1fueloff = func { setprop("/controls/engines/engine[0]/cutoff", 1); }
+
+var eng1starter = func { setprop("/controls/engines/engine[0]/starter", 1); }
+
+
+var eng1start = func {
+   eng1fueloff();
+   eng1starter();
+   settimer(eng1fuelon, 2);
+}
+
+
+
+var battery = func {
+      setprop("/controls/electric/batteryswitch", 2);
+};
+
+
+var engstart = func {
+   
+   settimer(eng1start, 2);
+   #settimer(battery, 36);
+}
+
+var engstop = func {
+   eng1fueloff();
+   eng2fueloff();
+}      #setprop("/controls/electric/batteryswitch", 0);
+
+var autostart = func {
+   var startstatus = getprop("/sim/autostart/started");
+   if ( startstatus == 0 ) {
+      gui.popupTip("Autostarting...");
+	#	f22.cnpy.close();
+	  setprop("/sim/autostart/started", 1);
+   #      setprop("/controls/electric/computer", 1);
+   #      setprop("/controls/electric/MFD", 1);
+   #      setprop("/controls/electric/SMS", 1);
+   #      setprop("/controls/electric/CMS", 1);
+   #      setprop("/controls/electric/AESA", 1);
+   #      setprop("/controls/electric/controls", 1);
+      settimer(engstart, 1);
+	  gui.popupTip("Starting Engines");
+	  }
+   if ( startstatus == 1 ) {
+      gui.popupTip("Shutting Down...");
+	#	f22.cnpy.open();
+      setprop("/sim/autostart/started", 0);
+	  eng1fueloff();
+   #   eng2fueloff();
+    #  setprop("/controls/electric/batteryswitch", 0);
+   }
+}
+
+var autostop = func {
+   eng1fueloff();
+   #eng2fueloff();
+   #apufueloff();
+}
+   
+   
+
+
+
+

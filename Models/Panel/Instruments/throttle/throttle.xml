@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+  
+  <path>throttle.ac</path>
+  
+  <animation>
+    <object-name>leftthrottle</object-name>
+    <object-name>rightthrottle</object-name>
+  </animation>
+  
+  <animation>
+    <type>knob</type>
+    <drag-direction>vertical</drag-direction>
+    <object-name>leftthrottle</object-name>
+    <value>0.0</value>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/engines/engine[0]/throttle</property>
+        <min> 0 </min>
+        <max> 1 </max>
+        <factor> 0.1 </factor>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
+    <type>translate</type>
+    <object-name>leftthrottle</object-name>
+    <property>controls/engines/engine[0]/throttle</property>
+    <factor> -0.13 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+  
+  <animation>
+    <type>knob</type>
+    <drag-direction>vertical</drag-direction>
+    <object-name>rightthrottle</object-name>
+    <value>0.0</value>
+    <action>
+      <binding>
+        <command>property-adjust</command>
+        <property>controls/engines/engine[1]/throttle</property>
+        <min> 0 </min>
+        <max> 1 </max>
+        <factor> 0.1 </factor>
+      </binding>
+    </action>
+  </animation>
+  
+  <animation>
+    <type>translate</type>
+    <object-name>rightthrottle</object-name>
+    <property>controls/engines/engine[1]/throttle</property>
+    <factor> -0.13 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+  
+</PropertyList>

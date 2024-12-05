@@ -1,0 +1,1509 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<!-- Model -->
+
+	<path>daVinci_F-35A.ac</path>
+	
+<!-- 	<model>
+		<usage>interior</usage>
+		<path>Aircraft/daVinci_F-35A/Models/Cockpit.xml</path>
+	</model>-->
+	
+	<!-- Rembrandt -->
+	
+	<!-- Turns auto switching for glass -->
+	
+	<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+		<condition>
+			<property>sim/rendering/rembrandt/enabled</property>
+		</condition>
+		<object-name>canopy</object-name>
+		<object-name>eots</object-name>
+		<object-name>lights</object-name>
+	</effect>
+	
+    <!-- Parts invisible from internally -->
+    
+    <animation>
+        <type>select</type>
+        <object-name>canopy</object-name>
+		<condition>
+            <not>
+                <property>sim/current-view/internal</property>
+            </not>
+        </condition>
+    </animation>
+	
+	<!-- Lights -->
+
+	<model>
+		<path>Aircraft/daVinci_F-35A/Models/Lights/LightPack.xml</path>
+	</model>
+	
+    <nasal>
+      <load><![CDATA[
+  var root = cmdarg();
+  var rootindex = root.getIndex();
+  var mpPath = "/ai/models/multiplayer["~ rootindex ~"]/";
+
+  var lightsPath = mpPath~"lightpack/"; #path to the property node, where all internal values are placed
+
+  props.globals.initNode(mpPath~"sim/is-MP-Aircraft", 1, "BOOL");
+      
+  srand();
+  #wherever you want to add randomization of time, use something like:  + rand()*0.05-0.025 (included by default where appropriate)
+
+
+  #list of switches for lights - if you don't intend to use some light, assign it nil value instead, like whateverSwitch = nil; and you don't need to care about anything else
+  #IMPORTANT: don't put / on the start of the string, it's already included in the mpPath property
+  var navSwitch = mpPath~"controls/lighting/nav-lights-switch";
+  var beaconSwitch = mpPath~"controls/lighting/beacon-switch";
+  var strobeSwitch = mpPath~"controls/lighting/strobe-switch";
+  var landingSwitch = mpPath~"controls/lighting/landing-lights-switch";
+  var taxiSwitch = mpPath~"controls/lighting/taxi-light-switch";
+  var probeSwitch = mpPath~"controls/lighting/probe-light-switch";
+  var whiteSwitch = mpPath~"controls/lighting/white-light-switch";
+
+  #switch this from 1 to 0 if you want to use advanced cyclical fading animation of the the nav lights instead of being stable on when the switch is on
+  navStillOn = 1;
+
+
+  #I need to set listener on some MP transferred properties; this doesn't seem to work well sometimes, so I mirror them to the original location on any change
+  #This also simplifies work as I can use almost the same code for MP as is the local Nasal. Furthermore, I can use meaningful property names in the model XML files instead of referencing the MP properties. 
+  var mpVar = {
+  	new: func(propIn, propOut) {
+  		var m = { parents: [mpVar] };
+  		m.propIn = propIn;
+  		m.propOut = propOut;
+  		if(propIn==nil) return m;
+  		m.value = getprop(propIn);
+  		setprop(propOut, m.value);
+  		return m;
+  	},
+  	check: func {
+  		if(me.propIn==nil) return;
+  		var newValue = getprop(me.propIn);
+  		if(newValue != me.value) {
+  			setprop(me.propOut, newValue);
+  			me.value = newValue;
+  			#print("value of "~me.propOut~" changed: "~newValue);
+  		}
+  	},
+  };
+  #init any property copy object needed in this array (anything you need to transfer over MP, but you are using the original paths in your xmls)
+  #also used for properties you are using a listener on, or properties which you maybe want to manipulate during the <unload> 
+  #if you're just using the pack, change the values according to the MP bindings in the -set.xml file
+  #you don't need to delete the entries if the path is nil - it gets skipped automatically and the MP path is just ignored
+  var mirrorValues = [
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[7]", mpPath~"sim/crashed"),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[0]", navSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[1]", beaconSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[1]", strobeSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[2]", landingSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[3]", taxiSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[3]", probeSwitch),
+  	mpVar.new(mpPath~"sim/multiplay/generic/int[0]", whiteSwitch),
+  ];
+  #loop at the default MP transfer frequency (10Hz)
+  var mirrorTimer = maketimer(0.1, func {
+  	foreach(var mir; mirrorValues) {
+  		mir.check();
+  	}
+  });
+  mirrorTimer.start();
+
+
+
+  #### NAV LIGHTS ####
+
+  #class for a periodic fade in/out animation - for flashing, use rather standard aircraft.light.new(), as in Beacon and Strobe section
+  var lightCycle = {
+  	#constructor
+  	new: func(propSwitch, propOut) {
+  		m = { parents: [lightCycle] };
+  		props.globals.initNode(propOut, 0, "DOUBLE");
+  		props.globals.initNode(propSwitch, 1, "BOOL");
+  		m.fadeIn = 0.4 + rand()*0.05-0.025; #fade in time
+  		m.fadeOut = 0.4 + rand()*0.05-0.025; #fade out time
+  		m.stayOn = 1.5 + rand()*0.05-0.025; #stable on period
+  		m.stayOff = 1 + rand()*0.05-0.025; #stable off period
+  		m.turnOff = 0.12; #fade out time when turned off
+  		m.phase = 0; #phase to be run on next timer call: 0 -> fade in, 1 -> stay on, 2 -> fade out, 3 -> stay off
+  		m.cycleTimer = maketimer(0.1, func {
+  			if(getprop(propSwitch)) {
+  				if(m.phase == 0) {
+  					interpolate(propOut, 1, m.fadeIn);
+  					m.phase = 1;
+  					m.cycleTimer.restart(m.fadeIn);
+  				}
+  				else if(m.phase == 1){
+  					m.phase = 2;
+  					m.cycleTimer.restart(m.stayOn);
+  				}
+  				else if(m.phase == 2){
+  					interpolate(propOut, 0, m.fadeOut);
+  					m.phase = 3;
+  					m.cycleTimer.restart(m.fadeOut);
+  				}
+  				else if(m.phase == 3){
+  					m.phase = 0;
+  					m.cycleTimer.restart(m.stayOff);
+  				}
+  			}
+  			else {
+  				interpolate(propOut, 0, m.turnOff); #kills any currently ongoing interpolation
+  				m.phase = 0;
+  			}
+  		});
+  		m.cycleTimer.singleShot = 1;
+  		if(propSwitch==nil) {
+  			m.listen = nil;
+  			return m;
+  		}
+  		m.listen = setlistener(propSwitch, func{m.cycleTimer.restart(0);}); #handle switch changes
+  		m.cycleTimer.restart(0); #start the looping
+  		return m;
+  	},
+  	#destructor
+  	del: func {
+  		if(me.listen!=nil) removelistener(me.listen);
+  		me.cycleTimer.stop();
+  	},
+  };
+
+  #By default, the switch property is initialized to 1 (only if no value is already assigned). Don't change the class implementation! To override this, set the property manually. You don't need to care if any other code already does it for you. 
+  var navLights = nil;
+  if(!navStillOn) {
+  	navLights = lightCycle.new(navSwitch, lightsPath~"nav-lights-intensity");
+  	### Uncomment and tune those to customize times ###
+  	#navLights.fadeIn = 0.4; #fade in time 
+  	#navLights.fadeOut = 0.4; #fade out time
+  	#navLights.stayOn = 3 + rand()*0.05-0.025; #stable on period
+  	#navLights.stayOff = 0.6; #stable off period
+  	#navLights.turnOff = 0.12; #fade out time when turned off
+  }
+
+
+  ### BEACON ###
+  var beacon = nil;
+  if(beaconSwitch!=nil) {
+  	props.globals.initNode(beaconSwitch, 1, "BOOL");
+  	beacon = aircraft.light.new(lightsPath~"beacon-state", 
+  		[0.0, 1.0 + rand()*0.05-0.025], beaconSwitch);
+  }
+	
+	
+  ### STROBE ###
+  var strobe = nil;
+  if(strobeSwitch!=nil) {
+  	props.globals.initNode(strobeSwitch, 1, "BOOL");
+  	strobe = aircraft.light.new(lightsPath~"strobe-state", 
+  		[0.0, 0.87 + rand()*0.05-0.025], strobeSwitch);
+  }
+
+
+  ### LIGHT FADING ###
+
+  #class for controlling fade in/out behavior - propIn is a control property (handled as a boolean) and propOut is interpolated
+  #all light brightness animations in xmls depend on propOut (Rembrandt brightness, material emission, flares transparency, ...)
+  var lightFadeInOut = {
+  	#constructor
+  	new: func(propSwitch, propOut) {
+  		m = { parents: [lightFadeInOut] };
+  		m.fadeIn = 0.3; #some sane defaults
+  		m.fadeOut = 0.4;
+  		if(propSwitch==nil) {
+  			m.listen = nil;
+  			return m;
+  		}
+  		props.globals.initNode(propSwitch, 1, "BOOL");
+  		m.isOn = getprop(propSwitch);
+  		props.globals.initNode(propOut, m.isOn, "DOUBLE");
+  		m.listen = setlistener(propSwitch, 
+  			func {
+  				if(m.isOn and !getprop(propSwitch)) {
+  					interpolate(propOut, 0, m.fadeOut);
+  					m.isOn = 0;
+  				}
+  				if(!m.isOn and getprop(propSwitch)) {
+  					interpolate(propOut, 1, m.fadeIn);
+  					m.isOn = 1;
+  				}
+  			}
+  		);
+  		return m;
+  	},
+  	#destructor
+  	del: func {
+  		if(me.listen!=nil) removelistener(me.listen);
+  	},
+  };
+
+  fadeLanding = lightFadeInOut.new(landingSwitch, lightsPath~"landing-lights-intensity");
+  fadeTaxi = lightFadeInOut.new(taxiSwitch, lightsPath~"taxi-light-intensity");
+  fadeProbe = lightFadeInOut.new(probeSwitch, lightsPath~"probe-light-intensity");
+  fadeWhite = lightFadeInOut.new(whiteSwitch, lightsPath~"white-light-intensity");
+  if(navStillOn) {
+  	navLights = lightFadeInOut.new(navSwitch, lightsPath~"nav-lights-intensity");
+  	navLights.fadeIn = 0.1;
+  	navLights.fadeOut = 0.12;
+  }
+  #manipulate times if defaults don't fit your needs:
+  #fadeLanding.fadeIn = 0.5;
+  #fadeLanding.fadeOut = 0.8;
+
+
+  ### the rest of your model load embedded Nasal code ###
+
+      ]]>
+      </load>
+      <unload>
+        stopFire();
+        disintegrated = 0;
+        removelistener(listenCrash);
+      
+        #prevent multiple timers and listeners from running and fighting on next connect
+        #cleanly destroy MP property mirroring
+        mirrorTimer.stop();
+        mirrorTimer = nil;
+        mirrorValues = nil;
+      
+        #cleanly destroy nav lights
+        if(navStillOn) {
+        	navLights.del();
+        }
+        else {
+        	if(navSwitch!=nil) setprop(navSwitch, 0);
+        	navLights.del();
+        	if(navSwitch!=nil) navLights.cycleTimer = nil;
+        	navLights = nil;
+        }
+      
+        #cleanly destroy beacon
+        if(beaconSwitch!=nil) setprop(beaconSwitch, 0);
+        beacon.del();
+        beacon = nil;
+      
+        #cleanly destroy strobe
+        if(strobeSwitch!=nil) setprop(strobeSwitch, 0);
+        strobe.del();
+        strobe = nil;
+      
+        #cleanly destroy light fade in/out animation objects
+        fadeLanding.del();
+        fadeTaxi.del();
+        fadeProbe.del();
+        fadeWhite.del();
+      
+        ### the rest of your model unload embedded Nasal code ###
+      </unload>
+    </nasal>
+
+	<!-- Effects -->
+	
+	<model>
+		<path>Aircraft/daVinci_F-35A/Models/Effects.xml</path>
+	</model>
+	
+	<!-- MP sound call -->
+	
+	<sound>
+		<path>Aircraft/daVinci_F-35A/Sounds/MP-Sound.xml</path>
+	</sound>
+
+	<!-- Submodels -->
+	
+	<model>
+	<path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/AfterBurner.xml</path>
+	<offsets>
+	<x-m>8.15</x-m>
+         <y-m>0</y-m>
+         <z-m> 6.050</z-m>
+         <pitch-deg>90</pitch-deg>
+	</offsets>
+        </model>
+	          
+	<!-- Livery -->
+
+	<nasal>
+		<load>
+			var livery_update = aircraft.livery_update.new("Aircraft/daVinci_F-35A/Models/Liveries");
+		</load>
+		<unload>
+			livery_update.stop();
+		</unload>
+	</nasal>
+
+	<animation>
+		<type>material</type>
+		<property-base>sim/model/livery</property-base>
+		<object-name>fuselage</object-name>
+		<object-name>arch</object-name>
+		<object-name>fuel top</object-name>
+		<object-name>antennas</object-name>
+		<object-name>elevators</object-name>
+		<object-name>tail</object-name>
+		<object-name>rudderL</object-name>
+		<object-name>rudderR</object-name>
+		<object-name>flaperonL</object-name>
+		<object-name>flaperonR</object-name>
+		<object-name>spoilerL</object-name>
+		<object-name>spoilerR</object-name>
+		<object-name>door engineL</object-name>
+		<object-name>door engineR</object-name>
+		<object-name>door bayLI</object-name>
+		<object-name>door bayLO</object-name>
+		<object-name>door bayRI</object-name>
+		<object-name>door bayRO</object-name>
+		<object-name>doorFL</object-name>
+		<object-name>doorFR</object-name>
+		<object-name>door fan</object-name>
+		<object-name>door fanL</object-name>
+		<object-name>door fanR</object-name>
+		<object-name>door topL</object-name>
+		<object-name>door topR</object-name>
+		<object-name>doorB1L</object-name>
+		<object-name>doorB2L</object-name>
+		<object-name>thrusterL</object-name>
+		<object-name>thrusterR</object-name>
+		<object-name>doorB1R</object-name>
+		<object-name>doorB2R</object-name>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/Default.png</texture>
+	</animation>
+	
+	<!-- Shaders -->
+
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Aircraft/daVinci_F-35A/Models/Glass.png</texture>
+		<object-name>eots</object-name>
+		<object-name>canopy</object-name>
+		<object-name>plume</object-name>
+	</animation>
+
+	<!-- Animations -->
+    
+	<!-- Canopy -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>CanopyFrame</object-name>
+                <object-name>CanopyFrame2</object-name>
+                <object-name>CanopyFrameWire</object-name>
+		<object-name>CanopyGlass</object-name>
+                <object-name>CanopyBits</object-name>
+		<property>canopy/position-norm</property>
+		<factor>35</factor>
+		<center>
+			<x-m>-5.90</x-m>
+			<y-m> 0.0</y-m>
+			<z-m> 0.90</z-m>
+		</center>
+		<axis>
+			<x> 0</x>
+			<y>-1</y>
+			<z> 0</z>
+		</axis>
+	</animation>
+
+	<!-- Flaperons -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortFlap</object-name>
+		<property>surface-positions/aileron-pos-norm</property>
+		<factor>-35</factor>
+		<axis>
+			<x1-m>3.865</x1-m>
+			<y1-m>-1.901</y1-m>
+			<z1-m> 0.258</z1-m>
+			<x2-m>3.170</x2-m>
+			<y2-m>-4.697</y2-m>
+			<z2-m> 0.258</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardFlap</object-name>
+		<property>surface-positions/aileron-pos-norm</property>
+		<factor>-35</factor>
+		<axis>
+			<x1-m>3.865</x1-m>
+			<y1-m> 1.901</y1-m>
+			<z1-m> 0.258</z1-m>
+			<x2-m>3.170</x2-m>
+			<y2-m>4.697</y2-m>
+			<z2-m> 0.258</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortFlap</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>-35</factor>
+		<axis>
+			<x1-m>3.865</x1-m>
+			<y1-m>-1.901</y1-m>
+			<z1-m> 0.248</z1-m>
+			<x2-m>3.170</x2-m>
+			<y2-m>-4.697</y2-m>
+			<z2-m> 0.2581</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardFlap</object-name>
+		<property>surface-positions/flap-pos-norm</property>
+		<factor>35</factor>
+		<axis>
+			<x1-m>3.865</x1-m>
+			<y1-m> 1.901</y1-m>
+			<z1-m> 0.258</z1-m>
+			<x2-m>3.170</x2-m>
+			<y2-m> 4.697</y2-m>
+			<z2-m> 0.258</z2-m>
+		</axis>
+	</animation>
+
+	<!-- Elevators -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortElevon</object-name>
+                <object-name>StarboardElevon</object-name>
+		<property>surface-positions/elevator-pos-norm</property>
+		<factor>20</factor>
+		<axis>
+			<x1-m> 6.18</x1-m>
+			<y1-m>-0.87</y1-m>
+			<z1-m> 0.32</z1-m>
+			<x2-m> 6.18</x2-m>
+			<y2-m> 0.87</y2-m>
+			<z2-m> 0.32</z2-m>
+		</axis>
+	</animation>
+
+
+<!-- Elevators as Tailerons -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortElevon</object-name>
+                <property>surface-positions/aileron-pos-norm</property>
+		<factor>25</factor>
+		<axis>
+			<x1-m> 6.18</x1-m>
+			<y1-m>-0.87</y1-m>
+			<z1-m> 0.32</z1-m>
+			<x2-m> 6.18</x2-m>
+			<y2-m> 0.87</y2-m>
+			<z2-m> 0.32</z2-m>
+		</axis>
+	</animation>
+
+
+<animation>
+		<type>rotate</type>
+		<object-name>StarboardElevon</object-name>
+                <property>surface-positions/aileron-pos-norm</property>
+		<factor>-25</factor>
+		<axis>
+			<x1-m> 6.18</x1-m>
+			<y1-m>-0.87</y1-m>
+			<z1-m> 0.32</z1-m>
+			<x2-m> 6.18</x2-m>
+			<y2-m> 0.87</y2-m>
+			<z2-m> 0.32</z2-m>
+		</axis>
+	</animation>
+
+
+<!-- Elevators as SpeedBrakes -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortElevon</object-name>
+                <property>surface-positions/speedbrake-pos-norm</property>
+		<factor>23</factor>
+		<axis>
+			<x1-m> 6.18</x1-m>
+			<y1-m>-0.87</y1-m>
+			<z1-m> 0.32</z1-m>
+			<x2-m> 6.18</x2-m>
+			<y2-m> 0.87</y2-m>
+			<z2-m> 0.32</z2-m>
+		</axis>
+	</animation>
+
+
+<animation>
+		<type>rotate</type>
+		<object-name>StarboardElevon</object-name>
+                <property>surface-positions/speedbrake-pos-norm</property>
+		<factor>23</factor>
+		<axis>
+			<x1-m> 6.18</x1-m>
+			<y1-m>-0.87</y1-m>
+			<z1-m> 0.32</z1-m>
+			<x2-m> 6.18</x2-m>
+			<y2-m> 0.87</y2-m>
+			<z2-m> 0.32</z2-m>
+		</axis>
+	</animation>
+
+
+
+	<!-- Spoilers -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortSlat</object-name>
+		<property>surface-positions/slat-pos-norm</property>
+		<factor>-25</factor>
+		<axis>
+			<x1-m> 2.70</x1-m>
+			<y1-m>-5.41</y1-m>
+			<z1-m> 0.52</z1-m>
+			<x2-m> 0.76</x2-m>
+			<y2-m>-2.46</y2-m>
+			<z2-m> 0.51</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarSlat</object-name>
+		<property>surface-positions/slat-pos-norm</property>
+		<factor>25</factor>
+		<axis>
+			<x1-m> 2.70</x1-m>
+			<y1-m> 5.41</y1-m>
+			<z1-m> 0.52</z1-m>
+			<x2-m> 0.76</x2-m>
+			<y2-m> 2.46</y2-m>
+			<z2-m> 0.51</z2-m>
+		</axis>
+	</animation>
+
+	<!-- Rudders -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortRudder</object-name>
+		<property>surface-positions/rudder-pos-norm</property>
+		<factor>-35</factor>
+		<axis>
+			<x1-m>5.633</x1-m>
+			<y1-m>-1.447</y1-m>
+			<z1-m> 0.550</z1-m>
+			<x2-m>6.805</x2-m>
+			<y2-m>-2.103</y2-m>
+			<z2-m> 2.260</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardRudder</object-name>
+		<property>surface-positions/rudder-pos-norm</property>
+		<factor>-35</factor>
+		<axis>
+			<x1-m>5.633</x1-m>
+			<y1-m> 1.447</y1-m>
+			<z1-m> 0.550</z1-m>
+			<x2-m>6.805</x2-m>
+			<y2-m>2.103</y2-m>
+			<z2-m> 2.260</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortRudder</object-name>
+		<property>surface-positions/speedbrake-pos-norm</property>
+		<factor>-37</factor>
+		<axis>
+			<x1-m>5.633</x1-m>
+			<y1-m>-1.447</y1-m>
+			<z1-m> 0.550</z1-m>
+			<x2-m>6.805</x2-m>
+			<y2-m>-2.103</y2-m>
+			<z2-m> 2.260</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardRudder</object-name>
+		<property>surface-positions/speedbrake-pos-norm</property>
+		<factor>37</factor>
+		<axis>
+			<x1-m>5.633</x1-m>
+			<y1-m> 1.447</y1-m>
+			<z1-m> 0.550</z1-m>
+			<x2-m>6.805</x2-m>
+			<y2-m>2.103</y2-m>
+			<z2-m> 2.260</z2-m>
+		</axis>
+	</animation>
+
+	<!-- Gear Doors -->
+
+	<!-- Front Gear Doors -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortNoseGearDoor</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>-75</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>-75</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>-5.816</x1-m>
+			<y1-m>-0.442</y1-m>
+			<z1-m>-0.288</z1-m>
+			<x2-m>-3.442</x2-m>
+			<y2-m>-0.442</y2-m>
+			<z2-m>-0.538</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarNoseGearDoor</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>75</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>75</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>-5.816</x1-m>
+			<y1-m>0.442</y1-m>
+			<z1-m>-0.288</z1-m>
+			<x2-m>-3.442</x2-m>
+			<y2-m>0.442</y2-m>
+			<z2-m>-0.538</z2-m>
+		</axis>
+	</animation>
+
+	<!-- Left Gear Doors -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortRearGearDoor</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>90</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>90</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>2.723</x1-m>
+			<y1-m>-2.083</y1-m>
+			<z1-m>-0.110</z1-m>
+			<x2-m>1.913</x2-m>
+			<y2-m>-2.212</y2-m>
+			<z2-m>-0.125</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortFrontGearDoor</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-80</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>-80</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m> 0.388</x1-m>
+			<y1-m>-2.209</y1-m>
+			<z1-m> 0.066</z1-m>
+			<x2-m>1.717</x2-m>
+			<y2-m>-2.047</y2-m>
+			<z2-m>-0.174</z2-m>
+		</axis>
+	</animation>
+
+	<!-- Right Gear Doors -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarRearGearDoor</object-name>
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>-90</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>-90</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>2.723</x1-m>
+			<y1-m>2.083</y1-m>
+			<z1-m>-0.110</z1-m>
+			<x2-m>1.913</x2-m>
+			<y2-m>2.212</y2-m>
+			<z2-m>-0.125</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarFrontGearDoor</object-name>
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>80</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>80</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m> 0.388</x1-m>
+			<y1-m>2.209</y1-m>
+			<z1-m> 0.066</z1-m>
+			<x2-m>1.717</x2-m>
+			<y2-m>2.047</y2-m>
+			<z2-m>-0.174</z2-m>
+		</axis>
+	</animation>
+
+
+<!-- Landing Gear Animations -->
+	
+
+<!-- Front Gear -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>NoseWheel</object-name>
+		<object-name>NoseLowerStrut</object-name>
+		<object-name>NoseUpperStrut</object-name>
+		<object-name>NoseActuator</object-name>
+                <object-name>NoseGearUpperSpring</object-name>
+                <object-name>NoseLowerSpring</object-name>
+                <object-name>NoseGearBit3</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>100</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>100</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>0</offset-deg>
+		<center>
+			<x-m>-3.74 </x-m>
+			<y-m> 0.00 </y-m>
+			<z-m> 0.07 </z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>NoseActuator</object-name>
+		<property>gear/gear[0]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>110</dep>
+			</entry>
+			<entry>
+				<ind>0.7</ind>
+				<dep>110</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>110</offset-deg>
+		<axis>   
+			<x1-m>-3.80</x1-m>
+			<y1-m> 1.00</y1-m>
+			<z1-m>-0.72</z1-m>
+			<x2-m>-3.80</x2-m>
+			<y2-m>-1.00</y2-m>
+			<z2-m>-0.72</z2-m>
+		</axis>
+	</animation>
+
+<!-- Left Gear -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortWheel</object-name>
+		<object-name>PortLowerStrut</object-name>
+		<object-name>PortUpperStrut</object-name>
+		<object-name>PortUpperSpring</object-name>
+                <object-name>PortLowerSpring</object-name>
+                <object-name>PortGearActuator</object-name>
+                <object-name>PortSpring3</object-name>
+		<object-name>PortSpring4</object-name>	 
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>0</offset-deg>
+		<center>
+			<x-m>2.533</x-m>
+			<y-m>-1.964</y-m>
+			<z-m> 0.050</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortWheel</object-name>
+		<object-name>PortSpring3</object-name>
+		<object-name>PortSpring4</object-name>
+		<object-name>gear4.L</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>0</offset-deg>
+		<center>
+			<x-m>2.533</x-m>
+			<y-m>-1.964</y-m>
+			<z-m> 0.050</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>gear2.L</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<factor>150</factor>
+		<offset-deg>-150</offset-deg>
+		<axis>   
+			<x1-m> 1.81</x1-m>
+			<y1-m>-1.88</y1-m>
+			<z1-m>-0.49</z1-m>
+			<x2-m> 1.81</x2-m>
+			<y2-m> 1.88</y2-m>
+			<z2-m>-0.49</z2-m>
+		</axis>
+	</animation>
+
+<!-- De-select non-visibile parts when retracted -->
+  <animation>
+    <type>select</type>
+    <object-name>PortSpring3</object-name>
+    <object-name>PortSpring4</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+<!-- Right Gear -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarWheel</object-name>
+		<object-name>StarLowerStrut</object-name>
+		<object-name>StarUpperStrut</object-name>
+		<object-name>StarUpperSpring</object-name>
+                <object-name>StarLowerSpring</object-name>
+                <object-name>StarGearActuator</object-name>
+                <object-name>StarSpring3</object-name>
+		<object-name>StarSpring4</object-name>	 
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>-88</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>0</offset-deg>
+		<center>
+			<x-m>2.533</x-m>
+			<y-m> 1.964</y-m>
+			<z-m> 0.050</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>StarWheel</object-name>
+		<object-name>StarSpring3</object-name>
+		<object-name>StarSpring4</object-name>
+		<object-name>gear4.R</object-name>
+		<property>gear/gear[2]/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>88</dep>
+			</entry>
+			<entry>
+				<ind>0.1</ind>
+				<dep>88</dep>
+			</entry>
+			<entry>
+				<ind>0.9</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>0</dep>
+			</entry>
+		</interpolation>
+		<offset-deg>0</offset-deg>
+		<center>
+			<x-m> 2.533</x-m>
+			<y-m> 1.964</y-m>
+			<z-m> 0.050</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>gear2.R</object-name>
+		<property>gear/gear[1]/position-norm</property>
+		<factor>150</factor>
+		<offset-deg>-150</offset-deg>
+		<axis>   
+			<x1-m> 1.81</x1-m>
+			<y1-m>-1.88</y1-m>
+			<z1-m>-0.49</z1-m>
+			<x2-m> 1.81</x2-m>
+			<y2-m> 1.88</y2-m>
+			<z2-m>-0.49</z2-m>
+		</axis>
+	</animation>
+
+<!-- De-select non-visibile parts when retracted -->
+  <animation>
+    <type>select</type>
+    <object-name>StarSpring3</object-name>
+    <object-name>StarSpring4</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear[0]/position-norm</property>
+        <value>0.0</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+<!-- Steering -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>NoseWheel</object-name>
+		<object-name>NoseLowerStrut</object-name>
+		<object-name>NoseGearUpperSpring</object-name>
+                <object-name>NoseLowerSpring</object-name>
+                <object-name>NoseGearBit3</object-name>	 	
+		<property>gear/gear[0]/caster-angle-deg[0]</property>
+		<factor>1.5</factor>
+		<offset-deg>0</offset-deg>
+		<axis>
+		 <x1-m>-3.74</x1-m>
+		 <y1-m> 0.00</y1-m>
+		 <z1-m>-0.44</z1-m>
+		 <x2-m>-3.74</x2-m>
+		 <y2-m> 0.00</y2-m>
+		 <z2-m>-1.70</z2-m>
+		</axis>
+	</animation>
+	
+<!-- Gear Compression -->
+
+	<animation>
+		<type>translate</type>
+		<object-name>wheel.F</object-name>
+		<object-name>gear1.F</object-name>  
+		<property>gear/gear/compression-m</property>
+		<factor>1</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>	
+
+	<animation>
+		<type>translate</type>
+		<object-name>wheel.L</object-name>
+		<object-name>gear1.L</object-name>
+		<object-name>gear3.L</object-name> 
+		<property>gear/gear[1]/compression-m</property>
+		<factor>1</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>wheel.R</object-name>
+		<object-name>gear1.R</object-name>
+		<object-name>gear3.R</object-name> 
+		<property>gear/gear[2]/compression-m</property>
+		<factor>1</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+				
+	<!-- Weapon Bay Doors -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PortInsideBayDoor</object-name>
+        <object-name>PortInternalOrdinance</object-name>
+		<property>baydoors/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.5</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>110</dep>
+			</entry>
+		</interpolation>
+		<axis>   
+			<x1-m>-1.745</x1-m>
+			<y1-m>-0.331</y1-m>
+			<z1-m>-0.74</z1-m>
+			<x2-m>2.115</x2-m>
+			<y2-m>-0.630</y2-m>
+			<z2-m>-0.73</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>PortOutsideBayDoor</object-name>
+        <object-name>PortBayDoorHinges</object-name>
+        <object-name>PortBayDoor3</object-name>
+        <object-name>PortBayDoorHinges2</object-name>
+		<property>baydoors/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.5</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>-90</dep>
+			</entry>
+		</interpolation>
+		<axis>   
+			<x1-m>-1.759</x1-m>
+			<y1-m>-1.428</y1-m>
+			<z1-m>-0.596</z1-m>
+			<x2-m>1.864</x2-m>
+			<y2-m>-1.686</y2-m>
+			<z2-m>-0.390</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardInsideBayDoor</object-name>
+        <object-name>StarboardInternalOrdinance</object-name>
+		<property>baydoors/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.5</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>-110</dep>
+			</entry>
+		</interpolation>
+		<axis>   
+			<x1-m>-1.745</x1-m>
+			<y1-m>0.331</y1-m>
+			<z1-m>-0.74</z1-m>
+			<x2-m>2.115</x2-m>
+			<y2-m>0.630</y2-m>
+			<z2-m>-0.73</z2-m>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>StarboardOutsideBayDoor</object-name>
+        <object-name>StarboardBayDoorHinges</object-name>
+        <object-name>StarboardBayDoor3</object-name>
+        <object-name>StarboardBayDoorHinges2</object-name>
+		<property>baydoors/position-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0.0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>0.5</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1.0</ind>
+				<dep>90</dep>
+			</entry>
+		</interpolation>
+		<axis>   
+			<x1-m>-1.759</x1-m>
+			<y1-m>1.428</y1-m>
+			<z1-m>-0.596</z1-m>
+			<x2-m>1.864</x2-m>
+			<y2-m>1.686</y2-m>
+			<z2-m>-0.390</z2-m>
+		</axis>
+	</animation>
+
+<!-- Tire Smoke -->
+ 
+ <!--  Nose Wheel -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground0.xml</path>
+    <offsets>
+      <x-m>-3.574</x-m>
+      <y-m>0.000</y-m>
+      <z-m>-1.802</z-m>
+    </offsets>
+  </model>
+
+  <!-- Port Wheel -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground1.xml</path>
+    <offsets>
+      <x-m>2.681</x-m>
+      <y-m> -2.195</y-m>
+      <z-m>-1.875</z-m>
+    </offsets>
+  </model>
+
+  <!-- Star Wheel -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground2.xml</path>
+    <offsets>
+      <x-m>2.681</x-m>
+      <y-m>2.195</y-m>
+      <z-m>-1.875</z-m>
+    </offsets>
+  </model>
+
+<!-- Rolling Wheels -->
+
+<!-- Nose Wheel -->
+  <animation>
+    <type>spin</type>
+   <object-name>NoseWheel</object-name>
+    <property>gear/gear[0]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m>-3.712</x-m>
+      <y-m>0.000 </y-m>
+      <z-m> -1.700</z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+<!-- Port Wheel -->
+  <animation>
+    <type>spin</type>
+    <object-name>PortWheel</object-name>
+    <property>gear/gear[1]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m>2.377</x-m>
+      <y-m>-2.145</y-m>
+      <z-m>-1.629</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y> -1 </y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+<!-- Star Wheel -->
+
+  <animation>
+    <type>spin</type>
+    <object-name>StarWheel</object-name>
+    <property>gear/gear[2]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m>2.377</x-m>
+      <y-m>2.145</y-m>
+      <z-m>-1.629</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y> -1 </y>
+      <z>0</z>
+    </axis>
+  </animation>	
+
+<!--Contrails-->
+
+<model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/contrail.xml</path>
+    <offsets>
+     <x-m> 12.5</x-m>
+     <y-m>0</y-m>
+     <z-m>.4</z-m>
+    </offsets>
+  </model>
+
+<!-- Smoke Trail -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/smoke/smokeL.xml</path>
+    <offsets>
+      <x-m>  12.5 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> .4 </z-m>
+    </offsets>
+  </model>
+
+<!-- Tiptrail -->
+
+<!-- Port Horiz Stab -->  
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>7.173</x-m>
+      <y-m>3.570</y-m>
+      <z-m>0.455</z-m>
+    </offsets>
+  </model>
+
+<!-- Star Horiz Stab -->  
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>7.173</x-m>
+      <y-m>-3.570</y-m>
+      <z-m>0.455</z-m>
+    </offsets>
+  </model>
+
+
+<!-- Port Vert Stab -->
+  
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>7.245</x-m>
+      <y-m>2.131</y-m>
+      <z-m>2.325</z-m>
+    </offsets>
+  </model>
+
+<!-- Star Vert Stab -->
+  
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>7.245</x-m>
+      <y-m>-2.131</y-m>
+      <z-m>2.325</z-m>
+    </offsets>
+  </model>
+
+
+ <!-- Port Wing Tip -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>3.822</x-m>
+      <y-m>5.369</y-m>
+      <z-m>0.319</z-m>
+    </offsets>
+  </model>
+
+
+  <!-- Star Wing Tip -->
+  <model>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <offsets>
+      <x-m>3.822</x-m>
+      <y-m>-5.369</y-m>
+      <z-m>0.319</z-m>
+    </offsets>
+  </model>
+
+</PropertyList>

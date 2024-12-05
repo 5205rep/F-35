@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+ <switches>
+	<landing-lights-switch type="bool">false</landing-lights-switch>
+	<search-lights-switch type="bool">false</search-lights-switch>
+	<nav-lights-switch type="bool">false</nav-lights-switch>
+	<beacon-switch type="bool">false</beacon-switch>
+	<strobe-switch type="bool">false</strobe-switch>
+	<white-light-switch type="bool">false</white-light-switch>
+	
+	</switches>
+
+  <engines>
+    <engine n="0">
+      <boost type="double">0</boost>
+      <magnetos>0</magnetos>
+      <noze-flaps-norm type="float">1</noze-flaps-norm>
+      <cowl-flaps-norm type="float">1</cowl-flaps-norm>
+    </engine>
+    <engine n="1">
+      <boost type="double">0</boost>
+      <magnetos>0</magnetos>
+      <noze-flaps-norm type="float">1</noze-flaps-norm>
+      <cowl-flaps-norm type="float">1</cowl-flaps-norm>
+    </engine>
+  </engines>
+
+  <electric>
+    <battery-switch>0</battery-switch>
+    <generator>0</generator>
+    <engines>
+      <engine n="0">
+        <fuel-pump>0</fuel-pump>
+      </engine>
+      <engine n="1">
+        <fuel-pump>0</fuel-pump>
+      </engine>
+    </engines>
+  </electric>
+
+  <gear>
+    <brake-parking type="bool">true</brake-parking>
+    <tailwheel-lock type="bool">true</tailwheel-lock>
+  </gear>
+
+  <flight>
+    <rudder-trim>   0.000 </rudder-trim>
+    <aileron-trim>  0.005 </aileron-trim>
+    <elevator-trim> 0.080 </elevator-trim>
+  </flight>
+
+</PropertyList>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+   
+  
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>panel</object-name>
+    <object-name>textes</object-name>
+    <object-name>pedestal</object-name>
+    <object-name>panelfront</object-name>
+    <object-name>registration</object-name>
+    
+    <!-- Objets transparents -->
+  </animation>
+     
+ <model>
+    <path>Aircraft/Diamond-Da42/Models/Interior/Panel/Instruments/zkv1000/mfd.xml</path>
+    <offsets>
+      <x-m> 0.004 </x-m>
+      <y-m> 0.110 </y-m>
+      <z-m> 0.152 </z-m>
+    </offsets>
+  </model> 
+    
+  <model>
+    <path>Aircraft/Diamond-Da42/Models/Interior/Panel/Instruments/zkv1000/pfd.xml</path>
+    <offsets>
+      <x-m>  0.004 </x-m>
+      <y-m> -0.187 </y-m>
+      <z-m>  0.152 </z-m>
+    </offsets>
+  </model>
+     
+</PropertyList>

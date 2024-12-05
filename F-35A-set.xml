@@ -1,0 +1,1377 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Lockheed Martin F-35A Lightning II
+
+************************************************************************
+-->
+
+<PropertyList>
+	<sim>
+
+		<description>Lockheed Martin F-35A Lightning II</description>
+		<author>VooDoo and The FGUK Development Dream Team with Geed (Sound) Petar Jedvaj, Detlef Faber, and F-GTUX, edited by 1stAF.</author>
+		<status>Modded to be ready for combat</status>
+  <primary-set type="bool">true</primary-set>
+	 	<flight-model>jsb</flight-model>
+		<aero>F-35A-jsbsim</aero>
+		<fuel-fraction>0.70</fuel-fraction>
+<rendering>
+ <refl_correction type="string">-0.51</refl_correction>
+ <frensel-factor type="string">0.5</frensel-factor>
+</rendering>
+
+   <previews>
+      <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-1.jpg</path>
+      </preview>
+      <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-2.jpg</path>
+      </preview>
+      <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-3.jpg</path>
+      </preview>
+   <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-4.jpg</path>
+      </preview>
+   <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-5.jpg</path>
+      </preview>
+      <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-6.jpg</path>
+      </preview>
+     <preview>
+        <type>exterior</type>
+        <splash type="bool">true</splash>
+        <path>Splashscreen/daVinci_F-35A-7.jpg</path>
+      </preview>
+    </previews>
+
+      <instrumentation>
+            <path>Aircraft/daVinci_F-35A/Systems/instrumentation.xml</path>
+        </instrumentation>
+		
+    <systems>
+
+                         <electrical>
+				<path>Aircraft/daVinci_F-35A/Systems/Electrical.nas</path>
+			</electrical>
+			<autopilot>
+				<path>Aircraft/daVinci_F-35A/Systems/VooDooAP1.xml</path>
+			</autopilot>
+			<refuel>
+				<type>boom</type>
+				<serviceable type="bool">true</serviceable>
+			</refuel>
+                <instrumentation>
+                   <path>Systems/instrumentation.xml</path>
+               </instrumentation>
+        
+              </systems> 
+
+          
+            		<virtual-cockpit archive="y">true</virtual-cockpit>
+		<allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
+
+		<model>
+			<path>Aircraft/daVinci_F-35A/Models/F-35A.xml</path>
+		</model>
+    <!--Submodels-->
+
+
+    		<submodels> 
+    		<serviceable type="bool">true</serviceable>
+    		<path>Aircraft/daVinci_F-35A/Submodels.xml</path>           
+			 
+  		</submodels>
+
+    <multiplay>
+      <chat_display>1</chat_display>
+      <generic> 
+        <bool n="0" type="bool" alias="damage/sounds/explode-on"/>
+        <bool n="1" type="bool" alias="damage/fire/serviceable"/>
+        <bool n="2" type="bool">true</bool><!-- this must stay true to prevent bug in MP protocol for bools -->
+        <bool n="40" type="bool">true</bool>
+        <bool n="41" type="bool">true</bool>
+        <bool n="42" type="bool">true</bool>
+        <bool n="43" type="bool">true</bool>
+        <bool n="44" type="bool">true</bool>
+        <bool n="45" type="bool">true</bool>
+        <bool n="35" type="bool" alias="/surface-positions/chute-pos-norm"/>
+        <bool n="36" type="bool" alias="/controls/engines/engine/throttle"/>
+        <bool n="50" type="bool">true</bool>
+        <bool n="51" type="bool" alias="/instrumentation/gci/bogeydope"/>
+        <bool n="52" type="bool" alias="/instrumentation/gci/cutoff"/>
+        <int n="0" alias="/controls/switches/nav-lights-switch"/>  <!-- Nav lights on -->
+        <int n="1" alias="/controls/switches/beacon-switch"/> <!-- Beacon on -->
+        <int n="2" alias="/controls/switches/landing-lights-switch" />  <!-- Landing lights on -->
+        <int n="3" alias="/controls/switches/strobe-switch"/>  <!-- Taxi light on -->
+        <int n="4" alias="/controls/smoke"/> 
+        <int type="int" n="5">  0 </int><!-- 5 immat -->
+        <int type="bool" n="6"> 1 </int><!-- 6 smoke/bomb/torpedo -->
+        <int n="7" alias="/sim/crashed" /><!-- Crashed -->
+        <int n="8" alias="/systems/electrical/outputs/nav-lights">  0 </int> <!-- 8 nav-lights -->
+        <int n="9" alias="/sim/model/lights/beacon/state">  false </int> <!-- 9 strobe-lights -->
+        <int n="10" alias="/controls/electric/key-pos">  0 </int> <!-- 10 key position -->
+    <!--<int n="11" type="int" alias="/surface-positions/left-flap-pos-norm"/>-->
+    <!--<int n="12" type="int" alias="/surface-positions/right-flap-pos-norm"/>-->
+        <int n="15" type="int" alias="/sim/model/daVinci_SU-34/smokewinderB1"/>
+        <int n="16" type="int" alias="/sim/model/daVinci_SU-34/smokewinderB9"/>
+        <int n="17" type="int" alias="/sim/model/daVinci_SU-34/smokewinderW1"/>
+        
+        <float n="1" alias="/velocities/airspeed-kt/"/>
+        <float n="2" alias="/velocities/mach"/>
+        <float n="3" alias="/gear/gear[2]/wow/"/>
+        <float n="4" type="double" alias="/surface-positions/aileron-pos-norm"/>
+        <float n="5" type="double" alias="/surface-positions/elevator-pos-norm"/>
+        <float n="6" type="double" alias="/surface-positions/right-taileron-pos-norm"/>
+        <float n="7" type="double" alias="/gear/gear[0]/steering-norm"/>
+        <float n="8" alias="/position/altitude-ft"> 0 </float><!-- altitude for Smoke/Trail -->
+        <float n="9" type="double" alias="/instrumentation/doors/wings/position-norm"/>
+        <float n="10" alias="/baydoors/position-norm"/>
+        <float n="11" alias="/engines/engine/nozzle-pos-norm"/>
+        <float n="12" alias="/controls/flight/aileron"/>
+        <float n="13" alias="/controls/engines/engine[0]/mixture"/>
+        <float n="14" type="double">0</float><!-- scene red inverted --> 
+        <float n="15" alias="/gear/gear[0]/compression-norm"/>
+        <float n="16" alias="/gear/gear[1]/compression-norm"/>
+        <float n="17" alias="/gear/gear[2]/compression-norm"/>
+        <float n="18" alias="/gear/gear[0]/rollspeed-ms"/>
+        <float n="19" alias="/gear/gear[1]/rollspeed-ms"/>
+        <float n="20" alias="/gear/gear[2]/rollspeed-ms"/>  
+        <float n="21" alias="/instrumentation/doors/wings/position-norm"/>
+        <float n="22" alias="/surface-positions/chute-pos-norm"/>
+        <float n="23" alias="/orientation/parachute-theta"/>
+        <float n="24" alias="/orientation/parachute-phi"/>
+        <float n="25" alias="/controls/flight/parachute"/>
+        <float n="26" alias="/position/altitude-ft"/>
+        <float n="27" alias="/sim/model/door-positions/crew/position-norm"/>
+        <float n="28" alias="/engines/engine/augmentation"/>
+      		 <float n="29" type="double" alias="/fdm/jsbsim/fcs/AIM120"/><!--aim120-->
+		 <float n="30" type="double" alias="/fdm/jsbsim/fcs/AIM9X"/><!--aim120-->
+        <float n="31" alias="/orientation/alpha-deg"/>
+       </generic>
+    </multiplay>
+<!--Defined multiple times...
+<flight-recorder>
+      <replay-config type="int">0</replay-config>
+      <config n="0" include="/Aircraft/Generic/flightrecorder/generic-jet.xml">
+        <name type="string">B-1B Flight Recorder</name>
+         <signal>
+          <type>float</type> 
+          <property type="string">/sim/model/door-positions/crew/position-norm</property>
+        </signal>
+        <signal>
+          <type>float</type> 
+          <property type="string">/sim/model/door-positions/passenger/position-norm</property>
+        </signal>
+         <signal>
+          <type>float</type> 
+          <property type="string">/sim/multiplay/generic/float[21]</property>
+        </signal>            
+	<signal>
+          <type>float</type>
+          <property type="string">/environment/relative-humidity</property>
+        </signal>
+        <signal>
+          <type>float</type>
+          <property type="string">/environment/temperature-degc</property>
+        </signal>
+       <signal>
+          <type>float</type>
+          <property type="string">/velocities/airspeed-kt</property>
+        </signal>
+          <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/int[1]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[14]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[15]</property>
+        </signal>
+
+         <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[16]</property>
+        </signal>
+
+       <signal>
+          <type>float</type>
+          <property type="string">/sim/model/surface-positions/rudder-pos-norm</property>
+        </signal>
+
+         <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[10]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[11]</property>
+        </signal>
+
+       <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[13]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property>canopy/position-norm</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property>/sim/multiplay/generic/bool[36]</property>
+        </signal>
+
+       <signal>
+          <type>float</type>
+          <property>/sim/model/surface-positions/speedbrake-pos-norm</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property>/sim/model/gear/tailhook</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[21]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[22]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[23]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[24]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[25]</property>
+        </signal>
+
+        <signal>
+          <type>float</type>
+          <property type="string">/sim/multiplay/generic/float[28]</property>
+        </signal>
+       
+       </config>
+    </flight-recorder> -->
+
+                <sound>
+		 <path>Aircraft/daVinci_F-35A/Sounds/sound.xml</path>
+		</sound>	
+
+
+                <view n="0">
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y" type="double"> 0.00</x-offset-m><!-- Right -->
+				<y-offset-m archive="y" type="double"> 1.05</y-offset-m><!-- Up -->
+				<z-offset-m archive="y" type="double">-4.57</z-offset-m><!-- Back -->
+				<default-field-of-view-deg type="double">78</default-field-of-view-deg>
+				<pitch-offset-deg>-6.5</pitch-offset-deg>
+			</config>
+		</view>
+
+<help>
+			<title> daVinci_F-35A </title>
+			
+			<key>
+				<name>c</name>
+				<desc>Canopy</desc>
+			</key> 
+
+                         <key>
+				<name>f</name>
+				<desc>Toggle Fuel Doors and Red VooDoo Smoke!</desc>
+			</key>
+			
+			<key>
+				<name>Ctrl+d</name>
+				<desc>Weapons Doors</desc>
+			</key>
+
+                         <key>
+				<name>Cntrl B</name>
+				<desc>Toggle Speedbrakes</desc>
+			</key>
+                        <key>
+				<name>O/o</name>
+				<desc>Deploy/Retract Tail Hook *Not for Deck Landings!!*</desc>
+			</key>
+                        <key>
+				<name>d</name>
+				<desc>Deploy Parachute</desc>
+			</key>
+                        <key>
+				<name>j</name>
+				<desc>Jettison Parachute</desc>
+			</key>
+			
+			<line></line>
+			<line>Apply full power, hold the stick back. Take off will occur at 140-160kts on a clean aircraft.</line>
+                        <line></line>
+			<line>Maximum speed - Mach 1.6 at 43000ft. </line> 
+                        <line></line>
+			<line>This aircraft is equipped with automatic flaps and slats. </line>
+                        <line></line>
+   			<line>You can pull up a Special HUD by clicking in the center of the HUD glass.</line>
+                        <line></line>
+		</help>
+
+    
+    <menubar>
+	  <default>
+	   <menu n="10">
+	    <label>F-35A</label>
+            <enabled type="bool">true</enabled>
+	      <item>
+		<label>Select Livery</label>
+                <binding>
+                <command>nasal</command>
+                <script>aircraft.livery.dialog.toggle()</script>
+                </binding>
+	      </item>
+
+           <item>
+                <name>autostart</name>
+                <label>Autostart | Autoshutdown</label>
+                <binding>
+                    <command>nasal</command>
+                    <script>emu.autostart()</script>
+                </binding>
+            </item>
+      <item>
+			<label>Toggle Damage</label>
+			<binding>
+				<command>nasal</command>
+				<script>
+					if(getprop("/gear/gear/compression-m") > 0.01){
+						if(getprop("/payload/armament/msg")){screen.log.write("Multiplayer Damage Off",1,0,0);setprop("/payload/armament/msg",0);}else{screen.log.write("Multiplayer Damage On",1,0,0);setprop("/payload/armament/msg",1);}
+					}else{
+						screen.log.write("Damage can be toggled only when on the ground!",1,0,0);
+					}
+				</script>
+			</binding>
+		</item>
+    <item>
+        <label>Event Log</label>
+        <binding>
+            <command>dialog-show</command>
+            <dialog-name>flightlog</dialog-name>
+        </binding>
+</item>
+    <item>
+        <label>Weapon Loads</label>
+        <binding>
+            <command>dialog-show</command>
+            <dialog-name>payload</dialog-name>
+        </binding>
+</item>
+	    </menu>
+	</default>
+	</menubar>
+
+		<hud>
+			<path n="1">Aircraft/daVinci_F-35A/Hud/HUD.xml</path>
+			<visibility n="1">true</visibility>
+			<palette>
+				<color n="0">
+					<alpha type="float">0.85</alpha>
+					<antialiased type="bool">true</antialiased>
+					<brightness type="float">0.85</brightness>
+					<transparent type="bool">true</transparent>
+					<red type="float">0.38</red>
+					<green type="float">1.0</green>
+					<blue type="float">0.22</blue>
+				</color>
+				<color n="1">
+					<alpha type="float">0.85</alpha>
+					<antialiased type="bool">true</antialiased>
+					<brightness type="float">0.85</brightness>
+					<transparent type="bool">true</transparent>
+					<red type="float">1.0</red>
+					<green type="float">0.2</green>
+					<blue type="float">0.0</blue>
+				</color>
+			</palette>
+		</hud>  
+   <weight n="0">
+      <name>pylon1</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0 </x-m>
+    <y-m type="double"> 0</y-m>
+    <z-m type="double"> 0</z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="1">
+      <name>pylon2</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0  </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0 </z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="2">
+      <name>pylon3</name>
+      <tank>2</tank>
+      <weight-lb type="double"> 0 </weight-lb>
+      <offsets>
+          <x-m type="double">0</x-m>
+          <y-m type="double">0</y-m>
+          <z-m type="double">0</z-m>
+      </offsets>
+      <selected>none</selected>
+
+    </weight>
+
+    <weight n="3">
+      <name>pylon4</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double">0 </x-m>
+    <y-m type="double">0 </y-m>
+    <z-m type="double">0</z-m>
+      </offsets>
+    </weight>
+
+    <weight n="4">
+      <name>pylon5</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+          <x-m type="double">0</x-m>
+          <y-m type="double">0</y-m>
+          <z-m type="double">0 </z-m>
+      </offsets>
+    </weight>
+
+    <weight n="5">
+      <name>pylon6</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double">0 </x-m>
+    <y-m type="double">0 </y-m>
+    <z-m type="double">0</z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="6">
+      <name>pylon7</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+<x-m type="double">0</x-m>
+<y-m type="double">0</y-m>
+<z-m type="double">0</z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="7">
+      <name>pylon8</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+<x-m type="double">0</x-m>
+<y-m type="double">0</y-m>
+<z-m type="double">0</z-m>
+      </offsets>
+    </weight>
+
+    <weight n="8">
+      <name>pylon9</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+          <x-m type="double">0 </x-m>
+          <y-m type="double">0 </y-m>
+          <z-m type="double">0 </z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="9">
+      <name>pylon10</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0 </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0</z-m>
+      </offsets>
+
+
+    </weight>
+
+
+
+
+	    <weight n="10">
+      <name>pylon11</name>  <!--For ejection seat-->
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+
+			<x-m archive="y">0</x-m><!--  direita/esquerda/de z para x   -->
+			<y-m archive="y">0</y-m><!-- cima/baixo/de y para y   -->
+			<z-m archive="y">0</z-m><!--  frente/atraz/de x para z  -->
+      </offsets>
+
+    </weight>
+
+
+   <weight n="11">
+      <name>pylon12</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double">0 </x-m>
+    <y-m type="double">0 </y-m>
+    <z-m type="double">0</z-m>
+      </offsets>
+    </weight>
+
+<!--
+    <weight n="12">
+      <name>pylon10-2</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0 </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0</z-m>
+      </offsets>
+
+
+    </weight>
+	    <weight n="13">
+      <name>pylon1-2</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0  </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0 </z-m>
+      </offsets>
+
+    </weight>
+
+    <weight n="14">
+      <name>pylon2-1</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0  </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0 </z-m>
+      </offsets>
+
+    </weight> -->
+ 
+      </sim>
+
+
+      <!--Radar implementation-->
+
+
+
+
+<!--Damage implementation goes here-->
+
+
+   <payload>
+        <d-config>
+            <full_damage_dist_m type="double">3</full_damage_dist_m>
+            <use_hitpoints_instead_of_failure_modes_bool type="bool">false</use_hitpoints_instead_of_failure_modes_bool>
+            <hp_max type="double">80</hp_max>
+            <hitable_by_air_munitions type="bool">true</hitable_by_air_munitions>
+            <hitable_by_cannon type="bool">true</hitable_by_cannon>
+            <is_fleet type="bool">false</is_fleet>
+            <rwr_to_screen type="bool">true</rwr_to_screen>
+            <rwr_audio_extended type="bool">false</rwr_audio_extended>
+            <tacview_supported type="bool">false</tacview_supported>
+            <m28_auto type="bool">false</m28_auto>
+            <mlw_max type="double">0</mlw_max>
+            <auto_flare_caller type="bool">false</auto_flare_caller>
+        </d-config>
+        <armament>
+	              <flares type="int">0</flares> <!--Flare detection prop-->
+            <enable-craters type="bool">true</enable-craters>
+            <MLW-bearing type="double">0</MLW-bearing>
+            <MLW-count type="int">0</MLW-count>
+            <MLW-launcher type="string"></MLW-launcher>
+            <MAW-bearing type="double">0</MAW-bearing>
+            <MAW-active type="bool">false</MAW-active>
+            <MAW-semiactive type="bool">false</MAW-semiactive>
+            <msg type="bool">true</msg>
+            <spike type="bool">false</spike>
+            <models type="string">Aircraft/daVinci_F-35A/Models/emesary/</models>
+        </armament>
+    </payload>
+
+
+    
+	<environment>
+		<turbulence>
+			<use-cloud-turbulence>true</use-cloud-turbulence>
+		</turbulence>
+	</environment>
+ 
+	<engines>
+		<engine n="0">
+			<running>true</running>
+			<augmentation type="int">0</augmentation>	
+		</engine>
+
+	</engines>
+
+<controls>
+<armament>
+<pos>
+<lat type="float">0</lat>
+<lon type="float">0</lon>
+<alt type="float">0</alt>
+<hdg type="float">0</hdg>
+<ptch type="float">0</ptch>
+<speed type="float">0</speed>
+</pos>
+
+
+<status type="int">0</status>
+
+
+
+
+      <missile-trigger type="float">0</missile-trigger>
+
+<rdt type="int">0</rdt> <!--Right Drop Tank Show/Hide-->
+<ldt type="int">0</ldt> <!--Left Drop Tank Show/Hide-->
+<extpylons1 type="int">0</extpylons1> <!--External Pylons for droptanks Show/Hide-->
+<extpylons2 type="int">0</extpylons2> 
+<extpylons3 type="int">0</extpylons3> 
+<extpylons4 type="int">0</extpylons4> 
+<extpylons5 type="int">0</extpylons5> 
+<extpylons6 type="int">0</extpylons6> 
+<extpylons type="int">0</extpylons> 
+    <!--
+      note :
+        Missile property. the value here doesn't really count, beacause it's reloaded
+        by a Nasal file Loading_missiles.nas for each missile. Anyway this is nessecary for variable declaration
+    -->
+    <selected-weapon-digit type="int">0</selected-weapon-digit>
+    <selected-weapon type="string">none</selected-weapon>
+    <missile>
+<eject>
+      <current-pylon type="int"> 0 </current-pylon>
+</eject>
+      <flareres type="double"> 0.80 </flareres>
+      <name>None_press_m</name>
+      <type-id type="int">57</type-id>
+      <address>Aircraft/SU-27SK/Models/Stores/Missiles/R-27R/R-27R.xml</address>
+      <addressNoSmoke>Aircraft/SU-27SK/Models/Stores/Missiles/R-27R/R-27R.xml</addressNoSmoke>
+      <addressExplosion>Aircraft/SU-27SK/Models/Effects/MissileExplosion/explosion.xml</addressExplosion>
+      <count type="int">0</count>
+      <nearest-target type="int"> -1 </nearest-target>
+      <sound-on-off type="bool">false</sound-on-off>
+      <sound-volume type="double"> 0.12 </sound-volume>
+      <target-range-nm type="double"> 0 </target-range-nm>
+      <max-detection-rng-nm type="int"> 45 </max-detection-rng-nm>
+      <!-- ' not real impact yet-->
+      <fov-deg type="int"> 25 </fov-deg>
+      <!-- ' seeker optical FOV -->
+      <detection-fov-deg type="int"> 60 </detection-fov-deg>
+      <!-- ' search pattern diameter (rosette scan) -->
+      <track-max-deg type="int"> 110 </track-max-deg>
+      <!-- ' seeker max total angular rotation -->
+      <max-g type="int"> 100 </max-g>
+      <!-- ' in turn -->
+      <thrust-lbs type="double"> 300 </thrust-lbs>
+      <!-- ' guess -->
+      <thrust-duration-sec type="int"> 30 </thrust-duration-sec>
+      <!-- ' Mk.36 Mod.7,8 -->
+      <weight-launch-lbs> 216 </weight-launch-lbs>
+      <weight-warhead-lbs> 30 </weight-warhead-lbs>
+      <drag-coeff type="double"> 0.05 </drag-coeff>
+      <!-- ' guess - original 0.05-->
+      <drag-area type="double"> 0.043 </drag-area>
+      <!-- ' sq ft -->
+      <maxExplosionRange type="int"> 200 </maxExplosionRange>
+      <!--
+        note :
+          due to the code, more the speed is important, more we need to have this
+          figure high
+      -->
+      <maxspeed type="double"> 4 </maxspeed>
+      <!-- ' in Mach -->
+      <life> 60 </life>
+      <sdspeed> 60 </sdspeed>
+      <!--
+        note :
+          "Fox1" for guided by the aircraft radar (semi active) AIM7,
+          "Fox2" for infrared AIM9,
+          "Fox3" for intern missile Radar AIM120, AIM54, A/G air to ground
+      -->
+      <fox>Fox 2</fox>
+
+      <chute>0</chute>
+      <!--
+        note :
+          if the missile fall before thrust start or if there is some kind of "rail"
+      -->
+      <rail type="bool">true</rail>
+      <!--
+        note :
+          for cruise missile, in feet.0 is off.below 10000 feet is terrain following
+      -->
+      <cruise_alt type="int"> 0 </cruise_alt>
+      <current-pylon type="int"> 0 </current-pylon>
+    </missile>
+    
+    <selected-weapon>R-27R</selected-weapon>
+    <trigger type="bool">false</trigger>
+    <master-arm type="bool">true</master-arm>
+    <!-- ' 0=OFF, 1=GUN, 2=A/A, 3=A/G -->
+    <stick-selector type="int">2</stick-selector>
+    <position-norm type="int">1</position-norm>
+
+    <station n="0">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="1">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="2">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="3">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="4">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="5">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="6">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="7">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="8">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="9">
+      <release type="bool">true</release>
+    </station>
+    
+    <station n="10">  <!--Ftrueection-->
+      <release type="bool">true</release>
+    </station>
+
+
+    <!--Double GBUs-->
+
+    <station n="11">  
+      <release type="bool">true</release>
+    </station>
+        <station n="12">  
+      <release type="bool">true</release>
+    </station>
+        <station n="13">  
+      <release type="bool">true</release>
+    </station>
+        <station n="14">  
+      <release type="bool">true</release>
+    </station>
+    </armament>
+<baydoors>
+<AIM120 type="int">0</AIM120>
+<AIM9X type="int">0</AIM9X> <!--TODO: reverse aim-9x animations so that 1 is not closed. change this in F-35.nas too-->
+</baydoors>
+        <canopy>
+		<canopy-pos-norm type="float">1.0</canopy-pos-norm>
+	</canopy>
+    
+     <gear>
+	<brake-parking type="double">1.0</brake-parking>
+     </gear>
+
+
+  <smoke alias="/sim/multiplay/generic/int[4]"/>
+
+		
+</controls>
+
+        <canopy>
+		<canopy-pos-norm type="float">1.0</canopy-pos-norm>
+	</canopy>
+
+ <engines>
+  <engine n="0">
+    <running>false</running>
+   </engine>
+  </engines>
+
+	<canopy>
+		<canopy-pos-norm type="float">1.0</canopy-pos-norm>
+	</canopy>
+
+
+
+<!--The REAL instrumentation-->
+
+<instrumentation>
+<!--Radar-->
+
+<radar>
+
+  <range type="int" archive="y">40</range>
+  <range-factor type="double" archive="n">0.001888</range-factor>
+  <minimized type="bool" archive="y">false</minimized>
+  <selected type="int">2</selected>
+  <lock type="int">0</lock>
+  <threat-spotted type="int">0</threat-spotted> <!--for lockhelper.nas-->
+      <!-- inicio en pruebas -->
+  <enabled type="bool">0</enabled>
+  <grid type="bool">1</grid>
+  <az-field type="double">120</az-field>
+  <range type="double">150</range>
+  <range-selected type="double">50</range-selected>
+  <radar2-range type="double">150</radar2-range>
+  <display-rdr type="bool">true</display-rdr>
+  <radar-standby type="int">0</radar-standby>
+<mode>
+  <rws type="bool">true</rws>
+  <tws-auto type="bool">false</tws-auto>
+    <main type="int">0</main> <!--0 TWS 1 RWS 2 Custom-->
+</mode>
+
+</radar> 
+
+
+  <radar2>
+	<lockmarker type="double">0</lockmarker>
+   <sweep-width-m type="double">0.0844</sweep-width-m>
+   <range-width-m type="double">0.0846</range-width-m>
+   <radius-ppi-display-m type="double">0.0846</radius-ppi-display-m>
+   <hud-eye-dist-m type="double">0.6705</hud-eye-dist-m>
+   <hud-radius-m type="double">0.071</hud-radius-m>
+   <sweep-speed type="double">1.5</sweep-speed>
+   <!--RWS Mode to start-->
+   <sweep-display-width type="double">0.0846</sweep-display-width>
+   <hud>
+    <target type="bool">1</target>
+   </hud>
+   <targets>
+    <aircraft n="0">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="1">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="2">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="3">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="4">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="5">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="6">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+    <aircraft n="7">
+      <display type="bool">1</display>
+      <x-shift type="double"/>
+      <y-shift type="double"/>
+      <rotation type="double"/>
+      <closure-last-time type="double"/>
+    </aircraft>
+   </targets>
+  </radar2>
+</instrumentation>
+			<rendering>
+			<redout>
+				<parameters>
+					<blackout-complete-g>15</blackout-complete-g>
+					<blackout-onset-g>15</blackout-onset-g>
+				</parameters>
+			</redout>
+		</rendering>
+	<!-- Map Keys -->
+	
+	<input>
+		<keyboard>
+						<key n="4">
+				<name>Ctrl-D</name>
+				<desc>Open/close baydoors</desc>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/baydoors/AIM120</property>
+<value>0</value>
+<value>1</value> <!--i should move this to the FDM so i can make a nice smooth value-->
+				</binding>
+			</key>
+					<key n="6">
+				<name>Ctrl-F</name>
+				<desc>Open/close baydoors (aim-9x)</desc>
+				<binding>
+					<command>property-cycle</command>
+					<property>controls/baydoors/AIM9X</property>
+<value>0</value>
+<value>1</value> <!--i should move this to the FDM so i can make a nice smooth value-->
+				</binding>
+			</key>
+			
+			<key n="99">
+				<name>c</name>
+				<desc>Open/close canopy</desc>
+				<binding>
+					<command>nasal</command>
+					<script>f35.canopy_switch(2)</script>
+				</binding>
+			</key>
+
+                        
+                        <key n="102">
+                           <name>f</name>
+                            <desc>Wings</desc>
+                            <binding>
+                            <command>nasal</command>
+                             <script>doors.doorsystem.wingsexport();</script>
+                             </binding>
+                         </key>
+			
+
+                           <key n="70">
+                             <name>F</name>
+                             <desc>Close fuel doors</desc>
+                             <binding> 
+					<command>property-adjust</command>
+					<property>/sim/model/FuelHose-positions/FuelHose/position-norm</property>
+					<step type="double">-0.2</step>
+					<min type="double">0</min>
+					<max type="double">1</max>
+				</binding>
+                        </key>
+
+
+    <key n="83">
+        <name>S</name>
+        <desc>Toggle smoke</desc>
+        <binding>
+          <command>property-toggle</command>
+          <property>sim/multiplay/generic/int[4]</property>
+        </binding>
+      </key>   
+			
+
+
+
+<key n="100">
+      <name>d</name>
+      <desc>Deploy braking parachute</desc>
+      <binding>
+        <command>property-assign</command>
+        <property>controls/flight/drag-chute</property>
+        <value type="int">1</value>
+      </binding>
+    </key>
+
+    <key n="106">
+      <name>j</name>
+      <desc>jettison braking parachute</desc>
+      <binding>
+        <command>property-assign</command>
+        <property>controls/flight/drag-chute</property>
+        <value type="int">0</value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>controls/flight/chute_jettisoned</property>
+        <value type="int">1</value>
+      </binding>
+    </key>
+
+  <!-- map keys for arrester hook YASIM -->
+ <key n="79">
+   <name>O</name>
+   <desc>Hook down.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>controls/gear/tailhook</property>
+     <value type="double">1.0</value>
+   </binding>
+ </key>
+
+ <key n="111">
+   <name>o</name>
+   <desc>Hook Up.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>controls/gear/tailhook</property>
+     <value type="double">0.0</value>
+   </binding>
+ </key>
+
+<key n="125">
+     <name>}</name>
+     <desc>Engine Autostart</desc>
+	<binding>
+		<command>nasal</command>
+		<script>engines.engine1.autostart();</script>
+	</binding>
+  </key>
+
+<key n="101">
+  <name>e</name>
+  <desc>Fire selected WCS weapon</desc>
+  <binding>
+    <command>nasal</command>
+    <script>guns.fire_MG(1);</script>
+  </binding>
+    <binding>
+   <command>property-toggle</command>
+   <property>controls/missile</property>
+  </binding>
+
+  <mod-up>
+    <binding>
+      <command>nasal</command>
+      <script>guns.stopFiring();</script>
+    </binding>
+    <binding>
+      <command>nasal</command>
+      <script>setprop("/controls/armament/missile-trigger", 0);</script>
+    </binding>
+  </mod-up>
+ </key>
+
+ <key n="109">
+  <name>m</name>
+  <desc>Cycle selected WCS AA weapon</desc>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon</property>
+ <value>Aim-9x</value>
+ <value>Aim-120</value>
+
+</binding>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon-digit</property>
+ <value>1</value>
+ <value>2</value>
+</binding>
+  <binding><command>nasal</command><script>screen.log.write("Selected " ~ getprop("controls/armament/selected-weapon"),0.5,0.5,1);</script></binding>
+   <binding><command>nasal</command><script>setprop("/controls/baydoors/AIM120", 0)</script></binding>
+      <binding><command>nasal</command><script>setprop("/controls/missile", 3)</script></binding>
+ </key> 
+		
+
+		 <key n="110">
+  <name>n</name>
+  <desc>Cycle selected WCS AG weapon</desc>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon</property>
+
+ <value>GBU-39</value>
+ <value>JDAM</value>
+ <value>AGM-154</value>
+</binding>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon-digit</property>
+
+ <value>3</value>
+
+  <value>4</value>
+ <value>5</value>
+
+</binding>
+  <binding><command>nasal</command><script>screen.log.write("Selected " ~ getprop("controls/armament/selected-weapon"),0.5,0.5,1);</script></binding>
+   <binding><command>nasal</command><script>setprop("/controls/baydoors/AIM120", 1)</script></binding>
+      <binding><command>nasal</command><script>setprop("/controls/missile", 3)</script></binding>
+ </key> 
+
+
+ 
+		 <key n="105">
+  <name>i</name>
+  <desc>Cycle selected DEBUG MISSILE</desc>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon</property>
+
+ <value>Aim-7</value>
+ <value>XMAA</value>
+ <value>Aim-9m</value>
+</binding>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/selected-weapon-digit</property>
+
+ <value>5</value>
+
+  <value>6</value>
+</binding>
+  <binding><command>nasal</command><script>screen.log.write("Selected Debug missile: " ~ getprop("controls/armament/selected-weapon"),0.5,0.5,1);</script></binding>
+ </key> 
+
+
+<key n="119">
+  <name>w</name>
+  <desc>Cycle Gun/Missile</desc>
+  <binding>
+ <command>property-cycle</command>
+ <property>controls/armament/stick-selector</property> <!--Working!! :D-->
+ <value>1</value>
+ <value>2</value>
+</binding>
+ </key> 	
+
+	 <key n="114">
+  <name>r</name>
+  <desc>Switch Radar Range</desc>
+  <binding>
+ <command>nasal</command>
+ <script>radar.switch_distance();screen.log.write("Radar Range: " ~ f35.myRadar.rangeTab[radar.rangeIndex] ~ "nm.",1,1,0);</script>
+</binding>
+ </key> 
+<key n="121">
+  <name>y</name>
+  <desc>select target</desc>
+  <binding>
+ <command>nasal</command>
+ <script>radar.next_Target_Index();</script>
+</binding>
+ </key> 
+		</keyboard>
+	</input>
+
+ <!-- Nasal -->
+
+	<nasal>
+
+<!--Damage implementation-->
+
+        <notifications>
+            <file>Aircraft/daVinci_F-35A/Nasal2/ArmamentNotification.nas</file>
+            <file>Aircraft/daVinci_F-35A/Nasal2/GeoBridgedTransmitter.nas</file>
+        </notifications>
+        <damage>
+            <file>Aircraft/daVinci_F-35A/Nasal2/damage.nas</file>
+        </damage>
+
+
+       
+
+                  <doors>
+                    <file>Aircraft/daVinci_F-35A/Nasal/doors.nas</file>
+                 </doors>
+		                  <emu>
+                    <file>Aircraft/daVinci_F-35A/Nasal/emu.nas</file>
+                 </emu>
+		<baydoors>
+			<file>Aircraft/daVinci_F-35A/Nasal/baydoors.nas</file>
+		</baydoors>
+		
+		<aar> 
+			<file>Aircraft/daVinci_F-35A/Nasal/aar.nas</file>
+		</aar>
+		
+		<rwr>
+			<file>Aircraft/daVinci_F-35A/Models/Instruments/bigscreen/radar/rwr.nas</file>
+		</rwr>
+		
+
+            <rcs>
+            <!-- must be before radar -->
+            <file>Aircraft/daVinci_F-35A/Nasal/rcs_mand.nas</file>
+            <file>Aircraft/daVinci_F-35A/Nasal/rcs.nas</file>
+        </rcs>
+		<radardist>
+			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
+		</radardist>
+		
+		<enav>
+			<file>Aircraft/daVinci_F-35A/Nasal/enav.nas</file>
+		</enav>
+		
+
+		
+		<radar>
+			<file>Aircraft/daVinci_F-35A/nasal/radar2.nas</file>
+		</radar>
+
+  		<f35>
+		<!--	<file>Aircraft/daVinci_F-35A/Nasal/fan-yasim.nas</file> this is not the B varriant -->
+			<file>Aircraft/daVinci_F-35A/Nasal/f35.nas</file> <!--Must be after Radar-->
+		        <file>Aircraft/daVinci_F-35A/Nasal/liveries.nas</file>  
+            
+		</f35>
+         <lockhelper>
+            <file>Aircraft/daVinci_F-35A/Nasal/lockhelper.nas</file><!-- Phoenix: Lockhelper.nas -->
+        </lockhelper>
+		<terrain-map>
+			<file>Aircraft/daVinci_F-35A/Nasal/terrain-map.nas</file>
+		</terrain-map>
+		
+		<low>
+			<file>Aircraft/daVinci_F-35A/Nasal/low.nas</file>
+		</low>
+
+                <chute>
+                        <file>Aircraft/daVinci_F-35A/Nasal/Parachute.nas</file>
+                </chute>
+
+ <!--                                               
+                <NAV>
+                        <file>Aircraft/daVinci_F-35A/Nasal/mfd-navigation.nas</file>
+			<file>Aircraft/daVinci_F-35A/Nasal/nd-fullscreen.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/navaids.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/GUI.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/MFD.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/MFDPage.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/MFDPageController.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/NavMap.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/PFD.nas</file>
+                        <file>Aircraft/daVinci_F-35A/Nasal/terrain_follow.nas</file>
+                </NAV>  -->
+              
+              
+
+<!--  Phoenix will make a custom FC later on. Hopefully :)
+  <FG1000>
+	<file>Aircraft/daVinci_F-35A/Nasal2/FGUK1000.nas</file>
+  </FG1000> -->
+	     
+    <doors>
+      <file>Aircraft/daVinci_F-35A/Nasal2/doors.nas</file>
+    </doors>
+<!--Why do they need so much shit holy lolol
+    <c421>
+      <file>Aircraft/daVinci_F-35A/Nasal2/convert.nas</file>
+      <file>Aircraft/daVinci_F-35A/Nasal2/Electrical.nas</file>
+      <file>Aircraft/daVinci_F-35A/Nasal2/system.nas</file>
+      <file>Aircraft/daVinci_F-35A/Nasal2/flightdirector.nas</file>
+     </c421>-->
+    <missile>
+      <file>Aircraft/daVinci_F-35A/Nasal/weapons/missile.nas</file>
+      <file>Aircraft/daVinci_F-35A/Nasal/weapons/Loading_Missiles.nas</file>
+      <file>Aircraft/daVinci_F-35A/Nasal/weapons/missile_GroundTargeting.nas</file>
+    </missile>
+
+    <m2000_load>
+      <file>Aircraft/daVinci_F-35A/Nasal/weapons/ext_stores.nas</file>
+    </m2000_load>
+
+       <!--Guns-->
+
+           <guns>
+      <file>Aircraft/daVinci_F-35A/Nasal2/weapons.nas</file>
+    </guns>
+
+
+      <dialogs>
+            <file>Aircraft/daVinci_F-35A/Nasal2/dialogs.nas</file>
+      </dialogs>
+		<pylons>
+			<file>Aircraft/daVinci_F-35A/Nasal/pylonset.nas</file>
+		</pylons>
+<!--AI Searcher-->
+		<misc>
+			<file>Aircraft/daVinci_F-35A/Nasal/misc.nas</file>
+		</misc>
+
+   	</nasal>
+
+
+	</PropertyList>
+
+
+

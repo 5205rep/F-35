@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	
+	<model>
+		<path>Aircraft/daVinci_F-35A/Models/F-35Ordinance/Pylons/PylonsB.ac</path>
+		<offsets>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+	</model>	
+
+
+<!--pylons-->
+
+
+	<animation>
+		<type>select</type>
+		<object-name>1</object-name>      
+		<object-name>6</object-name> 
+		<condition>
+
+				<equals>
+					<property>controls/armament/extpylons</property>
+					<value>1</value>
+				</equals>
+
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>2</object-name>      
+		<object-name>3</object-name> 
+		<object-name>4</object-name> 
+		<object-name>5</object-name> 
+		<condition>
+
+				<equals>
+					<property>controls/armament/extpylons1</property>
+					<value>1</value>
+				</equals>
+
+		</condition>
+	</animation>
+	<!--Station1 -->
+	
+
+  
+	<animation>
+		<type>select</type>
+		<object-name>AIM9XR</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[0]/selected</property>
+					<value>Aim-9x</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[0]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM1201</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[1]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[1]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM1202</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[2]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[2]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+<!--AGM Right-->
+	<animation>
+		<type>select</type>
+		<object-name>AGM1541</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[1]/selected</property>
+					<value>AGM-154</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[1]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1542</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[2]/selected</property>
+					<value>AGM-154</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[2]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM1205</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[3]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[3]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AIM1206</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[4]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[4]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM1207</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[6]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[6]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AIM1208</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[7]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[7]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>AIM1203</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[9]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[9]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM1204</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[10]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[10]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+<!--AGM left wing-->
+	<animation>
+		<type>select</type>
+		<object-name>AGM1543</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[9]/selected</property>
+					<value>AGM-154</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[9]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1544</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[10]/selected</property>
+					<value>AGM-154</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[10]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+		<animation>
+		<type>select</type>
+		<object-name>AIM9XL</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[11]/selected</property>
+					<value>Aim-9x</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[11]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+</PropertyList>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<!-- Instruments -->
+	
+       <model>
+	      <path>Aircraft/daVinci_F-35B/Models/Instruments/daV_FG1000/GDU104X/GDU-1040_1.xml</path>
+                 <offsets>
+		<x-m>-5.088</x-m>
+		<y-m>-0.137</y-m>
+		<z-m>0.7530</z-m>
+		<pitch-deg>-13.9</pitch-deg>
+                </offsets>
+	</model> 
+
+       <model>
+	       <path>Aircraft/daVinci_F-35B/Models/Instruments/FG1000STU/GDU-1040_2.xml</path>
+                 <offsets>
+		<x-m>-5.085</x-m>
+		<y-m>0.142</y-m>
+		<z-m>0.7560</z-m>
+		<pitch-deg>-13.9</pitch-deg>
+                </offsets>
+	</model>
+	
+</PropertyList>

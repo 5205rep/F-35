@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<PropertyList>
+  
+  <name>payload</name>
+  <modal type="bool">false</modal>
+  <draggable>true</draggable>
+  <resizable>true</resizable>
+  <width>725</width>
+  <layout>vbox</layout>
+  
+  <group>
+    <layout>hbox</layout>
+    <empty>
+      <stretch>1</stretch>
+    </empty>
+    
+    <text>
+      <label>F-35 weapons</label>
+    </text>
+    
+    <empty>
+      <stretch>1</stretch>
+    </empty>
+    
+    <button>
+      <pref-width>16</pref-width>
+      <pref-height>16</pref-height>
+      <legend></legend>
+      
+      <default>1</default>
+      <keynum>27</keynum>
+      <border>2</border>
+      <binding>
+        <command>dialog-close</command>
+      </binding>
+      <binding>
+        <command>dialog-apply</command>
+      </binding>
+    </button>
+  </group>
+
+  <hrule/>
+
+  <group>
+    <layout>hbox</layout>
+    <button>
+        <legend>No stores</legend>
+        <binding>
+          <command>nasal</command>
+          <script>pylons.none();</script>
+        </binding>
+    </button>
+
+    <vrule/>
+
+    <button>
+        <legend>Refuel all tanks (place holder)</legend>
+        <binding>
+          <command>nasal</command>
+          <script>pylons.refuel();</script>
+        </binding>
+    </button>
+
+    <vrule/>
+
+
+  <vrule/>
+
+
+
+  <vrule/>
+
+    <button>
+        <legend>Clean load</legend>
+        <binding>
+          <command>nasal</command>
+          <script>pylons.clean();</script>
+        </binding>
+    </button>
+  </group>
+
+  <hrule/>
+
+    <group>
+        <layout>table</layout>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>0</row>
+            <col>0</col>
+            <legend>Stealthy Air to Air</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.saa();</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>0</row>
+            <col>2</col>
+            <legend>Non Stealthy Air to Air</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.saa2;</script>
+            </binding>
+        </button>
+
+        <hrule>
+            <row>1</row>
+            <col>0</col>
+            <colspan>6</colspan>
+        </hrule>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>0</row>
+            <col>4</col>
+            <legend>Stealthy Air to Air with Aim-9x</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.saa9x();</script>
+            </binding>
+        </button>
+
+        <hrule>
+            <row>3</row>
+            <col>0</col>
+            <colspan>6</colspan>
+        </hrule>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>2</row>
+            <col>0</col>
+            <legend>4x AGM-154 6x aim120s 2x Aim-9x</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.agm154;</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>2</row>
+            <col>2</col>
+            <legend>A/G Unguided Light</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.b10_a2g_strike1();</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>2</row>
+            <col>4</col>
+            <legend>Place holder</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.b10_a2g_strike2();</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>4</row>
+            <col>0</col>
+            <legend>Place holder</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.ferry1();</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>4</row>
+            <col>2</col>
+            <legend>Place holder</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.b10_a2g_strikeair();</script>
+            </binding>
+        </button>
+
+        <button>
+            <pref-width>225</pref-width><pref-height>23</pref-height>
+            <row>4</row>
+            <col>4</col>
+            <legend>Place holder</legend>
+            <binding>
+                <command>nasal</command>
+                <script>pylons.ferry2();</script>
+            </binding>
+        </button>
+
+    </group>
+
+    <empty><stretch>1</stretch></empty>
+</PropertyList>

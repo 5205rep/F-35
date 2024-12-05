@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">RSAF_Ghost</name>
+        <F35A>Liveries/RSAF_Ghost/35A-1.png</F35A>
+      </livery>
+     </model>
+  </sim>
+
+</PropertyList>

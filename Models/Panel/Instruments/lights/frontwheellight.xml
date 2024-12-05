@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<PropertyList>
+
+  <path>greenlight.ac</path>
+
+  <animation>
+    <object-name>support</object-name>
+    <object-name>light</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>support</object-name>
+    <object-name>light</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>light</object-name>
+    <emission>
+      <red>   0 </red>
+      <green> 2 </green>
+      <blue>  0 </blue>
+    </emission>
+    <condition>
+      <and>
+        <equals>
+          <property>gear/gear[0]/position-norm</property>
+          <value type="double">1</value>
+        </equals>
+        <property>controls/electric/battery-switch</property>
+      </and>
+    </condition>
+  </animation>
+
+</PropertyList>

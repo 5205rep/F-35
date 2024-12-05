@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">WA5051</name>
+        <F35A>Liveries/WA5051/35A-1.png</F35A>
+      </livery>
+     </model>
+  </sim>
+
+</PropertyList>

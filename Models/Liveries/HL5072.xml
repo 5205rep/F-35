@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">HL5072</name>
+        <F35A>Liveries/HL5072/35A-1.png</F35A>
+      </livery>
+     </model>
+  </sim>
+
+</PropertyList>
