@@ -158,7 +158,7 @@ Lockheed Martin F-35A Lightning II
         <float n="25" alias="/controls/flight/parachute"/>
         <float n="26" alias="/position/altitude-ft"/>
         <float n="27" alias="/sim/model/door-positions/crew/position-norm"/>
-        <float n="28" alias="/engines/engine/augmentation"/>
+        <bool n="28" alias="/engines/engine/augmentation"/>
       		 <float n="29" type="double" alias="/fdm/jsbsim/fcs/AIM120"/><!--aim120-->
 		 <float n="30" type="double" alias="/fdm/jsbsim/fcs/AIM9X"/><!--aim120-->
         <float n="31" alias="/orientation/alpha-deg"/>
@@ -375,7 +375,7 @@ Lockheed Martin F-35A Lightning II
 			<binding>
 				<command>nasal</command>
 				<script>
-					if(getprop("/gear/gear/compression-m") > 0.01){
+					if(getprop("/gear/gear/wow")){
 						if(getprop("/payload/armament/msg")){screen.log.write("Multiplayer Damage Off",1,0,0);setprop("/payload/armament/msg",0);}else{screen.log.write("Multiplayer Damage On",1,0,0);setprop("/payload/armament/msg",1);}
 					}else{
 						screen.log.write("Damage can be toggled only when on the ground!",1,0,0);

@@ -5,18 +5,20 @@
 	
 	<model>
     <name>plume</name>
-    <path>Aircraft/daVinci_F-35B/Models/Effects/Afterburner/AfterBurner.xml</path>
+    <path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/AfterBurner.xml</path>
 	<offsets>
-	<x-m>8.300</x-m>
-     <y-m>0</y-m>
-     <z-m> 6.16</z-m>
-     <pitch-deg>90</pitch-deg>
+	<x-m>6.350</x-m>
+         <y-m>0</y-m>
+         <z-m>0.170</z-m>
+         <pitch-deg>0</pitch-deg>
 	</offsets>
   </model>
 
+
+
    <model>
     <name>Nozzle</name>
-    <path>Aircraft/daVinci_F-35B/Models/Nozzle/nozzle.xml</path>
+    <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzle.xml</path>
 	<offsets>
 	<x-m>4.835</x-m>
          <y-m>0.015</y-m>

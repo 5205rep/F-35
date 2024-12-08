@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">Moroccan</name>
+        <F35A>Liveries/mor/mor.png</F35A>
+      </livery>
+     </model>
+  </sim>
+
+</PropertyList>

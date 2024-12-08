@@ -28,6 +28,18 @@
   </interpolation>
  </animation>
 
+   <animation>
+  <type>select</type>
+  <object-name>Bounding_box</object-name>
+      <condition>
+	<equals>
+	  <property>sim/multiplay/generic/bool[28]</property>
+	  <value>true</value>
+	  </equals>
+
+    </condition>
+	</animation>
+
 </PropertyList>
 
 
