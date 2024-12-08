@@ -167,32 +167,6 @@ var MISSILE = {
     },
 
 
-	notifyInFlight: func (lat,lon,alt,rdar,semiRdr,typeID,typ,unique,thrustOn,callsign, heading, pitch, speed, is_deleted=0) {
-		## thrustON cannot be named 'thrust' as FG for some reason will then think its a function (probably fixed by the way call() now is used)
-		var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, is_deleted?damage.DESTROY:damage.MOVE, damage.DamageRecipient.typeID2emesaryID(typeID));
-        if (lat != nil) {
-        	msg.Position.set_latlon(lat,lon,alt);
-        } else {
-        	msg.Position.set_latlon(0,0,0);
-        }
-        msg.Flags = rdar;#bit #0
-        if (thrustOn) {
-        	msg.Flags = bits.set(msg.Flags, 1);#bit #1
-        }
-        if (semiRdr) {
-        	msg.Flags = bits.set(msg.Flags, 2);#bit #2
-        }
-        msg.IsDistinct = !is_deleted;
-        msg.RemoteCallsign = callsign;
-        msg.UniqueIndex = ""~typeID~unique;
-        msg.Pitch = pitch;
-        msg.Heading = heading;
-        msg.u_fps = speed;
-        #msg.isValid();
-        notifications.geoBridgedTransmitter.NotifyAll(msg);
-#print("fox2.nas: transmit in flight");
-#f14.debugRecipient.Receive(msg);
-	},
 
 
     # this is the dl function : to delete the object when it's not needed anymore
@@ -511,7 +485,7 @@ print(unique);
                         if(me.NameOfMissile == "JDAM"){me.NameOfMissile="JDAM";typeID = 35;}  
                         if(me.NameOfMissile == "Aim-9m"){me.NameOfMissile="Aim-9m";typeID = 69;}  
                         if(me.NameOfMissile == "XMAA"){me.NameOfMissile="XMAA";typeID = 59;}  # Aim-132 This XMAA is tempory. testing a longrange BVR missile Can only be accessed if the callsign is the developers callsign. AKA: me :D
-                        if(me.NameOfMissile == "TB-01"){me.NameOfMissile="TB-01";typeID = 35;}
+                        if(me.NameOfMissile == "AGM-154"){me.NameOfMissile="AGM-154";typeID = 5;}
     }  else {
         typeID = tid;
     }
@@ -809,7 +783,7 @@ var OurLon       = props.globals.getNode("position/longitude-deg");
                         if(me.NameOfMissile == "JDAM"){me.NameOfMissile="JDAM";typeID = 35;}  
                         if(me.NameOfMissile == "Aim-9m"){me.NameOfMissile="Aim-9m";typeID = 69;}  
                         if(me.NameOfMissile == "XMAA"){me.NameOfMissile="XMAA";typeID = 59;}  # Aim-132 This XMAA is tempory. testing a longrange BVR missile Can only be accessed if the callsign is the developers callsign. AKA: me :D
-                        if(me.NameOfMissile == "TB-01"){me.NameOfMissile="TB-01";typeID = 35;}
+                        if(me.NameOfMissile == "AGM-154"){me.NameOfMissile="AGM-154";typeID = 5;}
                     me.sendinflight(0,0,0,0,0,0,0,me.unique_id,1,typeID);
                 return;
             }
@@ -1224,7 +1198,7 @@ var semiactive = 0;
                         if(me.NameOfMissile == "JDAM"){me.NameOfMissile="JDAM";typeID = 35;}  
                         if(me.NameOfMissile == "Aim-9m"){me.NameOfMissile="Aim-9m";typeID = 69;}  
                         if(me.NameOfMissile == "XMAA"){me.NameOfMissile="XMAA";typeID = 35;}  # Aim-132      This XMAA is tempory. testing a longrange BVR missile Can only be accessed if the callsign is the developers callsign. AKA: me :D
-
+                        if(me.NameOfMissile == "AGM-154"){me.NameOfMissile="AGM-154";typeID = 5;}
 
                         var msg = notifications.ArmamentNotification.new("mhit", 4, damage.DamageRecipient.typeID2emesaryID(typeID));
                         msg.RelativeAltitude = 0;
