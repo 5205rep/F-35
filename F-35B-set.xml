@@ -1248,6 +1248,7 @@ Lockheed Martin F-35A Lightning II
   <!--FDM throttle-->
 
 	<fdm><jsbsim><fcs>
+		<throttle0 type="double">0</throttle0>
 		<throttle1 type="double">0</throttle1>
 		<throttle2 type="double">0</throttle2>
 		<throttle3 type="double">0</throttle3>
