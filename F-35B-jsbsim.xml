@@ -42,9 +42,9 @@
  </metrics>
 
  <mass_balance>
-   <ixx unit="SLUG*FT2">     24918 </ixx>
-   <iyy unit="SLUG*FT2">     89003 </iyy>
-   <izz unit="SLUG*FT2">     82602 </izz>
+   <ixx unit="SLUG*FT2">     25762 </ixx>
+   <iyy unit="SLUG*FT2">     91916 </iyy>
+   <izz unit="SLUG*FT2">     85344 </izz>
    <emptywt unit="LBS" >     32000 </emptywt>
    <location name="CG" unit="IN">
      <x> 368.52 </x>
@@ -57,51 +57,51 @@
 
   <contact type="BOGEY" name="NOSE">
    <location unit="IN">
-     <x>  79.85 </x>
+     <x>  79.56 </x>
      <y>   0.00 </y>
-     <z> -73.70 </z>
+     <z> -73.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
-   <spring_coeff unit="LBS/FT">      10000.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC">  2000.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      21031.80 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 10515.90 </damping_coeff>
    <max_steer unit="DEG"> 45.00 </max_steer>
    <brake_group>NONE</brake_group>
    <retractable>1</retractable>
- </contact>
+  </contact>
 
   <contact type="BOGEY" name="LEFT_MAIN">
    <location unit="IN">
-     <x> 383.26 </x>
-     <y> -77.92 </y>
-     <z> -73.70 </z>
+     <x> 381.89 </x>
+     <y> -37.80 </y>
+     <z> -73.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
-   <spring_coeff unit="LBS/FT">      30000.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 6000.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      70106.00 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 35053.00 </damping_coeff>
    <max_steer unit="DEG">0</max_steer>
    <brake_group>LEFT</brake_group>
    <retractable>1</retractable>
- </contact>
+  </contact>
 
   <contact type="BOGEY" name="RIGHT_MAIN">
    <location unit="IN">
-     <x> 383.26 </x>
-     <y>  77.92 </y>
-     <z> -73.70 </z>
+     <x> 381.89 </x>
+     <y>  37.80 </y>
+     <z> -73.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
-   <spring_coeff unit="LBS/FT">      30000.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 6000.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      70106.00 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 35053.00 </damping_coeff>
    <max_steer unit="DEG">0</max_steer>
    <brake_group>RIGHT</brake_group>
    <retractable>1</retractable>
- </contact>
+  </contact>
 
   <contact type="STRUCTURE" name="LEFT_WING">
     <location unit="IN">
@@ -906,13 +906,23 @@
 
         </channel>
 
-        <channel name="Throttle">
+        <channel name="Throttle Control">
 
-            <pure_gain name="throttle-pos-norm">
-                <input>fcs/throttle-cmd-norm</input>
-                <gain>1</gain>
-                <output>fcs/throttle-pos-norm</output>
-            </pure_gain>
+    <scheduled_gain name="Throttle1">
+      <input>fcs/throttle-cmd-norm[0]</input>
+        <table>
+            <independentVar lookup="column">fcs/vertlto-pos-norm</independentVar>
+            <independentVar lookup="row">fcs/throttle-pos-norm</independentVar>
+          <tableData>
+                    0.0      1.0
+            0.00    0.0      0.0
+            0.78    1.0      1.0
+            1.00    2.0      1.0
+          </tableData>
+        </table>
+      <output>fcs/throttle-pos-norm[0]</output>
+    </scheduled_gain>
+
 
             <pure_gain name="throttle-pos-norm[1]">
                 <input>fcs/throttle1</input>
@@ -1412,8 +1422,10 @@
            <property>fcs/fbw-override</property>
        <product>
 
-          
-           <value>18000</value>
+                       <product>
+           <value>1800000</value>
+</product>    
+
 
 
           <sin>

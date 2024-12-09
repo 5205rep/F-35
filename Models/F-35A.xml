@@ -383,7 +383,7 @@ if(navStillOn) {
 	
 <model>
    <name>AB_FlameL</name>
-   <path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/afterburner.xml</path>
+   <path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/afterburnerA.xml</path>
     <condition>
 	<greater-than>
 	  <property>sim/multiplay/generic/float[28]</property>
