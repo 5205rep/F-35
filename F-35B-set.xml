@@ -69,7 +69,7 @@ Lockheed Martin F-35A Lightning II
 				<path>Aircraft/daVinci_F-35A/Systems/Electrical.nas</path>
 			</electrical>
 			<autopilot>
-				<path>Aircraft/daVinci_F-35A/Systems/VooDooAP1.xml</path>
+				<path>Aircraft/daVinci_F-35A/Systems/Autopilot.xml</path>
 			</autopilot>
 			<refuel>
 				<type>boom</type>

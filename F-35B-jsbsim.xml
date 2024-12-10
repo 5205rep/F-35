@@ -80,8 +80,8 @@
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
-   <spring_coeff unit="LBS/FT">      70106.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 35053.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      60000.00 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 30000.00 </damping_coeff>
    <max_steer unit="DEG">0</max_steer>
    <brake_group>LEFT</brake_group>
    <retractable>1</retractable>
@@ -96,8 +96,8 @@
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
-   <spring_coeff unit="LBS/FT">      70106.00 </spring_coeff>
-   <damping_coeff unit="LBS/FT/SEC"> 35053.00 </damping_coeff>
+   <spring_coeff unit="LBS/FT">      60000.00 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 30000.00 </damping_coeff>
    <max_steer unit="DEG">0</max_steer>
    <brake_group>RIGHT</brake_group>
    <retractable>1</retractable>
@@ -1359,7 +1359,7 @@
 
 
           <sin>
-           <property>fcs/aileron-cmd-norm</property>
+           <property>fcs/aileron-pos-norm</property>
           </sin>
           <value>2</value>
 
@@ -1436,7 +1436,8 @@
 
 
           <sin>
-           <property>fcs/elevator-cmd-norm</property>
+           <property>fcs/elevator-pos-norm</property>
+
           </sin>
           <value>-1.8</value>
 

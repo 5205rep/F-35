@@ -12,7 +12,7 @@
 -->
 
 <turbine_engine name="liftfan">
-  <milthrust> 68000.0 </milthrust>
+  <milthrust> 64000.0 </milthrust>
   <bypassratio>     1.0 </bypassratio>
   <tsfc>            0.001 </tsfc> <!--it is the same jet engine. so this isnt really needed-->
   <bleed>           0.03</bleed>
