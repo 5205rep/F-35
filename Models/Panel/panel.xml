@@ -15,7 +15,7 @@
   </animation>
      
  <model>
-    <path>Aircraft/Diamond-Da42/Models/Interior/Panel/Instruments/zkv1000/mfd.xml</path>
+    <path>Aircraft/F-35/Models/Instruments/fg1000/GDU-1040.1.xml</path>
     <offsets>
       <x-m> 0.004 </x-m>
       <y-m> 0.110 </y-m>
@@ -24,7 +24,7 @@
   </model> 
     
   <model>
-    <path>Aircraft/Diamond-Da42/Models/Interior/Panel/Instruments/zkv1000/pfd.xml</path>
+    <path>Aircraft/F-35/Models/Instruments/fg1000/GDU-1040.2.xml</path>
     <offsets>
       <x-m>  0.004 </x-m>
       <y-m> -0.187 </y-m>

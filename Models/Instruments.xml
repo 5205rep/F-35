@@ -5,7 +5,7 @@
 	<!-- Instruments -->
 	
    <model>
-    <path>Aircraft/daVinci_F-35A/Models/Panel/panel.xml</path>
+    <path>Aircraft/F-35/Models/Panel/panel.xml</path>
     <offsets>
       <x-m> 0.030 </x-m>
       <y-m>0</y-m>

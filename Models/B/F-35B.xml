@@ -301,7 +301,7 @@ if(navStillOn) {
      <!-- Instruments -->
 	
 	<model>
-	  <path>Aircraft/daVinci_F-35B/Models/Instruments.xml</path>
+	  <path>Aircraft/F-35/Models/Instruments.xml</path>
           <offsets>
 	   <x-m>-0.078</x-m>
            <y-m>0</y-m>
@@ -315,7 +315,7 @@ if(navStillOn) {
 	<!-- MP sound call -->
 	
 	<sound>
-		<path>Aircraft/daVinci_F-35B/Sounds/MP-Sound.xml</path>
+		<path>Aircraft/F-35/Sounds/MP-Sound.xml</path>
 	</sound>
 <!--Missiles-->
   <model>
