@@ -1,2 +1,2 @@
-aircraft.livery.init("Aircraft/daVinci_F-35A/Models/Liveries");
+aircraft.livery.init("Aircraft/F-35/Models/Liveries");
 

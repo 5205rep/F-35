@@ -11,7 +11,7 @@
    <engine>
       <name>engine-start-outside</name>
       <mode>once</mode>
-      <path>Aircraft/daVinci_F-35A/Sounds/startup.wav</path>
+      <path>Aircraft/F-35/Sounds/startup.wav</path>
        <condition>
         <and>
           <less-than>
@@ -50,7 +50,7 @@
 	
 	 <shutdown>
    <name>shutdown1</name>
-    <path>Aircraft/daVinci_F-35A/Sounds/f-16shutdown-ext.wav</path>
+    <path>Aircraft/F-35/Sounds/f-16shutdown-ext.wav</path>
    <condition>
      <not>
       <property>sim/current-view/internal</property>
@@ -85,7 +85,7 @@
   
     <engine>
       <name>engine</name>
-     <path>Aircraft/daVinci_F-35A/Sounds/jet-blast.wav</path>
+     <path>Aircraft/F-35/Sounds/jet-blast.wav</path>
       <mode>looped</mode>
       <condition>
         <property>engines/engine[0]/running</property>
@@ -122,7 +122,7 @@
 
     <engine>
       <name>whine</name>
-      <path>Aircraft/daVinci_F-35A/Sounds/f16-whine.wav</path>
+      <path>Aircraft/F-35/Sounds/f16-whine.wav</path>
       <mode>looped</mode>
       <condition>
         <property>engines/engine[0]/running</property>
@@ -151,7 +151,7 @@
 	<engine>
    <name>Reheat</name>
    <mode>looped</mode>
-  <path>Aircraft/daVinci_F-35A/Sounds/gripen-burner.wav</path>
+  <path>Aircraft/F-35/Sounds/gripen-burner.wav</path>
    <condition>
 	 <property>engines/engine/afterburner</property>
     	   <not>
@@ -268,7 +268,7 @@
 		<flyby>
 			<name>fly-by</name>
 			<mode>once</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/flyby.wav</path>
+			<path>Aircraft/F-35/Sounds/flyby.wav</path>
 			<condition>
 			<and>
 	    <greater-than>
@@ -296,7 +296,7 @@
   <sonicboom>
    <name>Sonic Boom</name>
 	<mode>once</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/sonicboom.wav</path>
+   <path>Aircraft/F-35/Sounds/sonicboom.wav</path>
    <condition>
    <and>
 	    <greater-than>
@@ -332,7 +332,7 @@
 <guns>
       <name>gunfire</name>
       <mode>looped</mode>
-      <path>Aircraft/daVinci_F-35A/Sounds/m61.wav</path>
+      <path>Aircraft/F-35/Sounds/m61.wav</path>
       <condition> 
         <property>controls/armament/trigger</property>
         <property>ai/submodels/submodel/count</property>

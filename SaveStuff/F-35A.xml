@@ -4,11 +4,11 @@
 
 	<!-- Model -->
 
-	<path>daVinci_F-35A.ac</path>
+	<path>F-35A.ac</path>
 	
 <!-- 	<model>
 		<usage>interior</usage>
-		<path>Aircraft/daVinci_F-35A/Models/Cockpit.xml</path>
+		<path>Aircraft/F-35/Models/Cockpit.xml</path>
 	</model>-->
 	
 	<!-- Rembrandt -->
@@ -40,7 +40,7 @@
 	<!-- Lights -->
 
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/Lights/LightPack.xml</path>
+		<path>Aircraft/F-35/Models/Lights/LightPack.xml</path>
 	</model>
 	
     <nasal>
@@ -305,19 +305,19 @@
 	<!-- Effects -->
 	
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/Effects.xml</path>
+		<path>Aircraft/F-35/Models/Effects.xml</path>
 	</model>
 	
 	<!-- MP sound call -->
 	
 	<sound>
-		<path>Aircraft/daVinci_F-35A/Sounds/MP-Sound.xml</path>
+		<path>Aircraft/F-35/Sounds/MP-Sound.xml</path>
 	</sound>
 
 	<!-- Submodels -->
 	
 	<model>
-	<path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/AfterBurner.xml</path>
+	<path>Aircraft/F-35/Models/Effects/Afterburner/AfterBurner.xml</path>
 	<offsets>
 	<x-m>8.15</x-m>
          <y-m>0</y-m>
@@ -330,7 +330,7 @@
 
 	<nasal>
 		<load>
-			var livery_update = aircraft.livery_update.new("Aircraft/daVinci_F-35A/Models/Liveries");
+			var livery_update = aircraft.livery_update.new("Aircraft/F-35/Models/Liveries");
 		</load>
 		<unload>
 			livery_update.stop();
@@ -380,7 +380,7 @@
 	<animation>
 		<type>shader</type>
 		<shader>chrome</shader>
-		<texture>Aircraft/daVinci_F-35A/Models/Glass.png</texture>
+		<texture>Aircraft/F-35/Models/Glass.png</texture>
 		<object-name>eots</object-name>
 		<object-name>canopy</object-name>
 		<object-name>plume</object-name>
@@ -1333,7 +1333,7 @@
  
  <!--  Nose Wheel -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground0.xml</path>
+    <path>Aircraft/F-35/Models/Effects/ground/ground0.xml</path>
     <offsets>
       <x-m>-3.574</x-m>
       <y-m>0.000</y-m>
@@ -1343,7 +1343,7 @@
 
   <!-- Port Wheel -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground1.xml</path>
+    <path>Aircraft/F-35/Models/Effects/ground/ground1.xml</path>
     <offsets>
       <x-m>2.681</x-m>
       <y-m> -2.195</y-m>
@@ -1353,7 +1353,7 @@
 
   <!-- Star Wheel -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/ground/ground2.xml</path>
+    <path>Aircraft/F-35/Models/Effects/ground/ground2.xml</path>
     <offsets>
       <x-m>2.681</x-m>
       <y-m>2.195</y-m>
@@ -1421,7 +1421,7 @@
 <!--Contrails-->
 
 <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/contrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/contrail.xml</path>
     <offsets>
      <x-m> 12.5</x-m>
      <y-m>0</y-m>
@@ -1431,7 +1431,7 @@
 
 <!-- Smoke Trail -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/smoke/smokeL.xml</path>
+    <path>Aircraft/F-35/Models/Effects/smoke/smokeL.xml</path>
     <offsets>
       <x-m>  12.5 </x-m>
       <y-m>  0.000 </y-m>
@@ -1443,7 +1443,7 @@
 
 <!-- Port Horiz Stab -->  
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>7.173</x-m>
       <y-m>3.570</y-m>
@@ -1453,7 +1453,7 @@
 
 <!-- Star Horiz Stab -->  
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>7.173</x-m>
       <y-m>-3.570</y-m>
@@ -1465,7 +1465,7 @@
 <!-- Port Vert Stab -->
   
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>7.245</x-m>
       <y-m>2.131</y-m>
@@ -1476,7 +1476,7 @@
 <!-- Star Vert Stab -->
   
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>7.245</x-m>
       <y-m>-2.131</y-m>
@@ -1487,7 +1487,7 @@
 
  <!-- Port Wing Tip -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>3.822</x-m>
       <y-m>5.369</y-m>
@@ -1498,7 +1498,7 @@
 
   <!-- Star Wing Tip -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>3.822</x-m>
       <y-m>-5.369</y-m>

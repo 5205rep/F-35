@@ -5,7 +5,7 @@
 	
 	<model>
     <name>plume</name>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/Afterburner/AfterBurner.xml</path>
+    <path>Aircraft/F-35/Models/Effects/Afterburner/AfterBurner.xml</path>
 	<offsets>
 	<x-m>6.350</x-m>
          <y-m>0</y-m>
@@ -18,7 +18,7 @@
 
    <model>
     <name>Nozzle</name>
-    <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzle.xml</path>
+    <path>Aircraft/F-35/Models/Nozzle/nozzle.xml</path>
 	<offsets>
 	<x-m>4.835</x-m>
          <y-m>0.015</y-m>

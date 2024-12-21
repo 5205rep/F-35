@@ -6,7 +6,7 @@ var showPylonsDlg = func{
 		}
 	}
 var (width,height) = (980,600);
-var title = 'F-22 Weapons :';
+var title = 'Lockheed Martin F-35 Lightning II :';
  
 # create a new window, dimensions are WIDTH x HEIGHT, using the dialog decoration (i.e. titlebar)
 var window = canvas.Window.new([width,height],"dialog").set('title',title);

@@ -3,7 +3,7 @@
 <PropertyList>
 	
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/F-35Ordinance/Pylons/PylonsB.ac</path>
+		<path>Aircraft/F-35/Models/F-35Ordinance/Pylons/PylonsB.ac</path>
 		<offsets>
 			<x-m>0</x-m>
 			<y-m>0</y-m>

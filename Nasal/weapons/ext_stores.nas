@@ -2,7 +2,7 @@ print("LOADING ext_stores.nas .");
 ################################################################################
 #
 #                      F-22 EXTERNAL STORES MANAGER
-#	Amazing Thanks to Ghost!	Thanks to the m2005-5's developpers
+#		           Thanks to the m2005-5's developpers
 ################################################################################
 
 # check then drop

@@ -9,7 +9,7 @@ kids 12
 OBJECT poly
 name "AIM1206"
 loc -0.158372 0.339538 0.531937
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -13304,7 +13304,7 @@ kids 0
 OBJECT poly
 name "AIM1207"
 loc -0.270523 0.305979 -0.0103632
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -26599,7 +26599,7 @@ kids 0
 OBJECT poly
 name "AIM1208"
 loc -0.29524 0.454921 0.248736
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -39894,7 +39894,7 @@ kids 0
 OBJECT poly
 name "AIM1203"
 loc 0.476757 -1.90806 2.12624
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -53189,7 +53189,7 @@ kids 0
 OBJECT poly
 name "AIM1204"
 loc 0.486984 -1.95326 2.90106
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -66484,7 +66484,7 @@ kids 0
 OBJECT poly
 name "AIM1202"
 loc 0.49031 0.424865 -1.72715
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -84836,7 +84836,7 @@ kids 0
 OBJECT poly
 name "AIM1201"
 loc 0.496255 0.343821 -4.9426
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148
@@ -98131,7 +98131,7 @@ kids 0
 OBJECT poly
 name "AGM1541"
 loc -0.194052 0.41478 0.178949
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
 crease 45.000000
 hidden
 numvert 1175
@@ -112899,7 +112899,7 @@ kids 0
 OBJECT poly
 name "AGM1542"
 loc -0.194052 0.41006 0.169509
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
 crease 45.000000
 hidden
 numvert 1175
@@ -127667,7 +127667,7 @@ kids 0
 OBJECT poly
 name "AGM1543"
 loc -0.194052 0.39242 0.167456
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
 crease 45.000000
 hidden
 numvert 1175
@@ -142435,7 +142435,7 @@ kids 0
 OBJECT poly
 name "AGM1544"
 loc -0.194052 0.411506 0.18018
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AGM-154A/AGM-154A_D.png"
 crease 45.000000
 hidden
 numvert 1175
@@ -157203,7 +157203,7 @@ kids 0
 OBJECT poly
 name "AIM9XL"
 loc -0.424752 0.731195 -0.0112135
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-9X/AIM-9X_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-9X/AIM-9X_D.png"
 crease 45.000000
 hidden
 numvert 1046
@@ -169580,7 +169580,7 @@ kids 0
 OBJECT poly
 name "AIM9XR"
 loc -0.427797 0.71453 -0.0352003
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-9X/AIM-9X_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-9X/AIM-9X_D.png"
 crease 45.000000
 hidden
 numvert 1046
@@ -181957,7 +181957,7 @@ kids 0
 OBJECT poly
 name "AIM1205"
 loc -0.23607 0.880197 0.0665161
-texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/daVinci_F-35A/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
+texture "C:/Program Files/FlightGear 2020.3/data/Aircraft/F-35/Models/F-35Ordinance/AIM-120C/AIM-120C_D.png"
 crease 45.000000
 hidden
 numvert 1148

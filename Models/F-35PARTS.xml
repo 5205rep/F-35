@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <path>daVinci_F-35A.ac</path>
+  <path>F-35A.ac</path>
   <offsets>
     <x-m>0</x-m>
     <z-m>0</z-m>
@@ -18,7 +18,7 @@
    <!-- Normal shader effect. Separate effects required for each normal map texture -->
 
  <effect>
-    <inherits-from>Aircraft/daVinci_F-35A/Models/Effects/bumpspec-wing</inherits-from>
+    <inherits-from>Aircraft/F-35/Models/Effects/bumpspec-wing</inherits-from>
     <object-name>Wing</object-name>
     <object-name>RightAileron</object-name>
     <object-name>RightFlap</object-name>
@@ -31,12 +31,12 @@
  </effect>
 
  <effect>
-    <inherits-from>Aircraft/daVinci_F-35A/Models/Effects/bumpspec-fuselage</inherits-from>
+    <inherits-from>Aircraft/F-35/Models/Effects/bumpspec-fuselage</inherits-from>
     <object-name>Fuselage</object-name>
  </effect>
 
  <effect>
-    <inherits-from>Aircraft/daVinci_F-35A/Models/Effects/bumpspec-tail</inherits-from>
+    <inherits-from>Aircraft/F-35/Models/Effects/bumpspec-tail</inherits-from>
     <object-name>HStab</object-name>
     <object-name>RightElevator</object-name>
     <object-name>LeftElevator</object-name>
@@ -1012,7 +1012,7 @@
 
 <model>
    <name>sonicboom</name>
-		<path>Aircraft/daVinci_F-35A/Models/Effects/boom/fx.xml</path>
+		<path>Aircraft/F-35/Models/Effects/boom/fx.xml</path>
 		<offsets>
 			<x-m>8.5</x-m>
 			<y-m>0</y-m>
@@ -1022,7 +1022,7 @@
 	</model> 
 	
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/Effects/Vapour/Vapour.xml</path>
+		<path>Aircraft/F-35/Models/Effects/Vapour/Vapour.xml</path>
 		<offsets>
 			<x-m>7.5</x-m>
 			<y-m>-1.3</y-m>
@@ -1034,7 +1034,7 @@
 	</model>
 	
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/Effects/Vapour/Vapour.xml</path>
+		<path>Aircraft/F-35/Models/Effects/Vapour/Vapour.xml</path>
 		<offsets>
 			<x-m>7.5</x-m>
 			<y-m>1.3</y-m>
@@ -1046,7 +1046,7 @@
 	</model>
  
  <model>
-		<path>Aircraft/daVinci_F-35A/Models/Effects/Vapour/Vapour2.xml</path>
+		<path>Aircraft/F-35/Models/Effects/Vapour/Vapour2.xml</path>
 		<offsets>
 			<x-m>11</x-m>
 			<y-m>-3.5</y-m>
@@ -1058,7 +1058,7 @@
 	</model>
 	
 	<model>
-		<path>Aircraft/daVinci_F-35A/Models/Effects/Vapour/Vapour2.xml</path>
+		<path>Aircraft/F-35/Models/Effects/Vapour/Vapour2.xml</path>
 		<offsets>
 			<x-m>11</x-m>
 			<y-m>3.5</y-m>
@@ -1072,7 +1072,7 @@
 <!--Contrails-->
 
 <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/contrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/contrail.xml</path>
     <offsets>
      <x-m> 12.5</x-m>
      <y-m>0</y-m>
@@ -1082,7 +1082,7 @@
 
 <!-- Smoke Trail -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/smoke/smokeL.xml</path>
+    <path>Aircraft/F-35/Models/Effects/smoke/smokeL.xml</path>
     <offsets>
       <x-m>  12.5 </x-m>
       <y-m>  0.000 </y-m>
@@ -1093,7 +1093,7 @@
 <!-- Tiptrail -->
   <!-- Gauche -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>  8.624 </x-m>
       <y-m> -4.25</y-m>
@@ -1103,7 +1103,7 @@
 
   <!-- Droite -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m>  8.624 </x-m>
       <y-m>  4.25</y-m>
@@ -1113,7 +1113,7 @@
 
   <!-- Trail -->
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Effects/tiptrail/tiptrail.xml</path>
+    <path>Aircraft/F-35/Models/Effects/tiptrail/tiptrail.xml</path>
     <offsets>
       <x-m> 12.025 </x-m>
       <y-m>  0.000 </y-m>
@@ -1126,7 +1126,7 @@
   
   <model>
     
-    <path>Aircraft/daVinci_F-35A/Models/lights/light-cone.xml</path>
+    <path>Aircraft/F-35/Models/lights/light-cone.xml</path>
     <offsets>
      <x-m>3.05</x-m>
 <y-m>0 </y-m>
@@ -1140,7 +1140,7 @@
 <!-- nav lights -->
   
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Lights/RedLight.xml</path>
+    <path>Aircraft/F-35/Models/Lights/RedLight.xml</path>
     <offsets>
       <x-m>8.00</x-m>
       <y-m>-4.07</y-m>
@@ -1150,7 +1150,7 @@
 
 
   <model>
-    <path>Aircraft/daVinci_F-35A/Models/Lights/GreenLight.xml</path>
+    <path>Aircraft/F-35/Models/Lights/GreenLight.xml</path>
     <offsets>
       <x-m>8.00</x-m>
       <y-m>4.07</y-m>
@@ -1159,7 +1159,7 @@
   </model>
 
 <model>
-    <path>Aircraft/daVinci_F-35A/Models/Lights/Red-beacon/StrobeRed.xml</path>
+    <path>Aircraft/F-35/Models/Lights/Red-beacon/StrobeRed.xml</path>
     <offsets>
       <x-m> 7.36</x-m>
      <y-m> 0.000 </y-m> 

@@ -6,7 +6,7 @@
 
  <model>
   <name>sect1</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>0.0</roll-deg>
   </offsets>
@@ -14,7 +14,7 @@
 
   <model>
   <name>sect2</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-22.5</roll-deg>
   </offsets>
@@ -22,7 +22,7 @@
 
  <model>
   <name>sect3</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-45</roll-deg>
   </offsets>
@@ -30,7 +30,7 @@
 
  <model>
   <name>sect4</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-67.5</roll-deg>
   </offsets>
@@ -38,7 +38,7 @@
 
  <model>
   <name>sect5</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-90</roll-deg>
   </offsets>
@@ -46,7 +46,7 @@
 
  <model>
   <name>sect6</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-112.5</roll-deg>
   </offsets>
@@ -54,7 +54,7 @@
 
  <model>
   <name>sect7</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-135.0</roll-deg>
   </offsets>
@@ -62,7 +62,7 @@
 
  <model>
   <name>sect8</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-157.5</roll-deg>
   </offsets>
@@ -70,7 +70,7 @@
 
  <model>
   <name>sect9</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>-180.0</roll-deg>
   </offsets>
@@ -78,7 +78,7 @@
 
  <model>
   <name>sect10</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>157.5</roll-deg>
   </offsets>
@@ -86,7 +86,7 @@
 
  <model>
   <name>sect11</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>135.0</roll-deg>
   </offsets>
@@ -94,7 +94,7 @@
 
  <model>
   <name>sect11</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>112.5</roll-deg>
   </offsets>
@@ -102,7 +102,7 @@
 
  <model>
   <name>sect13</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>90.0</roll-deg>
   </offsets>
@@ -110,7 +110,7 @@
 
  <model>
   <name>sect14</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>67.5</roll-deg>
   </offsets>
@@ -118,7 +118,7 @@
 
  <model>
   <name>sect15</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>45</roll-deg>
   </offsets>
@@ -126,7 +126,7 @@
 
  <model>
   <name>sect16</name>
-  <path>Aircraft/daVinci_F-35A/Models/Nozzle/nozzlesection.xml</path>
+  <path>Aircraft/F-35/Models/Nozzle/nozzlesection.xml</path>
   <offsets>
    <roll-deg>22.5</roll-deg>
   </offsets>

@@ -9,7 +9,7 @@
    <engine>
    <name>ABws2</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/AB.wav</path>
+   <path>Aircraft/F-35/Sounds/AB.wav</path>
    <condition>
 
 <greater-than>  
@@ -52,7 +52,7 @@
    <engine>
    <name>ABs2</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/AB.wav</path>
+   <path>Aircraft/F-35/Sounds/AB.wav</path>
    <condition>
 
 <greater-than>  
@@ -94,7 +94,7 @@
     <engine>
    <name>ABs</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/AB.wav</path>
+   <path>Aircraft/F-35/Sounds/AB.wav</path>
    <condition>
 
 <greater-than>  
@@ -144,7 +144,7 @@
    <engine>
    <name>ABsw1</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/abint.wav</path>
+   <path>Aircraft/F-35/Sounds/abint.wav</path>
    <condition>
   	 <property>/sim/current-view/internal</property>
 
@@ -177,7 +177,7 @@
     <engine>
    <name>ABs1</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/abint.wav</path>
+   <path>Aircraft/F-35/Sounds/abint.wav</path>
    <condition>
   	 <property>/sim/current-view/internal</property>
 
@@ -211,7 +211,7 @@
 <engine>
    <name>interior engine1e</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/jet-blastB.wav</path>
+   <path>Aircraft/F-35/Sounds/jet-blastB.wav</path>
    <condition>
 
 <greater-than>  
@@ -243,7 +243,7 @@
 <engine>
    <name>interior engine1ef</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/jet-blast0.wav</path>
+   <path>Aircraft/F-35/Sounds/jet-blast0.wav</path>
    <condition>
 
 <greater-than>  
@@ -282,7 +282,7 @@
   <engine>
    <name>Intake Fans</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/engine1.wav</path>
+   <path>Aircraft/F-35/Sounds/engine1.wav</path>
    <condition>
      <not>
           <property>/sim/current-view/internal</property>
@@ -319,7 +319,7 @@
   <engine>
    <name>APU Exhaust</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/wing-vents.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/wing-vents.wav</path>
    <condition>
     <property>/engines/engine/running</property>
      	<not>
@@ -357,7 +357,7 @@
   <engine>
    <name>Engine Exhaust</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/engine2.wav</path>
+   <path>Aircraft/F-35/Sounds/engine2.wav</path>
    <condition>
     	<property>/engines/engine/running</property>
     	 <not>
@@ -395,7 +395,7 @@
   <engine>
    <name>Engine Thrust LowFreq</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/engine-lowfreq.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/engine-lowfreq.wav</path>
    <condition>
     	<property>/engines/engine/running</property>
      	<not>
@@ -430,7 +430,7 @@
   <engine>
    <name>Reheat</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/reheat.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/reheat.wav</path>
    <condition>
 	 <property>engines/engine/afterburner</property>
     	   <not>
@@ -465,7 +465,7 @@
   <cockpit>
    <name>Cockpit Atmos</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/cockpit.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/cockpit.wav</path>
    <condition>
     	<property>/sim/current-view/internal</property>
    </condition>
@@ -479,7 +479,7 @@
   <thrust>
    <name>Internal Engine Thrust LowFreq</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/engine-lowfreq.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/engine-lowfreq.wav</path>
    <condition>
     	<property>/sim/current-view/internal</property>
 	 <not>
@@ -498,7 +498,7 @@
   <engine>
    <name>Intake Fans Internal</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/Samples/engine-intake.wav</path>
+   <path>Aircraft/F-35/Sounds/Samples/engine-intake.wav</path>
    <condition>
          <property>/sim/current-view/internal</property>
    </condition>
@@ -519,7 +519,7 @@
   <engine>
    <name>Exhaust Internalf</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/engin.wav</path>
+   <path>Aircraft/F-35/Sounds/engin.wav</path>
    <condition>
 	     <property>/sim/current-view/internal</property>
    </condition>
@@ -540,7 +540,7 @@
     <engine>
    <name>Exhaust Internals</name>
    <mode>looped</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/engin.wav</path>
+   <path>Aircraft/F-35/Sounds/engin.wav</path>
    <condition>
 	     <property>/sim/current-view/internal</property>
    </condition>
@@ -563,7 +563,7 @@
 		<rumble>
 			<name>rumble</name>
 			<mode>looped</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/rumble.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/rumble.wav</path>
 			<condition>
 				<or>
 					<property>/gear/gear[0]/wow</property>
@@ -582,7 +582,7 @@
 		<gear>
 			<name>gear</name>
 			<mode>in-transit</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear.wav</path>
 			<property>/gear/gear[0]/position-norm</property>
 			<pitch>
 				<internal>dt_play</internal>
@@ -592,7 +592,7 @@
 		</gear>
 		<gear>
 			<name>gear-lock</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear-lck.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear-lck.wav</path>
 			<condition>
 				<equals>
 					<property>/gear/gear[0]/position-norm</property>
@@ -603,7 +603,7 @@
 		<gear>
 			<name>gear</name>
 			<mode>in-transit</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear.wav</path>
 			<property>/gear/gear[1]/position-norm</property>
 			<pitch>
 				<internal>dt_play</internal>
@@ -613,7 +613,7 @@
 		</gear>
 		<gear>
 			<name>gear-lock</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear-lck.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear-lck.wav</path>
 			<condition>
 				<equals>
 					<property>/gear/gear[1]/position-norm</property>
@@ -624,7 +624,7 @@
 		<gear>
 			<name>gear</name>
 			<mode>in-transit</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear.wav</path>
 			<property>/gear/gear[2]/position-norm</property>
 			<pitch>
 				<internal>dt_play</internal>
@@ -634,7 +634,7 @@
 		</gear>
 		<gear>
 			<name>gear-lock</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/gear-lck.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/gear-lck.wav</path>
 			<condition>
 				<equals>
 					<property>/gear/gear[2]/position-norm</property>
@@ -644,7 +644,7 @@
 		</gear>
 		<squeal>
 			<name>squeal</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/squeal.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/squeal.wav</path>
 			<condition>
 				<or>
 					<property>/gear/gear[0]/wow</property>
@@ -676,7 +676,7 @@
 		<speedbrake>
 			<name>speedbrake</name>
 			<mode>in-transit</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/flaps.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/flaps.wav</path>
 			<property>/surface-positions/speedbrake-pos-norm</property>
 			<volume>
 				<offset>0.25</offset>
@@ -696,7 +696,7 @@
 		<slat>
 			<name>slats</name>
 			<mode>in-transit</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/flaps.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/flaps.wav</path>
 			<property>/surface-positions/slats-pos-norm</property>
 			<volume>
 				<offset>0.25</offset>
@@ -719,7 +719,7 @@
     <stall>
         <name>stall</name>
         <mode>looped</mode>
-        <path>Aircraft/daVinci_F-35A/Sounds/Samples/stall.wav</path>
+        <path>Aircraft/F-35/Sounds/Samples/stall.wav</path>
         <condition>
             <less-than>
                 <property>velocities/airspeed-kt</property>
@@ -747,7 +747,7 @@
 <!-- switches -->
 		<click>
 			<name>hook click down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				   <property>/controls/gear/tailhook</property>
 			</condition>
@@ -758,7 +758,7 @@
 		</click>
 		<click>
 			<name>hook click up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<not>
 				      <property>/controls/gear/tailhook</property>
@@ -771,7 +771,7 @@
 		</click>
 		<click>
 			<name>tailwheel-lock click down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<property>/controls/gear/tailwheel-lock</property>
 			</condition>
@@ -782,7 +782,7 @@
 		</click>
 		<click>
 			<name>tailwheel-lock click up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<not>
 				   <property>controls/gear/tailwheel-lock</property>
@@ -795,7 +795,7 @@
 		</click>
 		<click>
 			<name>canopy click up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<less-than>
 				   <property>/controls/canopy/position-norm</property>
@@ -809,7 +809,7 @@
 		</click>
 		<click>
 			<name>canopy click down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<greater-than>
 				   <property>/controls/canopy/position-norm</property>
@@ -823,7 +823,7 @@
 		</click>
 		<click>
 			<name>Gear Stick down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/shlock.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/shlock.wav</path>
 			<condition>
 				<property>/controls/gear/gear-down</property>
 			</condition>
@@ -834,7 +834,7 @@
 		</click>
 		<click>
 			<name>Gear Stick up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/shlock.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/shlock.wav</path>
 			<condition>
 				<not>
 				   <property>/controls/gear/gear-down</property>
@@ -847,7 +847,7 @@
 		</click>
 		<click>
 			<name>Parking brakes down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/slide.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/slide.wav</path>
 			<condition>
 				<property>controls/gear/brake-parking</property>
 			</condition>
@@ -858,7 +858,7 @@
 		</click>
 		<click>
 			<name>Parking brakes up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/slide.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/slide.wav</path>
 			<condition>
 				<not>
 				   <property>controls/gear/brake-parking</property>
@@ -871,7 +871,7 @@
 		</click>
 		<click>
 			<name>Reverser down</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<property>/controls/engines/engine[0]/reverser</property>
 				<!--property>/controls/engines/engine[1]/reverser</property-->
@@ -883,7 +883,7 @@
 		</click>
 		<click>
 			<name>Reverser brakes up</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/click.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/click.wav</path>
 			<condition>
 				<not>
 				   <property>/controls/engines/engine[0]/reverser</property>
@@ -903,7 +903,7 @@
 
 		<canopy> <!-- Sound from A-6E-->
 			<name>closed canopy</name>
-			<path>Aircraft/daVinci_F-35A/Sounds/Samples/canopy-close2.wav</path>
+			<path>Aircraft/F-35/Sounds/Samples/canopy-close2.wav</path>
 			<condition>
 				<less-than>
 				   <property>controls/canopy/position-norm</property>
@@ -935,7 +935,7 @@
 <guns>
       <name>gunfire</name>
       <mode>looped</mode>
-      <path>Aircraft/daVinci_F-35A/Sounds/gunfire.wav</path>
+      <path>Aircraft/F-35/Sounds/gunfire.wav</path>
       <condition> 
         <property>controls/armament/trigger</property>
         <property>ai/submodels/submodel/count</property>
@@ -951,7 +951,7 @@
 	
 	<voice>
   <name>Geforce-breath-vox</name>
-  <path>Aircraft/daVinci_F-35A/Sounds/Geforce.wav</path>
+  <path>Aircraft/F-35/Sounds/Geforce.wav</path>
   <condition>
    <greater-than>
     <property>/accelerations/pilot/z-accel-fps_sec</property>
@@ -965,7 +965,7 @@
 
 <voice>
   <name>Geforce-vox</name>
-  <path>Aircraft/daVinci_F-35A/Sounds/geforce1.wav</path>
+  <path>Aircraft/F-35/Sounds/geforce1.wav</path>
   <condition>
    <less-than>
     <property>/accelerations/pilot/z-accel-fps_sec</property>
@@ -981,7 +981,7 @@
   <sonicboom>
    <name>Sonic Boom</name>
 	<mode>once</mode>
-   <path>Aircraft/daVinci_F-35A/Sounds/sonicboom.wav</path>
+   <path>Aircraft/F-35/Sounds/sonicboom.wav</path>
    <condition>
    <and>
 	    <greater-than>
@@ -999,7 +999,7 @@
    <low-fuel>
   <name>low-fuel</name>
   <mode>once</mode>
-  <path>Aircraft/daVinci_F-35A/Sounds/fuellow.wav</path>
+  <path>Aircraft/F-35/Sounds/fuellow.wav</path>
   <condition>
     <less-than>
      <property>/consumables/fuel/total-fuel-gals</property>
@@ -1012,7 +1012,7 @@
 <low-fuel2>
   <name>low-fuel2</name>
   <mode>once</mode>
-  <path>Aircraft/daVinci_F-35A/Sounds/fuellow.wav</path>
+  <path>Aircraft/F-35/Sounds/fuellow.wav</path>
   <condition>
     <less-than>
      <property>/consumables/fuel/total-fuel-gals</property>
@@ -1025,7 +1025,7 @@
 <low-fuel3>
   <name>low-fuel3</name>
   <mode>once</mode>
-  <path>Aircraft/daVinci_F-35A/Sounds/fuellow.wav</path>
+  <path>Aircraft/F-35/Sounds/fuellow.wav</path>
   <condition>
     <less-than>
      <property>/consumables/fuel/total-fuel-gals</property>
@@ -1038,7 +1038,7 @@
 <low-fuel4>
   <name>low-fuel4</name>
   <mode>once</mode>
-  <path>Aircraft/daVinci_F-35A/Sounds/fuellow.wav</path>
+  <path>Aircraft/F-35/Sounds/fuellow.wav</path>
   <condition>
     <less-than>
      <property>/consumables/fuel/total-fuel-gals</property>
@@ -1053,7 +1053,7 @@
 		<flyby>
 			<name>fly-by</name>
 			<mode>once</mode>
-			<path>Aircraft/daVinci_F-35A/Sounds/flyby.wav</path>
+			<path>Aircraft/F-35/Sounds/flyby.wav</path>
 			<condition>
 			<and>
 	    <greater-than>

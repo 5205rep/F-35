@@ -9,8 +9,17 @@ Lockheed Martin F-35A Lightning II
 <PropertyList>
 	<sim>
 
-		<description>Lockheed Martin F-35A Lightning II</description>
-		<author>VooDoo and The FGUK Development Dream Team with Geed (Sound) Petar Jedvaj, Detlef Faber, and F-GTUX, edited by 1stAF.</author>
+		  <long-description>
+  The F-35A Lightning II is a fifth-generation, multi-role stealth fighter aircraft designed for the U.S. Air Force and allied nations. It is the conventional takeoff and landing (CTOL) variant of the F-35 family, featuring advanced stealth capabilities, cutting-edge avionics, and superior situational awareness. The F-35A is equipped with a versatile weapons payload, including air-to-air, air-to-ground, and precision-guided munitions. Its advanced sensor fusion and data sharing capabilities enhance operational effectiveness in modern warfare. Additionally, it is the only variant equipped with an internal gun, the GAU-22/A, for close air support and dogfighting.
+  </long-description>
+    <rating>
+    <FDM type="int">3</FDM>
+    <systems type="int">2</systems>
+    <cockpit type="int">3</cockpit>
+    <model type="int">4</model>
+  </rating>
+    <description>Lockheed Martin F-35A Lightning II</description>
+		<author>VooDoo, The FGUK Development Team, Geed (Sound), Petar Jedvaj, Detlef Faber, F-GTUX, First Air Force.</author>
 		<status>Modded to be ready for combat</status>
   <primary-set type="bool">true</primary-set>
 	 	<flight-model>jsb</flight-model>
@@ -25,51 +34,51 @@ Lockheed Martin F-35A Lightning II
       <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-1.jpg</path>
+        <path>Splashscreen/F-35-1.jpg</path>
       </preview>
       <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-2.jpg</path>
+        <path>Splashscreen/F-35-2.jpg</path>
       </preview>
       <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-3.jpg</path>
+        <path>Splashscreen/F-35-3.jpg</path>
       </preview>
    <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-4.jpg</path>
+        <path>Splashscreen/F-35-4.jpg</path>
       </preview>
    <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-5.jpg</path>
+        <path>Splashscreen/F-35-5.jpg</path>
       </preview>
       <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-6.jpg</path>
+        <path>Splashscreen/F-35-6.jpg</path>
       </preview>
      <preview>
         <type>exterior</type>
         <splash type="bool">true</splash>
-        <path>Splashscreen/daVinci_F-35A-7.jpg</path>
+        <path>Splashscreen/F-35-7.jpg</path>
       </preview>
     </previews>
 
       <instrumentation>
-            <path>Aircraft/daVinci_F-35A/Systems/instrumentation.xml</path>
+            <path>Aircraft/F-35/Systems/instrumentation.xml</path>
         </instrumentation>
 		
     <systems>
 
                          <electrical>
-				<path>Aircraft/daVinci_F-35A/Systems/Electrical.nas</path>
+				<path>Aircraft/F-35/Systems/Electrical.nas</path>
 			</electrical>
 			<autopilot>
-				<path>Aircraft/daVinci_F-35A/Systems/VooDooAP1.xml</path>
+				<path>Aircraft/F-35/Systems/VooDooAP1.xml</path>
 			</autopilot>
 			<refuel>
 				<type>boom</type>
@@ -86,14 +95,14 @@ Lockheed Martin F-35A Lightning II
 		<allow-toggle-cockpit archive="y">true</allow-toggle-cockpit>
 
 		<model>
-			<path>Aircraft/daVinci_F-35A/Models/F-35A.xml</path>
+			<path>Aircraft/F-35/Models/F-35A.xml</path>
 		</model>
     <!--Submodels-->
 
 
     		<submodels> 
     		<serviceable type="bool">true</serviceable>
-    		<path>Aircraft/daVinci_F-35A/Submodels.xml</path>           
+    		<path>Aircraft/F-35/Submodels.xml</path>           
 			 
   		</submodels>
 
@@ -287,7 +296,7 @@ Lockheed Martin F-35A Lightning II
     </flight-recorder> -->
 
                 <sound>
-		 <path>Aircraft/daVinci_F-35A/Sounds/sound.xml</path>
+		 <path>Aircraft/F-35/Sounds/sound.xml</path>
 		</sound>	
 
 
@@ -303,7 +312,7 @@ Lockheed Martin F-35A Lightning II
 		</view>
 
 <help>
-			<title> daVinci_F-35A </title>
+			<title> F-35 </title>
 			
 			<key>
 				<name>c</name>
@@ -402,7 +411,7 @@ Lockheed Martin F-35A Lightning II
 	</menubar>
 
 		<hud>
-			<path n="1">Aircraft/daVinci_F-35A/Hud/HUD.xml</path>
+			<path n="1">Aircraft/F-35/Hud/HUD.xml</path>
 			<visibility n="1">true</visibility>
 			<palette>
 				<color n="0">
@@ -646,7 +655,7 @@ Lockheed Martin F-35A Lightning II
             <MAW-semiactive type="bool">false</MAW-semiactive>
             <msg type="bool">true</msg>
             <spike type="bool">false</spike>
-            <models type="string">Aircraft/daVinci_F-35A/Models/emesary/</models>
+            <models type="string">Aircraft/F-35/Models/emesary/</models>
         </armament>
     </payload>
 
@@ -992,7 +1001,7 @@ Lockheed Martin F-35A Lightning II
 					<command>property-cycle</command>
 					<property>controls/baydoors/AIM120</property>
 <value>0</value>
-<value>1</value> <!--i should move this to the FDM so i can make a nice smooth value-->
+<value>1</value> <!---->
 				</binding>
 			</key>
 					<key n="6">
@@ -1002,7 +1011,7 @@ Lockheed Martin F-35A Lightning II
 					<command>property-cycle</command>
 					<property>controls/baydoors/AIM9X</property>
 <value>0</value>
-<value>1</value> <!--i should move this to the FDM so i can make a nice smooth value-->
+<value>1</value> <!---->
 				</binding>
 			</key>
 			
@@ -1240,132 +1249,145 @@ Lockheed Martin F-35A Lightning II
 <!--Damage implementation-->
 
         <notifications>
-            <file>Aircraft/daVinci_F-35A/Nasal2/ArmamentNotification.nas</file>
-            <file>Aircraft/daVinci_F-35A/Nasal2/GeoBridgedTransmitter.nas</file>
+            <file>Aircraft/F-35/Nasal2/ArmamentNotification.nas</file>
+            <file>Aircraft/F-35/Nasal2/GeoBridgedTransmitter.nas</file>
         </notifications>
         <damage>
-            <file>Aircraft/daVinci_F-35A/Nasal2/damage.nas</file>
+            <file>Aircraft/F-35/Nasal2/damage.nas</file>
         </damage>
 
 
        
 
                   <doors>
-                    <file>Aircraft/daVinci_F-35A/Nasal/doors.nas</file>
+                    <file>Aircraft/F-35/Nasal/doors.nas</file>
                  </doors>
 		                  <emu>
-                    <file>Aircraft/daVinci_F-35A/Nasal/emu.nas</file>
+                    <file>Aircraft/F-35/Nasal/emu.nas</file>
                  </emu>
-		<baydoors>
-			<file>Aircraft/daVinci_F-35A/Nasal/baydoors.nas</file>
-		</baydoors>
 		
+     <FG1000>
+	<file>Aircraft/F-35/Nasal/FGUK1000.nas</file>
+	</FG1000>
+
+                 <doors>
+                    <file>Aircraft/F-35/Nasal/doors.nas</file>
+                 </doors>
+
+    <baydoors>
+			<file>Aircraft/F-35/Nasal/baydoors.nas</file>
+		</baydoors>
+
+				<fuel>
+		 <file>Aircraft/F-35/Nasal/aar.nas</file>
+	        </fuel>
+
 		<aar> 
-			<file>Aircraft/daVinci_F-35A/Nasal/aar.nas</file>
+			<file>Aircraft/F-35/Nasal/aar.nas</file>
 		</aar>
 		
 		<rwr>
-			<file>Aircraft/daVinci_F-35A/Models/Instruments/bigscreen/radar/rwr.nas</file>
+			<file>Aircraft/F-35/Models/Instruments/bigscreen/radar/rwr.nas</file>
 		</rwr>
 		
 
             <rcs>
             <!-- must be before radar -->
-            <file>Aircraft/daVinci_F-35A/Nasal/rcs_mand.nas</file>
-            <file>Aircraft/daVinci_F-35A/Nasal/rcs.nas</file>
+            <file>Aircraft/F-35/Nasal/rcs_mand.nas</file>
+            <file>Aircraft/F-35/Nasal/rcs.nas</file>
         </rcs>
 		<radardist>
 			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
 		</radardist>
 		
 		<enav>
-			<file>Aircraft/daVinci_F-35A/Nasal/enav.nas</file>
+			<file>Aircraft/F-35/Nasal/enav.nas</file>
 		</enav>
 		
 
 		
 		<radar>
-			<file>Aircraft/daVinci_F-35A/nasal/radar2.nas</file>
+			<file>Aircraft/F-35/nasal/radar2.nas</file>
 		</radar>
 
+
   		<f35>
-		<!--	<file>Aircraft/daVinci_F-35A/Nasal/fan-yasim.nas</file> this is not the B varriant -->
-			<file>Aircraft/daVinci_F-35A/Nasal/f35.nas</file> <!--Must be after Radar-->
-		        <file>Aircraft/daVinci_F-35A/Nasal/liveries.nas</file>  
+		<!--	<file>Aircraft/F-35/Nasal/fan-yasim.nas</file> this is not the B varriant -->
+			<file>Aircraft/F-35/Nasal/f35.nas</file> <!--Must be after Radar-->
+		        <file>Aircraft/F-35/Nasal/liveries.nas</file>  
             
 		</f35>
          <lockhelper>
-            <file>Aircraft/daVinci_F-35A/Nasal/lockhelper.nas</file><!-- Phoenix: Lockhelper.nas -->
+            <file>Aircraft/F-35/Nasal/lockhelper.nas</file><!-- Lockhelper.nas -->
         </lockhelper>
+
 		<terrain-map>
-			<file>Aircraft/daVinci_F-35A/Nasal/terrain-map.nas</file>
+			<file>Aircraft/F-35/Nasal/terrain-map.nas</file>
 		</terrain-map>
 		
 		<low>
-			<file>Aircraft/daVinci_F-35A/Nasal/low.nas</file>
+			<file>Aircraft/F-35/Nasal/low.nas</file>
 		</low>
 
                 <chute>
-                        <file>Aircraft/daVinci_F-35A/Nasal/Parachute.nas</file>
+                        <file>Aircraft/F-35/Nasal/Parachute.nas</file>
                 </chute>
 
- <!--                                               
-                <NAV>
-                        <file>Aircraft/daVinci_F-35A/Nasal/mfd-navigation.nas</file>
-			<file>Aircraft/daVinci_F-35A/Nasal/nd-fullscreen.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/navaids.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/GUI.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/MFD.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/MFDPage.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/MFDPageController.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/NavMap.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/PFD.nas</file>
-                        <file>Aircraft/daVinci_F-35A/Nasal/terrain_follow.nas</file>
-                </NAV>  -->
-              
-              
+  <NAV>
+                        <file>Aircraft/F-35/Nasal/mfd-navigation.nas</file>
+			                  <file>Aircraft/F-35/Nasal/nd-fullscreen.nas</file>
+                        <file>Aircraft/F-35/Nasal/navaids.nas</file>
+                        <file>Aircraft/F-35/Nasal/GUI.nas</file>
+                        <file>Aircraft/F-35/Nasal/MFD.nas</file>
+                        <file>Aircraft/F-35/Nasal/MFDPage.nas</file>
+                        <file>Aircraft/F-35/Nasal/MFDPageController.nas</file>
+                        <file>Aircraft/F-35/Nasal/NavMap.nas</file>
+                        <file>Aircraft/F-35/Nasal/PFD.nas</file>
+                        <file>Aircraft/F-35/Nasal/terrain_follow.nas</file>
+                </NAV>
 
-<!--  Phoenix will make a custom FC later on. Hopefully :)
-  <FG1000>
-	<file>Aircraft/daVinci_F-35A/Nasal2/FGUK1000.nas</file>
-  </FG1000> -->
+                 <lights>
+                <file>Aircraft/F-35/Nasal/Lights.nas</file>
+              </lights>
+              
+              
 	     
     <doors>
-      <file>Aircraft/daVinci_F-35A/Nasal2/doors.nas</file>
+      <file>Aircraft/F-35/Nasal2/doors.nas</file>
     </doors>
 <!--Why do they need so much shit holy lolol
     <c421>
-      <file>Aircraft/daVinci_F-35A/Nasal2/convert.nas</file>
-      <file>Aircraft/daVinci_F-35A/Nasal2/Electrical.nas</file>
-      <file>Aircraft/daVinci_F-35A/Nasal2/system.nas</file>
-      <file>Aircraft/daVinci_F-35A/Nasal2/flightdirector.nas</file>
+      <file>Aircraft/F-35/Nasal2/convert.nas</file>
+      <file>Aircraft/F-35/Nasal2/Electrical.nas</file>
+      <file>Aircraft/F-35/Nasal2/system.nas</file>
+      <file>Aircraft/F-35/Nasal2/flightdirector.nas</file>
      </c421>-->
     <missile>
-      <file>Aircraft/daVinci_F-35A/Nasal/weapons/missile.nas</file>
-      <file>Aircraft/daVinci_F-35A/Nasal/weapons/Loading_Missiles.nas</file>
-      <file>Aircraft/daVinci_F-35A/Nasal/weapons/missile_GroundTargeting.nas</file>
+      <file>Aircraft/F-35/Nasal/weapons/missile.nas</file>
+      <file>Aircraft/F-35/Nasal/weapons/Loading_Missiles.nas</file>
+      <file>Aircraft/F-35/Nasal/weapons/missile_GroundTargeting.nas</file>
     </missile>
 
     <m2000_load>
-      <file>Aircraft/daVinci_F-35A/Nasal/weapons/ext_stores.nas</file>
+      <file>Aircraft/F-35/Nasal/weapons/ext_stores.nas</file>
     </m2000_load>
 
        <!--Guns-->
 
            <guns>
-      <file>Aircraft/daVinci_F-35A/Nasal2/weapons.nas</file>
+      <file>Aircraft/F-35/Nasal2/weapons.nas</file>
     </guns>
 
 
       <dialogs>
-            <file>Aircraft/daVinci_F-35A/Nasal2/dialogs.nas</file>
+            <file>Aircraft/F-35/Nasal2/dialogs.nas</file>
       </dialogs>
 		<pylons>
-			<file>Aircraft/daVinci_F-35A/Nasal/pylonset.nas</file>
+			<file>Aircraft/F-35/Nasal/pylonset.nas</file>
 		</pylons>
 <!--AI Searcher-->
 		<misc>
-			<file>Aircraft/daVinci_F-35A/Nasal/misc.nas</file>
+			<file>Aircraft/F-35/Nasal/misc.nas</file>
 		</misc>
 
    	</nasal>

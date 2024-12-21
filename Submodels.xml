@@ -4,7 +4,7 @@
  
  <submodel>
     <name>Tracer</name> 
-    <model>Aircraft/daVinci_F-35A/Models/Effects/tracer.xml</model>
+    <model>Aircraft/F-35/Models/Effects/tracer.xml</model>
     <trigger>controls/armament/trigger</trigger>
     <speed>2500</speed>
     <repeat>true</repeat>
@@ -23,7 +23,7 @@
 
    <submodel>
     <name>Round</name>
-    <model>Aircraft/daVinci_F-35A/Models/Effects/null.ac</model>
+    <model>Aircraft/F-35/Models/Effects/null.ac</model>
     <trigger>controls/armament/trigger</trigger>
     <speed>2041</speed>
     <repeat>true</repeat>
@@ -42,12 +42,12 @@
     <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
     <impact>true</impact>
     <impact-report>ai/models/model-impact</impact-report>
-    <submodel-path>Aircraft/daVinci_F-35A/Models/Effects/Submodels.xml</submodel-path>
+    <submodel-path>Aircraft/F-35/Models/Effects/Submodels.xml</submodel-path>
   </submodel>
   
   <submodel> 
     <name>smoke</name>
-    <model>Aircraft/daVinci_F-35A/Models/Effects/Smoke.xml</model>
+    <model>Aircraft/F-35/Models/Effects/Smoke.xml</model>
     <trigger>controls/armament/trigger</trigger>
     <speed>5</speed>
     <repeat>true</repeat>
@@ -66,7 +66,7 @@
   </submodel>
     <submodel> 
     <name>smoke2</name>
-    <model>Aircraft/daVinci_F-35A/Models/Effects/Smoke.xml</model>
+    <model>Aircraft/F-35/Models/Effects/Smoke.xml</model>
     <trigger>controls/armament/trigger</trigger>
     <speed>6</speed>
     <repeat>true</repeat>
@@ -88,7 +88,7 @@
 
   <submodel>
     <name>flares</name>
-    <model>Aircraft/daVinci_F-35A/Models/Stores/Countermeasures/flare.xml</model>
+    <model>Aircraft/F-35/Models/Stores/Countermeasures/flare.xml</model>
     <trigger>ai/submodels/submodel/flare-release</trigger>
     <speed>10</speed>
     <repeat>true</repeat>
@@ -106,7 +106,7 @@
   
  <submodel>
     <name>flares</name>
-    <model>Aircraft/daVinci_F-35A/Models/Stores/Countermeasures/flare.xml</model>
+    <model>Aircraft/F-35/Models/Stores/Countermeasures/flare.xml</model>
     <trigger>ai/submodels/submodel/flare-release</trigger>
     <speed>10</speed>
     <repeat>true</repeat>

@@ -1,7 +1,7 @@
 #print("LOADING Loading_missiles.nas .");
 ################################################################################
 #
-#                     daVinci_F-35A  LOADS AND MISSILES PARAMETERS
+#                     F-35  LOADS AND MISSILES PARAMETERS
 #Note: these missiles are VERY basic, and curently the only for the radar to work
 ################################################################################
 
@@ -10,7 +10,7 @@ var Loading_missile = func(name)
     var typeid            = 0;
     var address           = "test";
     var NoSmoke           = "test2";
-    var Explosion         = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+    var Explosion         = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
     var maxdetectionrngnm = 0;      #
     var fovdeg            = 0;      #
     var detectionfovdeg   = 0;      #
@@ -37,9 +37,9 @@ var Loading_missile = func(name)
     {
         # AIM-120 :Advanced Medium Range Missile,      
 	typeid = 52;
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-120/AIM120-smoke.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-120/AIM120.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/AIM-120/AIM120-smoke.xml";
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM-120/AIM120.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
         flareres = 0.985; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares. Because flares are checked every 0.1 seconds a high number is needed because this variable is sensitve
         maxdetectionrngnm = 38.8;                    #  
         fovdeg = 140;                                #
@@ -66,9 +66,9 @@ var Loading_missile = func(name)
         # AIM-9X:short-range A2A,IR seeker,
 	typeid = 98;
         flareres = 0.985; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-9/AIM-9-smoke.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-9/AIM-9.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9-smoke.xml";
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
         maxdetectionrngnm = 12;                       # Not real Impact yet A little more than the MICA
         fovdeg = 180;                                 # seeker optical FOV
         detectionfovdeg = 180;                        # Search pattern diameter (rosette scan)
@@ -94,9 +94,9 @@ var Loading_missile = func(name)
         # AIM-9m :short-range A2A,IR seeker,
         flareres = 0.95; 
 	typeid = 69; # This is not a Aim-9m this is an Aim-9x with way less homing capabilites. So you can evade it with out the need for flares. just pull a manuver so that its 30deg away from the seeker and there you go   
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-9/AIM-9M-smoke.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM-9/AIM-9M.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9M-smoke.xml";
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9M.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
         maxdetectionrngnm = 12;                       # Not real Impact yet A little more than the MICA
         fovdeg = 80;                                 # Test missile for evading with no countermessures
         detectionfovdeg = 80;                        # Test missile for evading with no countermessures
@@ -126,9 +126,9 @@ var Loading_missile = func(name)
            # Mm yes much bomb,
         flareres = 1; # countermessueres cannont fool this. If your radar loosses lock on the target. the missile will miss 
 	    typeid = 18;
-        address = "Aircraft/daVinci_F-35A/Models/loads/GBU-39-FLIGHT.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/loads/GBU-39-FLIGHT.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosionGBU.xml";
+        address = "Aircraft/F-35/Models/loads/GBU-39-FLIGHT.xml";
+        NoSmoke = "Aircraft/F-35/Models/loads/GBU-39-FLIGHT.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
         maxdetectionrngnm = 12;                       # Not real Impact yet A little more than the MICA
         fovdeg = 40;                                 # seeker optical FOV
         detectionfovdeg = 40;                        # Search pattern diameter (rosette scan)
@@ -154,9 +154,9 @@ var Loading_missile = func(name)
            # Mm yes much bomb,
                                  flareres = 1;
 	    typeid = 18;
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/JDAM/JDAM.xml"; 
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/JDAM/JDAM.xml"; # for now
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosionGBU.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/JDAM/JDAM.xml"; 
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/JDAM/JDAM.xml"; # for now
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
         maxdetectionrngnm = 30;                       # 
 
         #GPS system
@@ -184,9 +184,9 @@ var Loading_missile = func(name)
            # Mm yes much bomb,
                                  flareres = 1;
 	    typeid = 18;
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AGM154/AGM154.xml"; 
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AGM154/AGM154.xml"; # for now
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosionGBU.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/AGM154/AGM154.xml"; 
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AGM154/AGM154.xml"; # for now
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
         maxdetectionrngnm = 30;                       # 
 
         #GPS system
@@ -213,9 +213,9 @@ var Loading_missile = func(name)
     {
                               flareres = 0.8;
   	typeid = 52; #Overridden at the end of missile.nas
-        address = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM7/AIM7-smoke.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/Stores/Missiles/AIM7/AIM7.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+        address = "Aircraft/F-35/Models/Stores/Missiles/AIM7/AIM7-smoke.xml";
+        NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM7/AIM7.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
         maxdetectionrngnm = 38.8;                    #  
         fovdeg = 360;                                # all 50
         detectionfovdeg = 180;                       # TODO implent data link system so we can control these variables while missile is in flight. im sure its possible
@@ -242,9 +242,9 @@ var Loading_missile = func(name)
 
         flareres = 0.998; # hehehe
   	    typeid = 52; # Overridden at the end of missile.nas
-        address = "Aircraft/daVinci_F-35A/Models/stores/Missiles/XMAA/XMAA-smoke.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/stores/Missiles/XMAA/XMAA.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosion.xml";
+        address = "Aircraft/F-35/Models/stores/Missiles/XMAA/XMAA-smoke.xml";
+        NoSmoke = "Aircraft/F-35/Models/stores/Missiles/XMAA/XMAA.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
         maxdetectionrngnm = 150.8;                   #  
         fovdeg = 360;                                #
         detectionfovdeg = 360;                       # TODO implent data link system so we can control these variables while missile is in flight. im sure its possible
@@ -266,12 +266,12 @@ var Loading_missile = func(name)
     }
     elsif(name == "eject")   # Used for the ejction seat. Not a missile so we call fox 1 and leave it
     {
-           # ejection seat   Aircraft/daVinci_F-35A/Models/pilot/eject.xml
+           # ejection seat   Aircraft/F-35/Models/pilot/eject.xml
         flareres = 1;
 	    typeid = 98;
-        address = "Aircraft/daVinci_F-35A/Models/pilot/eject.xml";
-        NoSmoke = "Aircraft/daVinci_F-35A/Models/pilot/eject.xml";
-        Explosion = "Aircraft/daVinci_F-35A/Models/Effects/MissileExplosion/explosionGBU.xml";
+        address = "Aircraft/F-35/Models/pilot/eject.xml";
+        NoSmoke = "Aircraft/F-35/Models/pilot/eject.xml";
+        Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
         maxdetectionrngnm = 12;                       # Not real Impact yet A little more than the MICA
         fovdeg = 80;                                 # seeker optical FOV
         detectionfovdeg = 80;                        # Search pattern diameter (rosette scan)

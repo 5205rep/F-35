@@ -2,11 +2,11 @@
 
 <PropertyList>
 
- <path>Aircraft/F-22/Models/Effects/Vapour/g-vortex.ac</path>
+ <path>Aircraft/F-35/Models/Effects/Vapour/g-vortex.ac</path>
  <nopreview/>
 
  <effect>
-  <inherits-from>Aircraft/F-22/Models/Effects/vapour/g-vortex</inherits-from>
+  <inherits-from>Aircraft/F-35/Models/Effects/vapour/g-vortex</inherits-from>
   <object-name>Bounding_box1</object-name>
  </effect>
 
