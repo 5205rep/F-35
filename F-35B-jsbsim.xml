@@ -18,14 +18,14 @@
  <metrics>
    <wingarea  unit="FT2">  459.67 </wingarea>
    <wingspan  unit="FT" >   35.11 </wingspan>
-   <wing_incidence>          2.00 </wing_incidence>
+   <wing_incidence>          0.00 </wing_incidence>
    <chord     unit="FT" >   13.09 </chord>
    <htailarea unit="FT2">   91.93 </htailarea>
    <htailarm  unit="FT" >   20.47 </htailarm>
    <vtailarea unit="FT2">   55.16 </vtailarea>
    <vtailarm  unit="FT" >   20.47 </vtailarm>
    <location name="AERORP" unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y>   0.00 </y>
      <z>   0.00 </z>
    </location>
@@ -37,7 +37,7 @@
    <location name="VRP" unit="IN">
      <x>0</x>
      <y>0</y>
-     <z>20</z>
+     <z>0</z>
    </location>
  </metrics>
 
@@ -47,7 +47,7 @@
    <izz unit="SLUG*FT2">     85344 </izz>
    <emptywt unit="LBS" >     32000 </emptywt>
    <location name="CG" unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y>   0.00 </y>
      <z> -15.36 </z>
    </location>
@@ -57,7 +57,7 @@
 
   <contact type="BOGEY" name="NOSE">
    <location unit="IN">
-     <x>  79.56 </x>
+     <x>  -79.56 </x>
      <y>   0.00 </y>
      <z> -73.44 </z>
    </location>
@@ -73,7 +73,7 @@
 
   <contact type="BOGEY" name="LEFT_MAIN">
    <location unit="IN">
-     <x> 381.89 </x>
+     <x> 281.89 </x>
      <y> -37.80 </y>
      <z> -73.44 </z>
    </location>
@@ -89,7 +89,7 @@
 
   <contact type="BOGEY" name="RIGHT_MAIN">
    <location unit="IN">
-     <x> 381.89 </x>
+     <x> 281.89 </x>
      <y>  37.80 </y>
      <z> -73.44 </z>
    </location>
@@ -134,7 +134,7 @@
     <propulsion>
         <engine file="F135-PW-600">
     <location unit="IN">
-      <x> 454.20 </x>
+      <x> 354.20 </x>
       <y>   0.00 </y>
       <z>   -15.36 </z>
     </location>
@@ -149,7 +149,7 @@
     <feed>3</feed>
     <thruster file="direct">
      <location unit="IN">
-       <x> 454.20 </x>
+       <x> 354.20 </x>
        <y>   0.00 </y>
        <z>   -15.36 </z>
      </location>
@@ -163,7 +163,7 @@
 	
         <engine file="liftfan">
     <location unit="IN">
-      <x> 164.20 </x>
+      <x> 064.20 </x>
       <y>   0.00 </y>
       <z>   -15.36 </z>
     </location>
@@ -178,7 +178,7 @@
     <feed>3</feed>
     <thruster file="direct">
      <location unit="IN">
-       <x> 164.20 </x>
+       <x> 64.20 </x>
        <y>   0.00 </y>
        <z>   -15.36 </z>
      </location>
@@ -251,7 +251,7 @@
 	
         <tank type="FUEL">    <!-- Tank number 0 -->
             <location unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y>  40.00 </y>
      <z> -15.36 </z>
             </location>
@@ -260,7 +260,7 @@
         </tank>
         <tank type="FUEL">    <!-- Tank number 1 -->
             <location unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y> -40.00 </y>
      <z> -15.36 </z>
             </location>
@@ -269,7 +269,7 @@
         </tank>
         <tank type="FUEL">    <!-- External Tank number 0  (station 4) -->
             <location unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y>  80.00 </y>
      <z> -15.36 </z>
             </location>
@@ -278,7 +278,7 @@
         </tank>
         <tank type="FUEL">    <!-- External Tank number 1 (station 6) -->
             <location unit="IN">
-     <x> 368.52 </x>
+     <x> 268.52 </x>
      <y> -80.00 </y>
      <z> -15.36 </z>
             </location>
@@ -535,8 +535,8 @@
  <input>fcs/pitch-trim-cmd-norm</input>
 
  <clipto>
- <min>-1</min>
- <max>0.8</max>
+ <min>-0.8</min>
+ <max>0.5</max>
  </clipto>
  </summer>
 <!--
@@ -1522,4 +1522,3 @@
 
     
 </fdm_config>
-

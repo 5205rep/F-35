@@ -553,7 +553,7 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>aero/cl-squared</property>
-           <value>0.12</value>
+           <value>0.10</value>
          </product>
     </function>
 
@@ -628,7 +628,7 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <abs><property>fcs/elevator-pos-norm</property></abs>
-           <value>0.01</value>
+           <value>0.001</value>
        </product>
     </function>
 
