@@ -82,13 +82,14 @@ var checkforext2 = func {
 
 
 var flares = func{
-  flare();
+  #flare();
 	var flarerand = rand();
 props.globals.getNode("/rotors/main/blade[3]/flap-deg",1).setValue(flarerand);
 props.globals.getNode("/rotors/main/blade[3]/position-deg",1).setValue(flarerand);
 settimer(func   {
     props.globals.getNode("/rotors/main/blade[3]/flap-deg").setValue(0);
     props.globals.getNode("/rotors/main/blade[3]/position-deg").setValue(0);
+setprop("/ai/submodels/submodel/flare-release",0);
                 },1);
 
 }

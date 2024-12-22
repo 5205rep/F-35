@@ -994,6 +994,19 @@ Lockheed Martin F-35A Lightning II
 	
 	<input>
 		<keyboard>
+    			 <key n="113">
+        			<name>q</name>
+        			<desc>flares</desc>
+      <binding>
+     <command>nasal</command>
+ <script>setprop("/ai/submodels/submodel/flare-release",1);f35.flares();damage.flare_released();settimer(func{setprop("/ai/submodels/submodel/flare-release",0);},0.1)</script>
+      </binding>
+  <binding>
+   <command>property-toggle</command>
+   <property>controls/flare</property>
+  </binding>
+    			</key>
+
 						<key n="4">
 				<name>Ctrl-D</name>
 				<desc>Open/close baydoors</desc>
