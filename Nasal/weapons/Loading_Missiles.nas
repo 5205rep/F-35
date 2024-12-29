@@ -31,7 +31,7 @@ var Loading_missile = func(name)
     var guidance	  = 0;
     var chute         = 1;
     var flareres      = 0;          # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares
-    
+    var isbomb        = 0; # if this weapon is a bomb
     
     if(name == "Aim-120")
     {
@@ -60,6 +60,7 @@ var Loading_missile = func(name)
         rail = "false";
         cruisealt = 0;
         chute = 0;
+        isbomb = 0;
     }
     elsif(name == "Aim-9x")
     {
@@ -88,6 +89,7 @@ var Loading_missile = func(name)
         cruisealt = 0;
         chute = 0;
         sdspeed = 0;
+        isbomb = 0;
     }
     elsif(name == "Aim-9m")
     {
@@ -116,6 +118,7 @@ var Loading_missile = func(name)
         cruisealt = 0;
         chute = 0;
         sdspeed = 0.0;
+        isbomb = 0;
     }
 
 
@@ -148,6 +151,7 @@ var Loading_missile = func(name)
         cruisealt = 0;
         sdspeed = 0;
         chute = 0;
+        isbomb = 1;
     }
     elsif(name == "JDAM")
     {
@@ -178,6 +182,7 @@ var Loading_missile = func(name)
         cruisealt = 0;
         sdspeed = 0;
         chute = 0;
+        isbomb = 1;
     }
     elsif(name == "AGM-154")
     {
@@ -208,6 +213,8 @@ var Loading_missile = func(name)
         cruisealt = getprop("position/altitude-ft");
         sdspeed = 0;
         chute = 0;
+        isbomb = 1;
+        
     }
     elsif(name == "Aim-7") #Debug missile
     {
@@ -234,6 +241,7 @@ var Loading_missile = func(name)
         rail = "false";
         cruisealt = 0;
         chute = 0;
+        isbomb = 0;
     }
     elsif(name == "XMAA") #Debug missile
     {
@@ -263,6 +271,7 @@ var Loading_missile = func(name)
         rail = "false";
         cruisealt = 0;                 # Will fly at 3000 Until strike
         chute = 0;
+        isbomb = 0;
     }
     elsif(name == "eject")   # Used for the ejction seat. Not a missile so we call fox 1 and leave it
     {
@@ -290,6 +299,7 @@ var Loading_missile = func(name)
         rail = "true";
         cruisealt = 5000;
         chute = 1;
+        isbomb = 0;
     }
   
     else
@@ -321,5 +331,6 @@ var Loading_missile = func(name)
     setprop("controls/armament/missile/cruise_alt", cruisealt);
     setprop("controls/armament/missile/type-id", typeid);
     setprop("controls/armament/missile/flareres", flareres);
+    setprop("controls/armament/missile/isbomb", isbomb);
     return 1;
 }
