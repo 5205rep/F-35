@@ -13,6 +13,39 @@
 	</model>	
 
 
+	<animation>
+		<type>select</type>
+		<object-name>JDAMR</object-name>      
+		<condition>
+<and>
+				<equals>
+					<property>sim/weight[8]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[8]/release</property>
+					<value>false</value>
+				</equals>
+</and>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>JDAML</object-name>      
+		<condition>
+<and>
+				<equals>
+					<property>sim/weight[3]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[3]/release</property>
+					<value>false</value>
+				</equals>
+</and>
+		</condition>
+	</animation>
 <!--pylons-->
 
 
