@@ -95,6 +95,28 @@ setprop("/ai/submodels/submodel/flare-release",0);
 }
 
 
+var damagedetect = func{
+
+var a = getprop("/sim/failure-manager/controls/flight/aileron/serviceable");
+var b = getprop("/sim/failure-manager/controls/flight/elevator/serviceable");
+var c = getprop("/sim/failure-manager/controls/flight/rudder/serviceable");
+	if ( a == 0 ) {
+            setprop("sim/multiplay/generic/bool[1]",1);
+		if ( b == 0 ) {
+              setprop("sim/multiplay/generic/bool[1]",1);
+			if ( c == 0 ) {
+        setprop("sim/multiplay/generic/bool[1]",1);
+        }
+    }
+  }else{
+            setprop("sim/multiplay/generic/bool[1]",0);
+  }
+
+}
+
+
+
+
 # Phoenix's Lock helper for radar2
 
 var tgtlock = func{
@@ -238,3 +260,6 @@ timer_baydoorsclose = maketimer(1, closebays);
 		timer_extpylons2 = maketimer(0.25, checkforext2);
     timer_extpylons.start();
     timer_extpylons2.start();
+
+	timer_damage = maketimer(0.5, damagedetect);
+	        timer_damage.start();

@@ -1756,7 +1756,42 @@ if(navStillOn) {
 			<z2-m> 0.073</z2-m>
 		</axis>
 	</animation>
-	
+
+	<!--damage smoke-->
+	  <!-- Impact fire -->
+  <model>
+  <path>Aircraft/F-35/Models/Effects/DamageSmoke/explosion.xml</path>
+  <condition>
+    <equals>
+      <property>sim/multiplay/generic/bool[1]</property>
+      <value>1</value>
+    </equals>
+  </condition>
+  <offsets>
+    <x-m>12</x-m>
+    <y-m>0</y-m>
+    <z-m>0</z-m>
+    <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+  
+  <!-- Impact fire smoke -->
+  <model>
+  <path>Aircraft/F-35/Models/Effects/Explosion/ImpactFireSmoke.xml</path>
+  <condition>
+    <equals>
+      <property>sim/multiplay/generic/bool[1]</property>
+      <value>1</value>
+    </equals>
+  </condition>
+  <offsets>
+    <x-m>12</x-m>
+    <y-m>0</y-m>
+    <z-m>0</z-m>
+    <heading-deg>0</heading-deg>
+    </offsets>
+  </model>
+
 <!-- Tire Smoke -->
  
  <!--  Nose Wheel -->

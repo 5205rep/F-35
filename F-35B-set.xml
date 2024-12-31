@@ -27,6 +27,12 @@ Lockheed Martin F-35A Lightning II
 <rendering>
  <refl_correction type="string">-0.51</refl_correction>
  <frensel-factor type="string">0.5</frensel-factor>
+ 			<redout>
+				<parameters>
+					<blackout-complete-g>15</blackout-complete-g>
+					<blackout-onset-g>15</blackout-onset-g>
+				</parameters>
+			</redout>
 </rendering>
 
    <previews>
@@ -109,7 +115,7 @@ Lockheed Martin F-35A Lightning II
       <chat_display>1</chat_display>
       <generic> 
         <bool n="0" type="bool" alias="damage/sounds/explode-on"/>
-        <bool n="1" type="bool" alias="damage/fire/serviceable"/>
+        <bool n="1" type="bool"/>
         <bool n="2" type="bool">true</bool><!-- this must stay true to prevent bug in MP protocol for bools -->
         <bool n="40" type="bool">true</bool>
         <bool n="41" type="bool">true</bool>
