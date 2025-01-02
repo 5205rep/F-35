@@ -245,7 +245,11 @@ var cockpit_state = func {
 	}
 }
 
-
+var radarhmc = func {
+	var hdg = getprop("sim/current-view/heading-offset-deg");
+	var hdg2 = hdg * -1;
+setprop("instrumentation/radar/az-fieldCenter", hdg2);
+}
 
 
 # Loops!
@@ -263,3 +267,8 @@ timer_baydoorsclose = maketimer(1, closebays);
 
 	timer_damage = maketimer(0.5, damagedetect);
 	        timer_damage.start();
+
+
+			
+	timer_radarhmc = maketimer(0.1, radarhmc);
+	        timer_radarhmc.start();

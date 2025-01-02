@@ -1389,7 +1389,15 @@ Lockheed Martin F-35A Lightning II
            <guns>
       <file>Aircraft/F-35/Nasal2/weapons.nas</file>
     </guns>
-
+  <canvas_HUD>
+            <file>Aircraft/F-35/Nasal/hud.nas</file>
+    </canvas_HUD>  
+  <canvas_HUD1>
+            <file>Aircraft/F-35/Nasal/hud2.nas</file>
+    </canvas_HUD1>  
+      <canvas_HUD2>
+            <file>Aircraft/F-35/Nasal/hud3.nas</file>
+    </canvas_HUD2>  
 
       <dialogs>
             <file>Aircraft/F-35/Nasal2/dialogs.nas</file>
