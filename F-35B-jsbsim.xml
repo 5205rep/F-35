@@ -291,6 +291,31 @@
     <flight_control name="F-35B">
 
 
+<function name="fcs/elevator-pos-norm-limit">  
+
+    <product>
+
+      <property>fcs/pitch-trim-sum</property> <!--if its Zero. Itll Cancel out the glimit, Making this function output 0-->
+
+    <table>
+            <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+            <independentVar lookup="column">/controls/engines/engine/throttle</independentVar>
+            <tableData>
+                     0    0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1
+              380    3    3    3    3    3    3    3    3    3    3    3  
+<!--6.2-->    400    3    3    3    3    3    3    3    3    3    3    3  
+<!--8.6-->    450    0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7      
+<!--6.2-->    500    0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7  0.7      
+<!--6.2-->    550    0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58  
+<!--6.2-->    600    0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58   
+<!--6.2-->    700    0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58 0.58  
+<!--6.2-->    800    0.47 0.47 0.47 0.47 0.47 0.47 0.47 0.47 0.47 0.47 0.47    
+            </tableData>
+          </table>
+</product>
+   </function>
+
+
 
 
 
@@ -535,8 +560,8 @@
  <input>fcs/pitch-trim-cmd-norm</input>
 
  <clipto>
- <min>-0.8</min>
- <max>0.5</max>
+ <min>-1.0</min>
+ <max>1.0</max>
  </clipto>
  </summer>
 <!--
@@ -619,8 +644,16 @@
  </clipto>
  </summer>
  -->
+    <aerosurface_scale name="Elevator Control">
+      <input>fcs/elevator-pos-norm-limit</input>
+      <range>
+        <min> -0.35 </min>
+        <max>  0.35 </max>
+      </range>
+      <output>fcs/elevator-pos-limited-main</output>
+   </aerosurface_scale>
             <kinematic name="elevator position">
-                <input>fcs/pitch-trim-sum</input>
+                <input>fcs/elevator-pos-limited-main</input>
                 <traverse>
                     <setting>
                         <position>-1</position>
@@ -1176,18 +1209,18 @@
          </product>
     </function>
 
-    <function name="aero/coefficient/CDmach">
-       <description>Drag_due_to_mach</description>
+    <function name="aero/force/Drag_mach">
+       <description>Drag due to mach</description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <table>
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
-                0.00      0.000
-                0.81      0.000
-                1.10      0.023
-                1.80      0.015
+                0.00      0.005
+                0.81      0.060       <!--Tuned for realism-->
+                1.10      0.065
+                1.80      0.018
             </tableData>
           </table>
         </product>
@@ -1410,7 +1443,7 @@
            <property>metrics/cbarw-ft</property>
            <property>aero/ci2vel</property>
            <property>velocities/q-aero-rad_sec</property>
-           <value>-18</value>
+           <value>-28</value>
        </product>
     </function>
 
@@ -1422,7 +1455,7 @@
            <property>metrics/cbarw-ft</property>
            <property>aero/ci2vel</property>
            <property>aero/alphadot-rad_sec</property>
-           <value>-9</value>
+           <value>-10</value>
        </product>
     </function>
      <function name="aero/moment/Pitch_VTOL">

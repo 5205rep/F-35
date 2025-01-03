@@ -381,7 +381,7 @@ if(navStillOn) {
   <object-name>PortSlat</object-name>
   <object-name>LadderAccessDoor</object-name>
   <property-base>sim/model/livery</property-base>
-  <texture-prop>F35B</texture-prop>
+  <texture-prop>F35A</texture-prop>
   <texture>F35B1_T.png</texture>
  </animation>
 

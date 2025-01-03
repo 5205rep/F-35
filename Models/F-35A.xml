@@ -297,11 +297,16 @@ if(navStillOn) {
 		<condition>
 			<property>sim/rendering/rembrandt/enabled</property>
 		</condition>
+
+				<object-name>CanopyGlass</object-name>
 		<object-name>canopy</object-name>
 		<object-name>eots</object-name>
 		<object-name>lights</object-name>
 	</effect>
-	
+		<effect>
+		<inherits-from>Effects/model-transparent</inherits-from>
+				<object-name>CanopyGlass</object-name>
+	</effect>
     <!-- Parts invisible from internally -->
     
     <animation>
@@ -376,7 +381,7 @@ if(navStillOn) {
    <path>Aircraft/F-35/Models/Effects/Afterburner/afterburnerA.xml</path>
     <condition>
 	<greater-than>
-	  <property>sim/multiplay/generic/float[28]</property>
+	  <property>sim/multiplay/generic/bool[28]</property>
 	  <value>0.01</value>
 	  </greater-than>
 
@@ -599,6 +604,9 @@ if(navStillOn) {
     <type>select</type>
   <object-name>PilotHead</object-name>
   <object-name>Visor</object-name>
+    <object-name>pilotmain</object-name>
+	    <object-name>SeatandStraps</object-name>
+
     <condition>
       <equals>
         <property>sim/current-view/internal</property>

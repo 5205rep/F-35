@@ -16,7 +16,7 @@
   <maxthrust> 59000.0 </maxthrust> <!--its too slow for its weight-->
   <bypassratio>     1.0 </bypassratio>
   <tsfc>            0.886 </tsfc>
-  <atsfc>           1.7 </atsfc>
+  <atsfc>           1.6 </atsfc>
   <bleed>           0.03</bleed>
   <idlen1>         30.0 </idlen1>
   <idlen2>         60.0 </idlen2>

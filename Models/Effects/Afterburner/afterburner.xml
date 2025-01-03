@@ -34,7 +34,7 @@
       <condition>
 	<equals>
 	  <property>sim/multiplay/generic/bool[28]</property>
-	  <value>true</value>
+	  <value>1</value>
 	  </equals>
 
     </condition>

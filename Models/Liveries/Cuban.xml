@@ -6,7 +6,7 @@
     <model>
       <livery>
         <name type="string">Cuban</name>
-        <F35A>Liveries/Cuban/35A-1.png</F35A>
+        <F35A>Liveries/phsp/35A-1.png</F35A>
       </livery>
      </model>
   </sim>

@@ -8,8 +8,8 @@
   <type>rotate</type>
   <object-name>us1</object-name>
   <property>sim/multiplay/generic/float[11]</property>
-  <offset-deg>-8</offset-deg>
-  <factor>2.55</factor>
+  <offset-deg>-10.1</offset-deg>
+  <factor>2.95</factor>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -26,8 +26,8 @@
   <type>rotate</type>
   <object-name>ls1</object-name>
   <property>sim/multiplay/generic/float[11]</property>
-  <offset-deg>-8</offset-deg>
-  <factor>2.55</factor>
+  <offset-deg>-10</offset-deg>
+  <factor>2.95</factor>
   <center>
    <x-m>0.0</x-m>
    <y-m>0.0</y-m>
@@ -44,8 +44,8 @@
   <type>rotate</type>
   <object-name>ls2</object-name>
   <property>sim/multiplay/generic/float[11]</property>
-  <offset-deg>-8</offset-deg>
-  <factor>2.55</factor>
+  <offset-deg>-10</offset-deg>
+  <factor>2.95</factor>
   <center>
    <x-m>0.0</x-m>
    <y-m>-0.115</y-m>
