@@ -1,6 +1,4 @@
 #
-# Update: fixed Delock when no threats are detected and where locked on
-#
 # Radar Lock identifier
 #
 # Created by Phoenix
@@ -20,10 +18,12 @@ var clearSingleLock = func () {
 	thread.lock(mutexLock);
 	if (getprop("instrumentation/radar/lock2") == 0) {
 		setprop("sim/multiplay/generic/string[6]", "");
-	#	datalink.clear_data();
+		datalink.clear_data();
+      print("cleared");
 	} else {
 		setprop("sim/multiplay/generic/string[6]", left(md5(radar.tgts_list[radar.Target_Index].Callsign.getValue()), 4));
-	#	datalink.send_data({"contacts":[{"callsign":radar.tgts_list[radar.Target_Index].Callsign.getValue(),"iff":0}]});
+		datalink.send_data({"contacts":[{"callsign":radar.tgts_list[radar.Target_Index].Callsign.getValue(),"iff":0}]});
+      print("locked");
 	}
 	thread.unlock(mutexLock);
 }
@@ -192,7 +192,7 @@ else {
 
 		thread.lock(mutexLock);
         		setprop("sim/multiplay/generic/string[6]", "");
-	#  datalink.clear_data();
+		datalink.clear_data();
 		#semi_active_track = nil;
 		thread.unlock(mutexLock);
    }

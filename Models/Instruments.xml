@@ -4,13 +4,328 @@
 
 	<!-- Instruments -->
 	
+    <path>Aircraft/F-35/Models/cockpitscreen.ac</path>
+
+
+<!--
    <model>
-    <path>Aircraft/F-35/Models/Panel/panel.xml</path>
+
     <offsets>
       <x-m> 0.030 </x-m>
       <y-m>0</y-m>
       <z-m>-0.300</z-m>
     </offsets>
+  </model>-->
+
+
+<!--radar-->
+
+<!--Y is Left to right
+X is In and Out 
+Z is Up and down-->
+
+   <model>
+<name>radarscreen</name>
+    <path>Aircraft/F-35/Models/Instruments/radar/radar-screen.xml</path>
+    <offsets>
+      <x-m> 0.001 </x-m>
+      <y-m>0.03</y-m>
+      <z-m>-0.13</z-m>
+    </offsets>
   </model>
-	
+
+<animation>
+
+  <object-name>blackout</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>sim/failure-manager/systems/electrical/serviceable</property>
+				<value>0</value>
+			</equals>
+  </condition>
+ </animation>
+
+
+
+
+  <animation>
+  <object-name>radarscreen</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>sim/failure-manager/systems/electrical/serviceable</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+<!--Fuel-->
+
+<!--Full mid half low-->
+
+ <animation>
+  <object-name>full</object-name>
+  <type>select</type>
+  <condition>
+
+<greater-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.75</value>
+			</greater-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>mid</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<less-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.75</value>
+			</less-than>
+<greater-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.5</value>
+			</greater-than>
+</and>
+  </condition>
+ </animation>
+
+ <animation>
+  <object-name>half</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<less-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.5</value>
+			</less-than>
+<greater-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.2</value>
+			</greater-than>
+</and>
+  </condition>
+ </animation>
+ <animation>
+  <object-name>low</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<less-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.2</value>
+			</less-than>
+<greater-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0</value>
+			</greater-than>
+</and>
+  </condition>
+ </animation>
+
+
+<animation>
+  <object-name>LOWFUEL</object-name>
+  <type>select</type>
+  <condition>
+
+
+<greater-than>
+				<property>consumables/fuel/total-fuel-norm</property>
+				<value>0.2</value>
+			</greater-than>
+
+  </condition>
+ </animation>
+
+
+<!--Modes RWR and RADAR-->
+
+<!--RWR-->
+
+
+<animation>
+  <object-name>bkg</object-name>
+  <type>select</type>
+  <condition>
+<equals>
+				<property>controls/screen/RWR</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+
+
+
+
+<animation>
+  <object-name>RWS</object-name>
+  <type>select</type>
+  <condition>
+<equals>
+				<property>instrumentation/radar/mode/main</property>
+				<value>0</value>
+			</equals>
+  </condition>
+ </animation>
+
+<animation>
+  <object-name>TWS</object-name>
+  <type>select</type>
+  <condition>
+<equals>
+				<property>instrumentation/radar/mode/main</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+
+
+
+<!--Touch screen buttons-->
+
+<animation>
+  <type>pick</type>
+   <object-name>TRIMRESET</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>setprop("/controls/flight/elevator-trim", 0);setprop("/controls/flight/aileron-trim", 0);setprop("/controls/flight/rudder-trim", 0);</script>
+</binding>
+       </action>
+ </animation>
+<animation>
+  <type>pick</type>
+   <object-name>RWRTOGGLE</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/screen/RWR</property>
+      </binding>
+       </action>
+ </animation>
+
+
+
+ <animation>
+  <type>pick</type>
+   <object-name>lock</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>radar.next_Target_Index();</script>
+</binding>
+       </action>
+ </animation>
+
+
+<animation>
+  <type>pick</type>
+   <object-name>rdrmode</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>instrumentation/radar/mode/main</property>
+      </binding>
+       </action>
+ </animation>
+
+
+
+
+ <animation>
+  <type>pick</type>
+   <object-name>grid</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>setprop("/instrumentation/radar/grid", 1);</script>
+</binding>
+       </action>
+ </animation>
+
+ <animation>
+  <type>pick</type>
+   <object-name>plane</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>setprop("/instrumentation/radar/grid", 0);</script>
+</binding>
+       </action>
+ </animation>
+  <!--instrument animations-->
+ <animation>
+  <type>rotate</type>
+  <object-name>nozzle</object-name>
+  <property>/engines/engine[0]/nozzle-pos-norm</property>
+  <factor>200</factor> <!-- The rotation in degrees... kinda -->
+
+  <axis>
+  <object-name>nozzle-axis</object-name>
+  </axis>
+ </animation>
+
+	 <animation>
+  <type>rotate</type>
+  <object-name>n1</object-name>
+  <property>/engines/engine[0]/n1</property>
+  <factor>2.4</factor> <!-- The rotation in degrees... kinda -->
+  <axis>
+  <object-name>n1-axis</object-name>
+  </axis>
+ </animation>
+
+	 <animation>
+  <type>rotate</type>
+  <object-name>n2</object-name>
+  <property>/engines/engine[0]/n2</property>
+  <factor>2.4</factor> <!-- The rotation in degrees... kinda -->
+  <axis>
+  <object-name>n2-axis</object-name>
+  </axis>
+ </animation>
+
+ 	 <animation>
+  <type>rotate</type>
+  <object-name>EGT</object-name>
+  <property>/engines/engine[0]/egt-degf</property>
+  <factor>0.14</factor> <!-- The rotation in degrees... kinda -->
+  <axis>
+  <object-name>EGT-axis</object-name>
+  </axis>
+ </animation>
+
+ 	 <animation>
+  <type>rotate</type>
+  <object-name>OIL</object-name>
+  <property>/engines/engine[0]/oil-pressure-psi</property>
+  <factor>3.4</factor> <!-- The rotation in degrees... kinda -->
+  <axis>
+  <object-name>OIL-axis</object-name>
+  </axis>
+ </animation>
+
 </PropertyList>

@@ -865,6 +865,18 @@ Lockheed Martin F-35A Lightning II
 
   <smoke alias="/sim/multiplay/generic/int[4]"/>
 
+
+<!--Screen-->
+
+<screen>
+<const1 type="int">1</const1>
+<serviceable type="int">0</serviceable>
+<RDR type="int">0</RDR>
+<RWR type="int">0</RWR>
+<caution type="int">0</caution>
+<warning type="int">0</warning> 
+</screen>
+
 		
 </controls>
 
@@ -987,6 +999,17 @@ Lockheed Martin F-35A Lightning II
     </aircraft>
    </targets>
   </radar2>
+
+<!--Datalink-->
+        <datalink>
+            <data type="int">0</data>
+            <power type="bool">true</power>
+            <channel type="int">9090</channel>
+            <power_prop type="string">/instrumentation/datalink/power</power_prop>
+            <channel_prop type="string">instrumentation/datalink/channel</channel_prop>
+            <receive_period type="double">1</receive_period>
+        </datalink>
+
 </instrumentation>
 
 	<!-- Map Keys -->
@@ -1264,6 +1287,10 @@ Lockheed Martin F-35A Lightning II
             <file>Aircraft/F-35/Nasal2/ArmamentNotification.nas</file>
             <file>Aircraft/F-35/Nasal2/GeoBridgedTransmitter.nas</file>
         </notifications>
+
+         <vector>
+            <file>Aircraft/F-35/Nasal2/vector.nas</file> <!--math stuff-->
+        </vector>
         <damage>
             <file>Aircraft/F-35/Nasal2/damage.nas</file>
         </damage>
@@ -1298,16 +1325,28 @@ Lockheed Martin F-35A Lightning II
 			<file>Aircraft/F-35/Nasal/aar.nas</file>
 		</aar>
 		
-		<rwr>
-			<file>Aircraft/F-35/Models/Instruments/bigscreen/radar/rwr.nas</file>
-		</rwr>
-		
+
 
             <rcs>
             <!-- must be before radar -->
             <file>Aircraft/F-35/Nasal/rcs_mand.nas</file>
             <file>Aircraft/F-35/Nasal/rcs.nas</file>
         </rcs>
+
+
+
+<datalink>
+<file>Aircraft/F-35/Nasal/datalink.nas</file>
+</datalink>
+        <radar_system>
+        	<file>Aircraft/F-35/Nasal/radar-system-database.nas</file>
+            <file>Aircraft/F-35/Nasal/radar-system.nas</file>
+            <file>Aircraft/F-35/Nasal/rwr-only.nas</file>
+        </radar_system>
+
+
+
+
 		<radardist>
 			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
 		</radardist>
@@ -1380,6 +1419,16 @@ Lockheed Martin F-35A Lightning II
       <file>Aircraft/F-35/Nasal/weapons/missile_GroundTargeting.nas</file>
     </missile>
 
+<armament>
+      <file>Aircraft/F-35/Nasal2/missile-code.nas</file>
+</armament>  <!--Only for RWR-->
+
+		        <rwrs>
+            <file>Aircraft/F-35/Nasal/rwr.nas</file>
+        </rwrs>
+
+
+
     <m2000_load>
       <file>Aircraft/F-35/Nasal/weapons/ext_stores.nas</file>
     </m2000_load>
@@ -1389,6 +1438,12 @@ Lockheed Martin F-35A Lightning II
            <guns>
       <file>Aircraft/F-35/Nasal2/weapons.nas</file>
     </guns>
+
+
+    
+ <tacview>
+            <file>Aircraft/F-35/Nasal/tacview.nas</file>
+        </tacview>
   <canvas_HUD>
             <file>Aircraft/F-35/Nasal/hud.nas</file>
     </canvas_HUD>  

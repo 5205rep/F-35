@@ -326,17 +326,69 @@ if(navStillOn) {
 	</model>
 
 
+	  <animation>
+    <type>translate</type>
+    <object-name>FuelHousingandInternalOrdinance</object-name>
+    <object-name>CanopyFrameWire</object-name>
+    <object-name>CanopyFrame2</object-name>
+<object-name>CanopyGlass</object-name>
+<object-name>screen</object-name>
+<object-name>CockpitControls1_1</object-name>
+<object-name>RightSideConsole_1</object-name>
+<object-name>LeftSideConsole_1</object-name>
+    <property>controls/cabin/shaking</property>
+    <axis>
+      <x1-m>  0.0 </x1-m>
+      <y1-m>  0.0 </y1-m>
+      <z1-m>  0.0 </z1-m>
+      <x2-m>  0.5 </x2-m>
+      <y2-m> -0.6 </y2-m>
+      <z2-m>  0.9 </z2-m>
+    </axis>
+  </animation>
+
+  	  <animation>
+    <type>translate</type>
+    <object-name>FuelHousingandInternalOrdinance</object-name>
+    <object-name>CanopyFrameWire</object-name>
+    <object-name>CanopyFrame2</object-name>
+<object-name>CanopyGlass</object-name>
+<object-name>screen</object-name>
+<object-name>CockpitControls1_1</object-name>
+<object-name>RightSideConsole_1</object-name>
+<object-name>LeftSideConsole_1</object-name>
+    <property>controls/cabin/shaking2</property>
+    <axis>
+      <x1-m>  0</x1-m>
+      <y1-m>  0 </y1-m>
+      <z1-m>  0</z1-m>
+      <x2-m>  0.1 </x2-m>
+      <y2-m> -0.1 </y2-m>
+      <z2-m>  0.1 </z2-m>
+    </axis>
+  </animation>
+
+
+
+
+
+<!--Y is Left to right
+X is In and Out 
+Z is Up and down-->
     <!-- Instruments -->
 	
    <model>
+   <name>screen</name>
     <path>Aircraft/F-35/Models/Instruments.xml</path>
     <offsets>
       <x-m>-5.095</x-m>
       <y-m>0.030</y-m>
       <z-m>0.925</z-m>
-      <pitch-deg>-15</pitch-deg>
+      <pitch-deg>-14</pitch-deg>
       </offsets>
    </model> 
+
+
 
 
 <!--Missiles-->
