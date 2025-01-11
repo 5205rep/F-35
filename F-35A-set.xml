@@ -86,10 +86,7 @@ Lockheed Martin F-35A Lightning II
 			<autopilot>
 				<path>Aircraft/F-35/Systems/VooDooAP1.xml</path>
 			</autopilot>
-			<refuel>
-				<type>boom</type>
-				<serviceable type="bool">true</serviceable>
-			</refuel>
+
                 <instrumentation>
                    <path>Systems/instrumentation.xml</path>
                </instrumentation>
@@ -318,7 +315,7 @@ Lockheed Martin F-35A Lightning II
 		</view>
 
 <help>
-			<title> F-35 </title>
+			<title> F-35A </title>
 			
 			<key>
 				<name>c</name>
@@ -327,7 +324,7 @@ Lockheed Martin F-35A Lightning II
 
                          <key>
 				<name>f</name>
-				<desc>Toggle Fuel Doors and Red VooDoo Smoke!</desc>
+				<desc>Toggle Fuel Doors</desc>
 			</key>
 			
 			<key>
@@ -664,9 +661,12 @@ Lockheed Martin F-35A Lightning II
             <models type="string">Aircraft/F-35/Models/emesary/</models>
         </armament>
     </payload>
-
-
-    
+	<systems>
+			<refuel>
+				<type>boom</type>
+				<serviceable type="bool">true</serviceable>
+			</refuel>
+    	</systems>
 	<environment>
 		<turbulence>
 			<use-cloud-turbulence>true</use-cloud-turbulence>

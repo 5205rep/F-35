@@ -2104,7 +2104,7 @@ if(navStillOn) {
 <animation>
     <type>rotate</type>
     <object-name>ForwardFuelDoor</object-name>
-    <property>gear/tailhook/position-norm</property>
+    <property>sim/multiplay/generic/float[21]</property>
     <interpolation>
                           <entry>
 				<ind>0.006</ind>
@@ -2135,7 +2135,7 @@ if(navStillOn) {
     <object-name>RearFuelDoor</object-name>
     <object-name>FuelHoseCover1</object-name>
    <object-name>FuelProbe</object-name>
-   <property>gear/tailhook/position-norm</property>
+   <property>sim/multiplay/generic/float[21]</property>
     <interpolation>
       <entry><ind> 0 </ind><dep>  0 </dep></entry>
       <entry><ind> 1 </ind><dep> -31</dep></entry>
@@ -2155,7 +2155,7 @@ if(navStillOn) {
    <animation>
     <type>rotate</type>
     <object-name>FuelProbeActuator</object-name>
-   <property>gear/tailhook/position-norm</property>
+   <property>sim/multiplay/generic/float[21]</property>
     <interpolation>
       <entry><ind> 0 </ind><dep>  0 </dep></entry>
       <entry><ind> 1 </ind><dep> -45 </dep></entry>

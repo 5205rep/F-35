@@ -664,7 +664,12 @@ Lockheed Martin F-35A Lightning II
         </armament>
     </payload>
 
-
+	<systems>
+			<refuel>
+				<type>probe</type>
+				<serviceable type="bool">true</serviceable>
+			</refuel>
+    	</systems>
     
 	<environment>
 		<turbulence>

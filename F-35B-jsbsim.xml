@@ -249,42 +249,26 @@
         </engine>
 
 	
-        <tank type="FUEL">    <!-- Tank number 0 -->
-            <location unit="IN">
-     <x> 268.52 </x>
-     <y>  40.00 </y>
-     <z> -15.36 </z>
-            </location>
-            <capacity unit="LBS"> 6650 </capacity>
-            <contents unit="LBS"> 6650 </contents>
-        </tank>
-        <tank type="FUEL">    <!-- Tank number 1 -->
-            <location unit="IN">
-     <x> 268.52 </x>
-     <y> -40.00 </y>
-     <z> -15.36 </z>
-            </location>
-            <capacity unit="LBS"> 6650 </capacity>
-            <contents unit="LBS"> 6650 </contents>
-        </tank>
-        <tank type="FUEL">    <!-- External Tank number 0  (station 4) -->
-            <location unit="IN">
-     <x> 268.52 </x>
-     <y>  80.00 </y>
-     <z> -15.36 </z>
-            </location>
-            <capacity unit="LBS"> 2991 </capacity>
-            <contents unit="LBS"> 0 </contents>
-        </tank>
-        <tank type="FUEL">    <!-- External Tank number 1 (station 6) -->
-            <location unit="IN">
-     <x> 268.52 </x>
-     <y> -80.00 </y>
-     <z> -15.36 </z>
-            </location>
-            <capacity unit="LBS"> 2991 </capacity>
-            <contents unit="LBS"> 0 </contents>
-        </tank>
+  <tank type="FUEL" number="0">
+     <location unit="IN">
+       <x> 268.52 </x>
+       <y>   0.00 </y>
+       <z> -15.36 </z>
+     </location>
+     <capacity unit="LBS"> 5678.59 </capacity>
+     <contents unit="LBS"> 5678.29 </contents>
+  </tank>
+
+  <tank type="FUEL" number="1">
+     <location unit="IN">
+       <x> 268.52 </x>
+       <y>   0.00 </y>
+       <z> -15.36 </z>
+     </location>
+     <capacity unit="LBS"> 5678.59 </capacity>
+     <contents unit="LBS"> 5678.29 </contents>
+  </tank>
+
     </propulsion>
 
 
@@ -1469,7 +1453,7 @@
 
 
           <sin>
-           <property>fcs/elevator-pos-norm</property>
+           <property>fcs/pitch-trim-sum</property>
 
           </sin>
           <value>-1.8</value>

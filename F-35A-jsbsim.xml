@@ -176,6 +176,8 @@
     </orient>
     <feed>0</feed>
     <feed>1</feed>
+    <feed>2</feed>
+    <feed>3</feed>
     <thruster file="direct">
      <location unit="IN">
        <x> 552.00 </x>
@@ -189,7 +191,6 @@
      </orient>
     </thruster>
   </engine>
-
   <tank type="FUEL" number="0">
      <location unit="IN">
        <x> 367.20 </x>
@@ -210,6 +211,28 @@
      <contents unit="LBS"> 5678.29 </contents>
   </tank>
 
+  <tank type="FUEL" number="3">
+     <location unit="IN">
+       <x> 367.20 </x>
+       <y>   0.00 </y>
+       <z> -15.30 </z>
+     </location>
+     <capacity unit="LBS"> 3678.59 </capacity>
+     <contents unit="LBS"> 3678.29 </contents>
+  </tank>
+
+  <tank type="FUEL" number="4">
+     <location unit="IN">
+       <x> 367.20 </x>
+       <y>   0.00 </y>
+       <z> -15.30 </z>
+     </location>
+     <capacity unit="LBS"> 3678.59 </capacity>
+     <contents unit="LBS"> 3678.29 </contents>
+  </tank>
+
+
+ 
  </propulsion>
 
  <flight_control name="FCS: F-35">
