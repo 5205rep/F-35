@@ -145,8 +145,6 @@
     </orient>
     <feed>0</feed>
     <feed>1</feed>
-    <feed>2</feed>
-    <feed>3</feed>
     <thruster file="direct">
      <location unit="IN">
        <x> 354.20 </x>
@@ -174,8 +172,6 @@
     </orient>
     <feed>0</feed>
     <feed>1</feed>
-    <feed>2</feed>
-    <feed>3</feed>
     <thruster file="direct">
      <location unit="IN">
        <x> 64.20 </x>
@@ -203,8 +199,7 @@
     </orient>
     <feed>0</feed>
     <feed>1</feed>
-    <feed>2</feed>
-    <feed>3</feed>
+
     <thruster file="direct">
      <location unit="IN">
        <x> 368.52 </x>
@@ -232,8 +227,7 @@
     </orient>
     <feed>0</feed>
     <feed>1</feed>
-    <feed>2</feed>
-    <feed>3</feed>
+
     <thruster file="direct">
      <location unit="IN">
        <x> 368.52 </x>
@@ -1453,7 +1447,7 @@
 
 
           <sin>
-           <property>fcs/pitch-trim-sum</property>
+           <property>fcs/elevator-cmd-norm</property>
 
           </sin>
           <value>-1.8</value>
