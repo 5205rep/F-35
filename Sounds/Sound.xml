@@ -236,7 +236,7 @@
    </volume>
   <pitch>
                 <property>engines/engine[0]/n1</property>
-                <offset>0.86349949816</offset>
+                <offset>0.06349949816</offset>
                 <factor>0.00455001673</factor>
             </pitch>
   </engine>
