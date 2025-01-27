@@ -325,7 +325,7 @@ if(navStillOn) {
 		<path>Aircraft/F-35/Models/Effects.xml</path>
 	</model>
 
-
+<!--
 	  <animation>
     <type>translate</type>
     <object-name>FuelHousingandInternalOrdinance</object-name>
@@ -345,7 +345,7 @@ if(navStillOn) {
       <y2-m> -0.6 </y2-m>
       <z2-m>  0.9 </z2-m>
     </axis>
-  </animation>
+  </animation>-->
 
   	  <animation>
     <type>translate</type>

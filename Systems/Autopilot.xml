@@ -2,10 +2,7 @@
  
 
 
-<!--
-Mainly used for VTOLing stability
-The Wing level and pitch hold with the trims seems to work nicely
--->
+
 
 <PropertyList>
 
@@ -67,9 +64,9 @@ The Wing level and pitch hold with the trims seems to work nicely
   <output>
    <property>/autopilot/internal/target-pitch-deg</property>
   </output>
-  <gain>2.0</gain>
-  <u_min>-90.0</u_min>
-  <u_max>90.0</u_max>
+  <gain>1.0</gain>
+  <u_min>-70.0</u_min>
+  <u_max>70.0</u_max>
  </filter>
  
  <pid-controller>
@@ -93,7 +90,7 @@ The Wing level and pitch hold with the trims seems to work nicely
    <property>/autopilot/internal/target-pitch-deg</property>
   </output>
    <config>
-     <Kp>0.75</Kp>        <!-- proportional gain -0.01 -->
+     <Kp>0.075</Kp>        <!-- proportional gain -0.01 -->
     <beta>1.0</beta>       <!-- input value weighing factor -->
     <alpha>0.5</alpha>     <!-- low pass filter weighing factor -->
     <gamma>0.0</gamma>     <!-- input value weighing factor for -->
@@ -126,7 +123,7 @@ The Wing level and pitch hold with the trims seems to work nicely
    <property>/autopilot/internal/target-pitch-deg</property>
   </output>
    <config>
-     <Kp>0.75</Kp>        <!-- proportional gain -0.01 -->
+     <Kp>0.075</Kp>        <!-- proportional gain -0.01 -->
     <beta>1.0</beta>       <!-- input value weighing factor -->
     <alpha>0.5</alpha>     <!-- low pass filter weighing factor -->
     <gamma>0.0</gamma>     <!-- input value weighing factor for -->
@@ -220,18 +217,18 @@ The Wing level and pitch hold with the trims seems to work nicely
    <value>0</value>
   </reference>
     <output>
-	<property>/controls/flight/aileron-trim</property>
+	<property>/controls/flight/aileron</property>
 	</output>
     <config>
-      <Kp>0.75</Kp>        <!-- proportional gain -->
+      <Kp>0.0025</Kp>        <!-- proportional gain -->
       <beta>1.0</beta>     <!-- input value weighing factor -->
       <alpha>0.1</alpha>   <!-- low pass filter weighing factor -->
       <gamma>0.0</gamma>   <!-- input value weighing factor for -->
                            <!-- unfiltered derivative error -->
       <Ti>5.0</Ti>        <!-- integrator time -->
       <Td>0.00001</Td>     <!-- derivator time -->
-      <u_min>-1</u_min> <!-- minimum output clamp -->
-      <u_max>1</u_max>  <!-- maximum output clamp -->
+      <u_min>-0.35</u_min> <!-- minimum output clamp -->
+      <u_max>0.35</u_max>  <!-- maximum output clamp -->
     </config>
   </pid-controller>
   
@@ -253,7 +250,7 @@ The Wing level and pitch hold with the trims seems to work nicely
    <property>/autopilot/internal/target-pitch-deg</property>
   </reference>
   <output>
-   <property>/controls/flight/elevator-trim</property>
+   <property>/controls/flight/elevator</property>
   </output>
   <config>
    <Kp>-0.05</Kp>      
@@ -263,7 +260,7 @@ The Wing level and pitch hold with the trims seems to work nicely
    <Ti>20.0</Ti>       <!-- integrator time  10.0 -->
    <Td>0.00001</Td>    <!-- derivator time -->
    <u_min>-0.35</u_min> <!-- minimum output clamp -->
-   <u_max>.35</u_max>
+   <u_max>0.35</u_max>
   </config>
  </pid-controller>
  
@@ -283,7 +280,7 @@ The Wing level and pitch hold with the trims seems to work nicely
       <scale>0.01667</scale>
     </reference>
     <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
       <Kp>-0.0025</Kp>      <!-- proportional gain -->
@@ -380,7 +377,7 @@ The Wing level and pitch hold with the trims seems to work nicely
       <prop>/autopilot/settings/target-pitch-deg</prop>
     </reference>
     <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
       <Kp>-0.05</Kp>      <!-- proportional gain -->
@@ -438,7 +435,7 @@ The Wing level and pitch hold with the trims seems to work nicely
       <prop>/autopilot/internal/target-climb-rate-fps</prop>
     </reference>
     <output>
-      <prop>/controls/flight/elevator-trim</prop>
+      <prop>/controls/flight/elevator</prop>
     </output>
     <config>
 	    <Kp>-0.0025</Kp>      <!-- proportional gain -0.01 -->

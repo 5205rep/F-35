@@ -1003,6 +1003,15 @@ Lockheed Martin F-35A Lightning II
     </aircraft>
    </targets>
   </radar2>
+  <!--Datalink-->
+        <datalink>
+            <data type="int">0</data>
+            <power type="bool">true</power>
+            <channel type="int">9090</channel>
+            <power_prop type="string">/instrumentation/datalink/power</power_prop>
+            <channel_prop type="string">instrumentation/datalink/channel</channel_prop>
+            <receive_period type="double">1</receive_period>
+        </datalink>
 </instrumentation>
 			<rendering>
 			<redout>
@@ -1326,6 +1335,11 @@ Lockheed Martin F-35A Lightning II
             <file>Aircraft/F-35/Nasal/rcs_mand.nas</file>
             <file>Aircraft/F-35/Nasal/rcs.nas</file>
         </rcs>
+
+
+        <datalink>
+<file>Aircraft/F-35/Nasal/datalink.nas</file>
+</datalink>
 		<radardist>
 			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
 		</radardist>

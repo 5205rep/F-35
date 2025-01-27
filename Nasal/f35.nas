@@ -61,15 +61,13 @@ var rSpeed  = getprop("/velocities/airspeed-kt") or 0;
 	}
 	else {
 		setprop("controls/cabin/shaking", 0);
-print("no")
+#print("no")
 	}
 }# from m2005
 
 
 
 
-shake_timer = maketimer(0.0001, shake);
-shake_timer.start();
 
 
 
@@ -94,15 +92,17 @@ var rSpeed  = getprop("/velocities/airspeed-kt") or 0;
 	}
 	else {
 		setprop("controls/cabin/shaking2", 0);
-print("no")
+#print("no")
 	}
 }# from m2005
 
 
 
 
-shake_timer2 = maketimer(0.00001, shake2);
-shake_timer2.start();
+
+
+
+
 
 
 var closebays = func{
@@ -336,3 +336,14 @@ timer_baydoorsclose = maketimer(1, closebays);
 			
 	timer_radarhmc = maketimer(0.1, radarhmc);
 	        timer_radarhmc.start();
+
+
+			setlistener("sim/signals/fdm-initialized", func {
+  shake_timer = maketimer(0.0001, shake);
+shake_timer.start();
+shake_timer2 = maketimer(0.00001, shake2);
+shake_timer2.start();
+
+
+
+});
