@@ -24,6 +24,9 @@
 X is In and Out 
 Z is Up and down-->
 
+
+
+
    <model>
 <name>radarscreen</name>
     <path>Aircraft/F-35/Models/Instruments/radar/radar-screen.xml</path>
@@ -47,7 +50,204 @@ Z is Up and down-->
   </condition>
  </animation>
 
+<animation>
 
+  <object-name>menu2</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+
+<animation>
+
+  <object-name>ELVF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/controls/flight/aileron/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+
+<animation>
+
+  <object-name>AIF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/controls/flight/elevator/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+
+  <object-name>RUDF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/controls/flight/rudder/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+
+<animation>
+
+  <object-name>ENGF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/engines/engine/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+
+  <object-name>FSF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/engines/engine/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+
+  <object-name>AVF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/systems/static/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+
+
+<animation>
+
+  <object-name>FLCSF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>sim/failure-manager/systems/pitot/serviceable</property>
+				<value>0</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+
+<animation>
+
+  <object-name>WCSF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>controls/armament/weaponsfailed</property>
+				<value>1</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+
+  <object-name>FCRF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>controls/armament/radarfailed</property>
+				<value>1</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+  <object-name>VTOLF</object-name>
+  <type>select</type>
+  <condition>
+<and>
+<equals>
+				<property>controls/VTOLfailed</property>
+				<value>1</value>
+			</equals>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+      </and>
+  </condition>
+ </animation>
+<animation>
+  <object-name>backfail</object-name>
+  <type>select</type>
+  <condition>
+      <equals>
+				<property>controls/screen/menu2</property>
+				<value>1</value>
+			</equals>
+
+  </condition>
+ </animation>
 
 
   <animation>
@@ -61,6 +261,66 @@ Z is Up and down-->
 			</equals>
   </condition>
  </animation>
+
+
+<!--Warnings-->
+
+<animation>
+  <object-name>WARNING</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/warning</property>
+				<value>0</value>
+			</equals>
+
+  </condition>
+ </animation>
+
+<animation>
+  <object-name>CAUTION</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/caution</property>
+				<value>0</value>
+			</equals>
+
+  </condition>
+ </animation>
+
+
+<animation>
+  <type>pick</type>
+   <object-name>warnclick</object-name>
+   <object-name>WARNING</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>systemalerts.clearwarning();</script>
+</binding>
+       </action>
+ </animation>
+<animation>
+  <type>pick</type>
+   <object-name>cautionclick</object-name>
+   <object-name>CAUTION</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>systemalerts.clearcaution();</script>
+</binding>
+       </action>
+ </animation>
+
 <!--Fuel-->
 
 <!--Full mid half low-->
@@ -215,6 +475,19 @@ Z is Up and down-->
        </action>
  </animation>
 
+<animation>
+  <type>pick</type>
+   <object-name>MENU2</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/screen/menu2</property>
+      </binding>
+       </action>
+ </animation>
 
 
  <animation>

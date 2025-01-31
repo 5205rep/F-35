@@ -103,7 +103,30 @@
             <legend>Non Stealthy Air to Air</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.saa2;</script>
+                <script>setprop("sim/weight[0]/selected", "Aim-9x");
+setprop("sim/weight[1]/selected", "Aim-120");
+setprop("sim/weight[2]/selected", "Aim-120");
+setprop("sim/weight[3]/selected", "Aim-120");
+setprop("sim/weight[4]/selected", "Aim-120");
+setprop("sim/weight[5]/selected", "Aim-120");
+setprop("sim/weight[6]/selected", "Aim-120");
+setprop("sim/weight[7]/selected", "Aim-120");
+setprop("sim/weight[8]/selected", "Aim-120");
+setprop("sim/weight[9]/selected", "Aim-120");
+setprop("sim/weight[10]/selected", "Aim-120");
+setprop("sim/weight[11]/selected", "Aim-9x");
+setprop("controls/armament/station[0]/release", "false");
+setprop("controls/armament/station[1]/release", "false");
+setprop("controls/armament/station[2]/release", "false");
+setprop("controls/armament/station[3]/release", "false");
+setprop("controls/armament/station[4]/release", "false");
+setprop("controls/armament/station[5]/release", "false");
+setprop("controls/armament/station[6]/release", "false");
+setprop("controls/armament/station[7]/release", "false");
+setprop("controls/armament/station[8]/release", "false");
+setprop("controls/armament/station[9]/release", "false");
+setprop("controls/armament/station[10]/release", "false");
+setprop("controls/armament/station[11]/release", "false");</script>
             </binding>
         </button>
 

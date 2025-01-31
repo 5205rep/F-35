@@ -238,6 +238,31 @@
  <flight_control name="FCS: F-35">
 
 
+
+<!--Fly by wire controller-->
+
+<function name="fcs/pitch-trim-fbw">
+            <description>Pitch trim FBW</description>
+            <product>
+              <table>
+                 <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+                 <independentVar lookup="column">/controls/engines/engine/throttle</independentVar>
+                 <tableData>
+                      0           0.98         1  
+                250  -0.17575   -0.17575   -0.19325 
+                300  -0.10675   -0.10675   -0.12425  
+                400  -0.04975   -0.04975   -0.06725 
+                500  -0.01575   -0.01575   -0.03325   <!--With after burner add -0.0175-->
+                600  0.00525    0.00525    -0.01225
+                700  0.03225    0.03225     0.01475
+                774  0.05725    0.05725     0.03975
+                 </tableData>
+              </table> 
+            </product>
+          </function>
+
+
+
 <!--FBW limiter-->
 
 
@@ -271,6 +296,7 @@
    <summer name="Pitch Trim Sum">
       <input>fcs/elevator-cmd-norm</input>
       <input>fcs/pitch-trim-cmd-norm</input>
+      <input>fcs/pitch-trim-fbw</input>
       <clipto>
         <min> -1 </min>
         <max>  1 </max>
@@ -281,7 +307,7 @@
       <input>fcs/elevator-pos-norm-limit</input>
       <range>
         <min> -0.35 </min>
-        <max>  0.35 </max>
+        <max>  0.45 </max>
       </range>
       <output>fcs/elevator-pos-rad</output>
    </aerosurface_scale>
@@ -641,7 +667,7 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>fcs/speedbrake-pos-norm</property>
-           <value>0</value>
+           <value>0.01267</value>
        </product>
     </function>
 
@@ -697,7 +723,7 @@
             <tableData>
                 0.00      0.000
                 0.81      0.000
-                1.10      0.023
+                1.10      0.001
                 1.80      0.015
             </tableData>
           </table>
@@ -730,7 +756,7 @@
            <property>aero/qbar-psf</property>
            <property>metrics/Sw-sqft</property>
            <property>fcs/speedbrake-pos-norm</property>
-           <value>0.021</value>
+           <value>0.121</value>
          </product>
     </function>
 

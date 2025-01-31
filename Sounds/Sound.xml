@@ -917,6 +917,83 @@
 		</canopy>
 
 
+<!--warning-->
+
+<warning>
+  <name>intense ground contaca1t</name>
+  <mode>once</mode>
+  <path>Sounds/warning1.wav</path>
+  <property>controls/screen/warning</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+<warning>
+  <name>intense ground contacat</name>
+  <mode>once</mode>
+  <path>Sounds/warning1.wav</path>
+  <property>controls/screen/warning</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+<warning>
+  <name>intense ground contac2t</name>
+  <mode>once</mode>
+  <path>Sounds/warning1.wav</path>
+  <property>controls/screen/warning</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+
+<warning>
+  <name>intense ground contac1a1t</name>
+  <mode>once</mode>
+  <path>Sounds/Caution.wav</path>
+  <property>controls/screen/caution</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+<warning>
+  <name>intense ground cont1acat</name>
+  <mode>once</mode>
+  <path>Sounds/Caution.wav</path>
+  <property>controls/screen/caution</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+<warning>
+  <name>intense ground contac12t</name>
+  <mode>once</mode>
+  <path>Sounds/Caution.wav</path>
+  <property>controls/screen/caution</property>
+  <volume>
+    <factor>1</factor>
+  </volume>
+  <pitch>
+    <factor>0</factor>
+  </pitch>
+</warning>
+
+
 <!-- Crashed -->
 
 <crash>

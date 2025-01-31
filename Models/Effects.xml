@@ -245,7 +245,7 @@ Z is Up and down-->
 
           <greater-than>
            <property>sim/multiplay/generic/float[31]</property>
-           <value>8</value>
+           <value>10</value>
           </greater-than>
           <greater-than>
            <property>sim/multiplay/generic/float[1]</property>
@@ -275,7 +275,7 @@ Z is Up and down-->
       <condition>
       <greater-than>
        <property>sim/multiplay/generic/float[2]</property><!-- velocities/mach -->
-       <value>0.88</value>
+       <value>0.98</value>
       </greater-than>
       <less-than>
        <property>sim/multiplay/generic/float[2]</property><!-- velocities/mach -->

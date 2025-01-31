@@ -1465,6 +1465,10 @@ Lockheed Martin F-35A Lightning II
 			<file>Aircraft/F-35/Nasal/misc.nas</file>
 		</misc>
 
+<!--CSWM-->
+		<systemalerts>
+			<file>Aircraft/F-35/Nasal/warning.nas</file>
+		</systemalerts>
    	</nasal>
 
 
