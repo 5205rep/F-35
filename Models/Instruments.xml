@@ -39,6 +39,47 @@ Z is Up and down-->
 
 <animation>
 
+  <object-name>radarscreen</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/gps</property>
+				<value>0</value>
+			</equals>
+  </condition>
+ </animation>
+
+<animation>
+  <object-name>aoa</object-name>
+  <object-name>but1</object-name>
+  <object-name>but2</object-name>
+  <object-name>but3</object-name>
+  <object-name>but4</object-name>
+  <object-name>but5</object-name>
+  <object-name>but6</object-name>
+  <object-name>but7</object-name>
+  <object-name>but8</object-name>
+  <object-name>but9</object-name>
+  <object-name>but0</object-name>
+  <object-name>cls</object-name>
+  <object-name>label</object-name>
+    <object-name>label1</object-name>
+      <object-name>label2</object-name>
+        <object-name>label3</object-name>
+  <object-name>gpsbackdrop</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/gps</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+
+<animation>
+
   <object-name>blackout</object-name>
   <type>select</type>
   <condition>
@@ -321,6 +362,60 @@ Z is Up and down-->
        </action>
  </animation>
 
+<!--Datalink gps-->
+
+<animation>
+  <type>pick</type>
+   <object-name>label</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>coordp.saveslot();</script>
+</binding>
+       </action>
+ </animation>
+<animation>
+  <type>pick</type>
+   <object-name>label1</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>coordp.readslot();</script>
+</binding>
+       </action>
+ </animation>
+<animation>
+  <type>pick</type>
+   <object-name>label2</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>coordp.sendcurrentslotdl();</script>
+</binding>
+       </action>
+ </animation>
+<animation>
+  <type>pick</type>
+   <object-name>label3</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+   <binding>
+  <command>nasal</command>
+  <script>coordp.readfromrad();</script>
+</binding>
+       </action>
+ </animation>
 <!--Fuel-->
 
 <!--Full mid half low-->
@@ -477,6 +572,20 @@ Z is Up and down-->
 
 <animation>
   <type>pick</type>
+   <object-name>gps</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/screen/gps</property>
+      </binding>
+       </action>
+ </animation>
+
+<animation>
+  <type>pick</type>
    <object-name>MENU2</object-name>
    <action>
     <button>0</button>
@@ -600,5 +709,177 @@ Z is Up and down-->
   <object-name>OIL-axis</object-name>
   </axis>
  </animation>
+
+	 <animation>
+  <type>material</type>
+
+    <object-name>aoa</object-name>
+
+          
+  <ambient>
+    <red>0.0</red>
+    <green>1.0</green>
+    <blue>0.0</blue>
+  </ambient>
+  <diffuse>
+    <red>0.0</red>
+    <green>0.1</green>
+    <blue>0.0</blue>
+  </diffuse>
+  <emission>
+    <red>0.3</red>
+    <green>0.8</green>
+    <blue>0.3</blue>
+  </emission> 
+ </animation>
+
+ <!--Text-->
+ 	<text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.005</character-size>
+  <offsets>
+  <!--Y is Left to right
+X is In and Out 
+Z is Up and down-->
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.08</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">text-value</type>
+   <format type="string">Lnk16 TGT-COORDS Prev callsign %s</format>
+  <truncate type="bool">true</truncate>
+  <property>/instrumentation/datalink/lastcallsign</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+
+
+
+
+ <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.09</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Lat: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/datarec/lat</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+ <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.10</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Lon: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/datarec/lon</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+	 <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.11</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Alt: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/datarec/alt</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+
+	 <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.12</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Current CoordSlot: %5.f</format>
+  <truncate type="bool">true</truncate>
+  <property>/controls/radar/currentslot</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+
+<text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.13</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Lat: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/slots/lat</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+ <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.14</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Lon: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/slots/lon</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+	 <text>
+  <name>aoa</name>
+  <font>condensed.txf</font>
+  <character-size type="double">0.006</character-size>
+  <offsets>
+  <x-m>0.02</x-m>
+   <y-m>-0.07</y-m>
+   <z-m>-0.15</z-m>
+  </offsets>
+  <axis-alignment>yz-plane</axis-alignment>
+   <type type="string">number-value</type>
+   <format type="string">Alt: %5.4f</format>
+  <truncate type="bool">false</truncate>
+  <property>/controls/radar/slots/alt</property>
+  <draw-text type="bool">true</draw-text>
+  <alignment>left-top</alignment>
+ </text>
+
+
 
 </PropertyList>

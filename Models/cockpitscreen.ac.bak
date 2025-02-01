@@ -7,7 +7,254 @@ MATERIAL "ac3dmat4" rgb 0 0 0  amb 0 0.131579 0  emis 0 0 0  spec 0.2 0.2 0.2  s
 MATERIAL "ac3dmat5" rgb 0 0 0  amb 0 0 0  emis 0 0 0  spec 0 0 0  shi 128  trans 0
 MATERIAL "ac3dmat6" rgb 0 1 0  amb 0 1 0  emis 0 1 0  spec 0 1 0  shi 128  trans 0
 OBJECT world
-kids 68
+kids 85
+OBJECT poly
+name "label"
+loc 0 -0.196014 0.0379232
+texture "Instruments/aim120.png"
+crease 45.000000
+numvert 4
+0 0.00869109 -0.0145117
+0 0.00869109 0.0145117
+0 -0.00869109 0.0145117
+0 -0.00869109 -0.0145117
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "label"
+loc 0 -0.195855 0.0723686
+texture "Instruments/dlink.png"
+crease 45.000000
+numvert 4
+0 -0.00869109 -0.0145117
+0 -0.00869109 0.0145117
+0 0.00869109 0.0145117
+0 0.00869109 -0.0145117
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "label"
+loc 0 -0.196014 0.105698
+texture "Instruments/slot.png"
+crease 45.000000
+numvert 4
+0 0.00869109 -0.0145117
+0 0.00869109 0.0145117
+0 -0.00869109 0.0145117
+0 -0.00869109 -0.0145117
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 1 1
+1 0 1
+2 0 0
+3 1 0
+kids 0
+OBJECT poly
+name "cls"
+loc -0.0234164 -0.155822 0.119795
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 0.00630337 -0.0162607
+0 0.00630337 0.0162607
+0 -0.00630337 0.0162607
+0 -0.00630337 -0.0162607
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.332 0.486
+1 0.00599998 0.486
+2 0.00599998 0.362
+3 0.332 0.362
+kids 0
+OBJECT poly
+name "but0"
+loc -0.0234164 -0.155822 0.14763
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630337 -0.0069108
+0 -0.00630337 0.0069108
+0 0.00630337 0.0069108
+0 0.00630337 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.162 0.64
+2 0.038 0.64
+1 0.038 0.516
+0 0.162 0.516
+kids 0
+OBJECT poly
+name "but9"
+loc -0.0234164 -0.139065 0.111161
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630337 -0.0069108
+0 -0.00630337 0.0069108
+0 0.00630337 0.0069108
+0 0.00630337 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.404 0.808
+2 0.28 0.808
+1 0.28 0.684
+0 0.404 0.684
+kids 0
+OBJECT poly
+name "but8"
+loc -0.0234164 -0.139065 0.129145
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 0.00630337 -0.0069108
+0 0.00630337 0.0069108
+0 -0.00630337 0.0069108
+0 -0.00630337 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.262 0.806
+1 0.138 0.806
+2 0.138 0.682
+3 0.262 0.682
+kids 0
+OBJECT poly
+name "but7"
+loc -0.0234164 -0.139065 0.147484
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630337 -0.0069108
+0 -0.00630337 0.0069108
+0 0.00630337 0.0069108
+0 0.00630337 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.126 0.808
+2 0.002 0.808
+1 0.002 0.684
+0 0.126 0.684
+kids 0
+OBJECT poly
+name "but6"
+loc -0.0234164 -0.12191 0.11128
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 0.00630336 -0.0069108
+0 0.00630336 0.0069108
+0 -0.00630336 0.0069108
+0 -0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.73 0.976
+1 0.606 0.976
+2 0.606 0.852
+3 0.73 0.852
+kids 0
+OBJECT poly
+name "but5"
+loc -0.0234164 -0.12191 0.128908
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630338 -0.0069108
+0 -0.00630338 0.0069108
+0 0.00630336 0.0069108
+0 0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.612 0.976
+2 0.488 0.976
+1 0.488 0.852
+0 0.612 0.852
+kids 0
+OBJECT poly
+name "but4"
+loc -0.0234164 -0.12191 0.147247
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 0.00630336 -0.0069108
+0 0.00630336 0.0069108
+0 -0.00630336 0.0069108
+0 -0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.496 0.972
+1 0.372 0.972
+2 0.372 0.848
+3 0.496 0.848
+kids 0
+OBJECT poly
+name "but3"
+loc -0.0234164 -0.104636 0.111398
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630336 -0.0069108
+0 -0.00630336 0.0069108
+0 0.00630336 0.0069108
+0 0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.364 0.966
+2 0.24 0.966
+1 0.24 0.842
+0 0.364 0.842
+kids 0
+OBJECT poly
+name "but2"
+loc -0.0234164 -0.104399 0.128877
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 0.00630336 -0.0069108
+0 0.00630336 0.0069108
+0 -0.00630336 0.0069108
+0 -0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+0 0.248 0.968
+1 0.124 0.968
+2 0.124 0.844
+3 0.248 0.844
+kids 0
 OBJECT poly
 name "cautionclick"
 loc -0.0284891 -0.070321 -0.142433
@@ -843,8 +1090,8 @@ crease 45.000000
 numvert 4
 0 0.00927578 -0.0245585
 0 0.00927578 0.0245585
-0 -0.00927578 0.0245585
-0 -0.00927578 -0.0245585
+0 -0.00927579 0.0245585
+0 -0.00927579 -0.0245585
 numsurf 1
 SURF 0x30
 mat 1
@@ -1474,7 +1721,7 @@ refs 4
 kids 0
 OBJECT poly
 name "menu2"
-loc -0.0275623 -0.147041 0.0987437
+loc -0.0297118 -0.147223 0.0987437
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1511,7 +1758,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ELVF"
-loc -0.0257603 -0.115064 0.121029
+loc -0.0279098 -0.115246 0.121029
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1530,7 +1777,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AIF"
-loc -0.0257603 -0.125259 0.118454
+loc -0.0279098 -0.125441 0.118454
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1549,7 +1796,7 @@ refs 4
 kids 0
 OBJECT poly
 name "WCSF"
-loc -0.0257603 -0.192652 0.118454
+loc -0.0279098 -0.192834 0.118454
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1568,7 +1815,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FCRF"
-loc -0.0257603 -0.202417 0.122424
+loc -0.0279098 -0.202599 0.122424
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1587,7 +1834,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FSF"
-loc -0.0257603 -0.183423 0.110083
+loc -0.0279098 -0.183605 0.110083
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1606,7 +1853,7 @@ refs 4
 kids 0
 OBJECT poly
 name "VTOLF"
-loc -0.0257603 -0.173657 0.109439
+loc -0.0279098 -0.173839 0.109439
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1625,7 +1872,7 @@ refs 4
 kids 0
 OBJECT poly
 name "FLCSF"
-loc -0.0257603 -0.164214 0.117702
+loc -0.0279098 -0.164396 0.117702
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1644,7 +1891,7 @@ refs 4
 kids 0
 OBJECT poly
 name "AVF"
-loc -0.0257603 -0.15477 0.117917
+loc -0.0279098 -0.154952 0.117917
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1663,7 +1910,7 @@ refs 4
 kids 0
 OBJECT poly
 name "ENGF"
-loc -0.0257603 -0.144897 0.118668
+loc -0.0279098 -0.145079 0.118668
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1682,7 +1929,7 @@ refs 4
 kids 0
 OBJECT poly
 name "RUDF"
-loc -0.0257603 -0.135025 0.118454
+loc -0.0279098 -0.135207 0.118454
 texture "Instruments/more buttons.png"
 crease 45.000000
 numvert 4
@@ -1701,7 +1948,7 @@ refs 4
 kids 0
 OBJECT poly
 name "backfail"
-loc -0.0262432 -0.160166 0.0980638
+loc -0.0283927 -0.160348 0.0980638
 crease 45.000000
 numvert 4
 0 -0.0522479 -0.0623856
@@ -1722,8 +1969,8 @@ name "warnclick"
 loc -0.0290868 -0.242606 -0.215777
 crease 45.000000
 numvert 4
-0 -0.00766951 -0.0244109
-0 -0.00766951 0.0244109
+0 -0.00766952 -0.0244109
+0 -0.00766952 0.0244109
 0 0.00766951 0.0244109
 0 0.00766951 -0.0244109
 numsurf 1
@@ -1747,6 +1994,80 @@ numvert 4
 numsurf 1
 SURF 0x30
 mat 4
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "gpsbackdrop"
+loc -0.0267106 -0.148326 0.0309634
+crease 45.000000
+numvert 4
+0 -0.0667724 -0.132959
+0 -0.0667724 0.132959
+0 0.0667724 0.132959
+0 0.0667724 -0.132959
+numsurf 1
+SURF 0x30
+mat 5
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "but1"
+loc -0.0234164 -0.104399 0.147129
+texture "Instruments/buttons.png"
+crease 45.000000
+numvert 4
+0 -0.00630336 -0.0069108
+0 -0.00630336 0.0069108
+0 0.00630336 0.0069108
+0 0.00630336 -0.0069108
+numsurf 1
+SURF 0x30
+mat 2
+refs 4
+3 0.128 0.968
+2 0.004 0.968
+1 0.004 0.844
+0 0.128 0.844
+kids 0
+OBJECT poly
+name "gps"
+loc -0.0276462 -0.223051 0.15262
+crease 45.000000
+numvert 4
+0 -0.00634979 -0.0112342
+0 -0.00634979 0.0112342
+0 0.00634979 0.0112342
+0 0.00634979 -0.0112342
+numsurf 1
+SURF 0x30
+mat 4
+refs 4
+3 1 1
+2 0 1
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "label"
+loc 0 -0.196014 0.139505
+texture "Instruments/dlink1.png"
+crease 45.000000
+numvert 4
+0 -0.00869109 -0.0145117
+0 -0.00869109 0.0145117
+0 0.00869109 0.0145117
+0 0.00869109 -0.0145117
+numsurf 1
+SURF 0x30
+mat 2
 refs 4
 3 1 1
 2 0 1
