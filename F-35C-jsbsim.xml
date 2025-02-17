@@ -154,7 +154,8 @@
 
 
  </ground_reactions>
-
+ <system file="hook.xml"/>
+ <system file="cat.xml"/>
  <propulsion>
 
         <engine file="F135-PW-600">
@@ -692,7 +693,7 @@
              -0.26    0.027
               0.00    0.021
               0.26    0.027
-              1.57    0.700
+              1.57    1.100
             </tableData>
           </table>
        </product>
@@ -968,7 +969,31 @@
  </aerodynamics>
 
  <external_reactions>
+    <force name="hook" frame="BODY">
+   <location unit="FT">
+    <x> 23.601 </x>
+    <y> 0 </y>
+    <z> -1.1334</z>
+   </location>
+   <direction>
+    <x>-0.9995</x>
+    <y> 0 </y>
+    <z> 0.01 </z>
+   </direction>
+  </force>
 
+  <force name="catapult" frame="BODY">
+   <location unit="IN">
+    <x> 0 </x>
+    <y> 0 </y>
+    <z> 0 </z>
+   </location>
+   <direction>
+    <x> 1 </x>
+    <y> 0 </y>
+    <z> 0 </z>
+   </direction>
+  </force>
  </external_reactions>
 
 </fdm_config>
