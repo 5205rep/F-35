@@ -289,9 +289,8 @@ if(navStillOn) {
 	
 	<effect>
 		<inherits-from>Effects/model-transparent</inherits-from>
-		<condition>
-			<property>sim/rendering/rembrandt/enabled</property>
-		</condition>
+
+		<object-name>CanopyGlass</object-name>
 		<object-name>canopy</object-name>
 		<object-name>eots</object-name>
 		<object-name>lights</object-name>
@@ -565,6 +564,12 @@ if(navStillOn) {
     <type>select</type>
   <object-name>PilotHead</object-name>
   <object-name>Visor</object-name>
+  <object-name>PilotBody</object-name>
+  <object-name>HarnessandSeat</object-name>
+  <object-name>MaskHose</object-name>
+
+
+
     <condition>
       <equals>
         <property>sim/current-view/internal</property>
@@ -577,7 +582,7 @@ if(navStillOn) {
   <object-name>PilotHead</object-name>
   <object-name>Visor</object-name>
   <property>surface-positions/rudder-pos-norm</property>
-  <factor>60</factor>
+  <factor>-60</factor>
   <center>
    <x-m>-4.438</x-m>
    <y-m>0</y-m>
@@ -633,7 +638,7 @@ if(navStillOn) {
   <type>rotate</type>
   <object-name>SensorBall</object-name>
   <property>surface-positions/rudder-pos-norm</property>
-  <factor>150</factor>
+  <factor>-150</factor>
   <center>
    <x-m>-6.221</x-m>
    <y-m>-0.024</y-m>
@@ -914,7 +919,7 @@ if(navStillOn) {
 		<type>rotate</type>
 		<object-name>PortRudder</object-name>
 		<property>surface-positions/rudder-pos-norm</property>
-		<factor>-35</factor>
+		<factor>35</factor>
 		<axis>
 			<x1-m>5.633</x1-m>
 			<y1-m>-1.447</y1-m>
@@ -929,7 +934,7 @@ if(navStillOn) {
 		<type>rotate</type>
 		<object-name>StarRudder</object-name>
 		<property>surface-positions/rudder-pos-norm</property>
-		<factor>-35</factor>
+		<factor>35</factor>
 		<axis>
 			<x1-m>5.633</x1-m>
 			<y1-m> 1.447</y1-m>
@@ -1645,7 +1650,7 @@ if(navStillOn) {
                 <object-name>NoseLowerSpring</object-name>
                 <object-name>NoseGearBit3</object-name>	 	
 		<property>surface-positions/rudder-pos-norm</property>
-		<factor>-45</factor>
+		<factor>45</factor>
 		<offset-deg>0</offset-deg>
 		<axis>
 		 <x1-m>-3.74</x1-m>

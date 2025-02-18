@@ -132,7 +132,7 @@
 
 
     <propulsion>
-        <engine file="F135-PW-600">
+        <engine file="F135-PW-600B">
     <location unit="IN">
       <x> 354.20 </x>
       <y>   0.00 </y>
