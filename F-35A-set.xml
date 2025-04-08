@@ -128,7 +128,7 @@ Lockheed Martin F-35A Lightning II
         <bool n="52" type="bool" alias="/instrumentation/gci/cutoff"/>
         <int n="0" alias="/controls/switches/nav-lights-switch"/>  <!-- Nav lights on -->
         <int n="1" alias="/controls/switches/beacon-switch"/> <!-- Beacon on -->
-        <int n="2" alias="/controls/switches/landing-lights-switch" />  <!-- Landing lights on -->
+        <int type="int" n="2"> 1 </int>  <!-- rwr -->
         <int n="3" alias="/controls/switches/strobe-switch"/>  <!-- Taxi light on -->
         <int n="4" alias="/controls/smoke"/> 
         <int type="int" n="5">  0 </int><!-- 5 immat -->
