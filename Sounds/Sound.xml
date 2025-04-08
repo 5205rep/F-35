@@ -1154,6 +1154,24 @@
 			
 		</flyby>
 
+
+	  <rwr>
+            <name>rwr-spike-air</name>
+            <path>Aircraft/F-35/Sounds/spike.wav</path>
+            <mode>looped</mode>
+            <type>avionics</type>
+            <condition>
+                <equals>
+                    <property>payload/armament/spike</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <volume>
+                <property>/sim/current-view/internal</property>
+                <factor>1</factor>
+            </volume>
+           
+        </rwr>
   
  </fx>
 </PropertyList>
