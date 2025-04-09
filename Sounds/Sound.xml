@@ -48,6 +48,47 @@
             </pitch> -->
   </engine>
 
+   <engine>
+   <name>ABws1asdf2</name>
+   <mode>looped</mode>
+   <path>Aircraft/F-35/Sounds/AB.wav</path>
+   <condition>
+
+<greater-than>  
+ <property>engines/engine/n1</property>
+   <value>90</value>
+  </greater-than>
+
+  
+     <not>
+	 <property>/sim/current-view/internal</property>
+<property>/engines/engine/out-of-fuel</property>
+     </not>
+   </condition>
+   <position>
+    	<x>0</x>
+	<y>0.0</y>
+	<z>0</z>
+   </position>
+               <orientation>
+                <x>1.0</x>
+                <y>0.001</y>
+                <z>0.001</z>
+                <inner-angle>180.0</inner-angle>
+                <outer-angle>180.0</outer-angle>
+                <outer-gain>0.0</outer-gain>
+            </orientation>
+      <volume>
+    <property>/engines/engine/nozzle-pos-norm</property>
+    <factor>1</factor>
+    <offset>0</offset>
+   </volume>
+  <!--  <pitch>
+                <property>engines/engine[0]/n1</property>
+                <offset>0.86349949816</offset>
+                <factor>0.00455001673</factor>
+            </pitch> -->
+  </engine>
 
    <engine>
    <name>ABs2</name>
@@ -99,17 +140,15 @@
 
 
 
- 
-
  <engine>
-   <name>interior engine1e</name>
+   <name>interior engine bg</name>
    <mode>looped</mode>
-   <path>Aircraft/F-35/Sounds/jet-blastB.wav</path>
+   <path>Aircraft/F-35/Sounds/engbg.wav</path>
    <condition>
 
 <greater-than>  
  <property>engines/engine[0]/n1</property>
-   <value>20</value>
+   <value>10</value>
   </greater-than>
 
   <property>/sim/current-view/internal</property>
@@ -124,24 +163,86 @@
    </position>
       <volume>
     <property>/engines/engine/n1</property>
-    <factor>1</factor>
-    <offset>0</offset>
+   </volume>
+
+  </engine>
+
+ 
+
+ <engine>
+   <name>interior engine1e</name>
+   <mode>looped</mode>
+   <path>Aircraft/F-35/Sounds/jet-blastB.wav</path>
+   <condition>
+
+<greater-than>  
+ <property>engines/engine[0]/n1</property>
+   <value>1</value>
+  </greater-than>
+
+  <property>/sim/current-view/internal</property>
+     <not>
+<property>/engines/engine/out-of-fuel</property>
+     </not>
+   </condition>
+   <position>
+    	<x>-4.5</x>
+	<y>0.0</y>
+	<z>-5</z>
+   </position>
+      <volume>
+    <property>/engines/engine/n1</property>
    </volume>
   <pitch>
                 <property>engines/engine[0]/n1</property>
-                <offset>0.06349949816</offset>
+                <offset>0.85</offset>
                 <factor>0.00455001673</factor>
             </pitch>
   </engine>
+
 <engine>
-   <name>interior engine1ef</name>
+   <name>interior engine2e</name>
+   <mode>looped</mode>
+   <path>Aircraft/F-35/Sounds/jet-blastB.wav</path>
+   <condition>
+
+<greater-than>  
+ <property>engines/engine[0]/n1</property>
+   <value>1</value>
+  </greater-than>
+
+  <property>/sim/current-view/internal</property>
+     <not>
+<property>/engines/engine/out-of-fuel</property>
+     </not>
+   </condition>
+   <position>
+    	<x>-4.5</x>
+	<y>0.0</y>
+	<z>-5</z>
+   </position>
+      <volume>
+    <property>/engines/engine/n1</property>
+   </volume>
+  <pitch>
+                <property>engines/engine[0]/n1</property>
+                <offset>0.85</offset>
+                <factor>0.00455001673</factor>
+            </pitch>
+  </engine>
+
+
+<!--ext-->
+
+<engine>
+   <name>enterior engine1ef</name>
    <mode>looped</mode>
    <path>Aircraft/F-35/Sounds/jet-blast0.wav</path>
    <condition>
 
 <greater-than>  
  <property>engines/engine[0]/n1</property>
-   <value>20</value>
+   <value>1</value>
   </greater-than>
 
      <not>
@@ -162,12 +263,44 @@
    </volume>
   <pitch>
                 <property>engines/engine[0]/n1</property>
-                <offset>0.86349949816</offset>
-                <factor>0.00455001673</factor>
+                <offset>0.5</offset>
+                <factor>0.00655001673</factor>
             </pitch>
   </engine>
 
- 
+ <engine>
+   <name>enterior engine2ef</name>
+   <mode>looped</mode>
+   <path>Aircraft/F-35/Sounds/jet-blast0.wav</path>
+   <condition>
+
+<greater-than>  
+ <property>engines/engine[0]/n1</property>
+   <value>1</value>
+  </greater-than>
+
+     <not>
+	
+  <property>/sim/current-view/internal</property>
+<property>/engines/engine/out-of-fuel</property>
+     </not>
+   </condition>
+   <position>
+    	<x>-4.5</x>
+	<y>0.0</y>
+	<z>-5</z>
+   </position>
+      <volume>
+    <property>/engines/engine/n1</property>
+    <factor>1</factor>
+    <offset>0</offset>
+   </volume>
+  <pitch>
+                <property>engines/engine[0]/n1</property>
+                <offset>0.5</offset>
+                <factor>0.00655001673</factor>
+            </pitch>
+  </engine>
 
 
 
@@ -177,6 +310,10 @@
    <mode>looped</mode>
    <path>Aircraft/F-35/Sounds/engine1.wav</path>
    <condition>
+<greater-than>  
+ <property>engines/engine[0]/n1</property>
+   <value>1</value>
+  </greater-than>
      <not>
           <property>/sim/current-view/internal</property>
 	  <property>/engines/engine/out-of-fuel</property>

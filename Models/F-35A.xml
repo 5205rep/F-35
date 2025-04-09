@@ -536,6 +536,157 @@ Z is Up and down-->
 	</animation>
 
 	<!-- Animations -->
+<animation>
+  <type>pick</type>
+   <object-name>FLOOD</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/turn-off-lights</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>FLOOD</object-name>
+  <property>controls/lighting/turn-off-lights</property>
+  <factor>-40</factor>
+
+  <axis>
+  <object-name>FLOOD-axis</object-name>
+  </axis>
+ </animation>
+
+<animation>
+  <type>pick</type>
+   <object-name>STROBE</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/strobe</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>STROBE</object-name>
+  <property>controls/lighting/strobe</property>
+  <factor>-40</factor>
+
+  <axis>
+  <object-name>STROBE-axis</object-name>
+  </axis>
+ </animation>
+
+<animation>
+  <type>pick</type>
+   <object-name>NAV</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/nav-lights</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>NAV</object-name>
+  <property>controls/lighting/nav-lights</property>
+  <factor>-40</factor>
+
+  <axis>
+  <object-name>NAV-axis</object-name>
+  </axis>
+ </animation>
+
+
+
+<animation>
+  <type>pick</type>
+   <object-name>START</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/starter</property>
+      </binding>
+	             <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine[1]/starter</property>
+      </binding>
+       </action>
+ </animation>
+
+<animation>
+  <type>pick</type>
+   <object-name>ENG</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/cutoff</property>
+      </binding>
+	             <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine[1]/cutoff</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>ENG</object-name>
+  <property>controls/engines/engine/cutoff</property>
+  <factor>-60</factor>
+
+  <axis>
+  <object-name>ENG-axis</object-name>
+  </axis>
+ </animation>
+
+
+
+
+
+<!--cutoff-->
+<animation>
+  <type>pick</type>
+   <object-name>ACC1</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/ACC</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>ACC1</object-name>
+  <property>controls/engines/engine/ACC</property>
+  <factor>40</factor>
+
+  <axis>
+  <object-name>ACC1-axis</object-name>
+  </axis>
+ </animation>
+
+
+
 
 <!--HMCS-->
 

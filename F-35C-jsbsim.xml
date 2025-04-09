@@ -80,18 +80,18 @@
 
  <ground_reactions>
 
-  <contact type="BOGEY" name="NOSE">
+   <contact type="BOGEY" name="NOSE">
    <location unit="IN">
      <x>  -79.56 </x>
      <y>   0.00 </y>
-     <z> -73.44 </z>
+     <z> -75.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
    <rolling_friction> 0.02 </rolling_friction>
    <spring_coeff unit="LBS/FT">      21031.80 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 10515.90 </damping_coeff>
-   <max_steer unit="DEG"> 80.00 </max_steer>
+   <max_steer unit="DEG"> 45.00 </max_steer>
    <brake_group>NONE</brake_group>
    <retractable>1</retractable>
   </contact>
@@ -100,7 +100,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y> -37.80 </y>
-     <z> -73.44 </z>
+     <z> -78.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -116,7 +116,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y>  37.80 </y>
-     <z> -73.44 </z>
+     <z> -78.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>

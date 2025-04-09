@@ -59,7 +59,7 @@
    <location unit="IN">
      <x>  -79.56 </x>
      <y>   0.00 </y>
-     <z> -73.44 </z>
+     <z> -75.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -75,7 +75,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y> -37.80 </y>
-     <z> -73.44 </z>
+     <z> -78.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -91,7 +91,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y>  37.80 </y>
-     <z> -73.44 </z>
+     <z> -78.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
