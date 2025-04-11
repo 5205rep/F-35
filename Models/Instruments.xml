@@ -91,6 +91,25 @@ Z is Up and down-->
   </condition>
  </animation>
 
+
+<!--Hud-->
+
+<animation>
+  <object-name>hudcvr</object-name>
+  <object-name>hudglass</object-name>
+  <type>select</type>
+  <condition>
+
+<equals>
+				<property>controls/screen/HUD</property>
+				<value>1</value>
+			</equals>
+  </condition>
+ </animation>
+
+
+
+
 <animation>
 
   <object-name>menu2</object-name>
@@ -121,6 +140,13 @@ Z is Up and down-->
       </and>
   </condition>
  </animation>
+
+
+ <effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <!-- Replace 'HUD.l.canvas' with the object the canvas is placed on -->
+  <object-name>hudglass</object-name>
+</effect>
 
 <animation>
 
@@ -570,6 +596,22 @@ Z is Up and down-->
        </action>
  </animation>
 
+
+
+<animation>
+  <type>pick</type>
+   <object-name>HUD</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/screen/HUD</property>
+      </binding>
+       </action>
+ </animation>
+
 <animation>
   <type>pick</type>
    <object-name>gps</object-name>
@@ -584,6 +626,9 @@ Z is Up and down-->
        </action>
  </animation>
 
+
+
+
 <animation>
   <type>pick</type>
    <object-name>MENU2</object-name>
@@ -597,6 +642,22 @@ Z is Up and down-->
       </binding>
        </action>
  </animation>
+
+
+<animation>
+  <type>pick</type>
+   <object-name>rfuel</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+                            <binding>
+                            <command>nasal</command>
+                             <script>doors.doorsystem.wingsexport();</script>
+                             </binding>
+       </action>
+ </animation>
+
 
 
  <animation>
@@ -659,6 +720,36 @@ Z is Up and down-->
        </action>
  </animation>
   <!--instrument animations-->
+
+
+ <animation>
+  <type>translate</type>
+  <object-name>contcur</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>0.01</factor>
+  <offset-m>0</offset-m>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>translate</type>
+  <object-name>contcur</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>0.013</factor>
+  <offset-m>0</offset-m>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+
+
+
  <animation>
   <type>rotate</type>
   <object-name>nozzle</object-name>

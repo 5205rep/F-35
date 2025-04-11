@@ -1411,6 +1411,13 @@ Lockheed Martin F-35B Lightning II
       <file>Aircraft/F-35/Nasal/weapons/Loading_Missiles.nas</file>
       <file>Aircraft/F-35/Nasal/weapons/missile_GroundTargeting.nas</file>
     </missile>
+<armament>
+      <file>Aircraft/F-35/Nasal2/missile-code.nas</file>
+</armament>  <!--Only for RWR-->
+
+		        <rwrs>
+            <file>Aircraft/F-35/Nasal/rwr.nas</file>
+        </rwrs>
 
     <m2000_load>
       <file>Aircraft/F-35/Nasal/weapons/ext_stores.nas</file>

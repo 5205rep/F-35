@@ -4,8 +4,8 @@ var lightsPath = "lightpack/"; #path to the property node, where all internal va
 
 #list of switches for lights - if you don't intend to use some light, assign it nil value instead, like whateverSwitch = nil; and you don't need to care about anything else
 var navSwitch = "/controls/switches/nav-lights-switch";
-var beaconSwitch = "/controls/switches/beacon-switch";
-var strobeSwitch = "/controls/switches/strobe-switch";
+var beaconSwitch = "/controls/lighting/beacon";
+var strobeSwitch = "/controls/lighting/strobe";
 var landingSwitch = "/controls/switches/landing-lights-switch";
 var searchSwitch = "/controls/switches/search-lights-switch";
 var taxiSwitch = nil;
