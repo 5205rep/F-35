@@ -9,7 +9,7 @@
     <z-m>0.00</z-m>
     <pitch-deg>0</pitch-deg>
   </offsets>
-
+<!--
  <nasal>
         <load>
             var livery_update = aircraft.livery_update.new("Aircraft/F-35/Models/liveries", 30);
@@ -284,8 +284,37 @@ if(navStillOn) {
             livery_update.stop();
 			
         </unload>
-    </nasal>
-	
+    </nasal>-->
+	<nasal>
+  <load>
+    <!--
+      ##############################################################################
+      # The on-load Nasal is not executed when this file is loaded as the user
+      # aircraft. The code is only executed if the file is loaded for a remote
+      # aircraft in Multi-Player mode (MP)
+      ##############################################################################
+    -->
+    <![CDATA[
+      var livery_update = aircraft.livery_update.new("Aircraft/F-22/Models/Liveries");
+
+	  #this is suppose to go here?
+ var rplayer = cmdarg();
+   # Set up property aliases for animations.
+   rplayer.getNode("orientation/alpha-deg", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[17]")); #for vapor
+   rplayer.getNode("controls/engines/engine/throttle", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[18]")); #for AB
+   rplayer.getNode("velocities/airspeed-kt", 1).
+     alias(rplayer.getNode("sim/multiplay/generic/float[19]")); #for vapor (2)
+    ]]>
+
+    </load>
+  
+ <unload><![CDATA[
+    livery_update.stop();
+  ]]></unload>
+</nasal>
+
 
 	
 	<!-- Rembrandt -->
@@ -1013,7 +1042,7 @@ Z is Up and down-->
 		<object-name>PortElevon</object-name>
                 <object-name>StarboardElevon</object-name>
 		<property>sim/multiplay/generic/float[5]</property>
-		<factor>10</factor>
+		<factor>20</factor>
 		<axis>
 			<x1-m> 6.18</x1-m>
 			<y1-m>-0.87</y1-m>
@@ -1099,8 +1128,8 @@ Z is Up and down-->
 	<animation>
 		<type>rotate</type>
 		<object-name>PortSlat</object-name>
-		<property>surface-positions/flap-pos-norm</property>
-		<factor>-13</factor>
+		<property>fdm/jsbsim/fcs/leading-edge-flap-main</property>
+		<factor>-15</factor>
 		<axis>
 			<x1-m> 2.70</x1-m>
 			<y1-m>-5.41</y1-m>
@@ -1114,8 +1143,8 @@ Z is Up and down-->
 	<animation>
 		<type>rotate</type>
 		<object-name>StarSlat</object-name>
-		<property>surface-positions/flap-pos-norm</property>
-		<factor>13</factor>
+		<property>fdm/jsbsim/fcs/leading-edge-flap-main</property>
+		<factor>15</factor>
 		<axis>
 			<x1-m> 2.70</x1-m>
 			<y1-m> 5.41</y1-m>
@@ -1819,6 +1848,32 @@ Z is Up and down-->
 			<z2-m>-0.390</z2-m>
 		</axis>
 	</animation>
+
+
+<!--Engine exh-->
+			<model>
+		<path>Aircraft/F-35/Models/Effects/Smoke/SmokeRidle.xml</path>
+		<offsets>
+			<x-m>7.527</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.447</z-m>
+			<roll-deg>0</roll-deg>
+			<pitch-deg>0</pitch-deg>
+		<heading-deg>0</heading-deg>
+	</offsets>
+	</model>
+		<model>
+		<path>Aircraft/F-35/Models/Effects/Smoke/SmokeR.xml</path>
+		<offsets>
+			<x-m>10.527</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.347</z-m>
+			<roll-deg>0</roll-deg>
+			<pitch-deg>0</pitch-deg>
+		<heading-deg>0</heading-deg>
+	</offsets>
+	</model>
+
 
 	<!--damage smoke-->
 	  <!-- Impact fire -->

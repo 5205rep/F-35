@@ -237,10 +237,17 @@
   <debug>false</debug>
   <enable>
    <condition>
+   <and>
     <not-equals>
 	<property>/autopilot/locks/altitude</property>
 	<value />
 	</not-equals>
+
+      <not-equals>
+	<property>/autopilot/locks/altitude</property>
+      <value>VTOL</value>
+	</not-equals>
+  </and>
    </condition>
   </enable>
   <input>
@@ -253,11 +260,44 @@
    <property>/controls/flight/elevator</property>
   </output>
   <config>
-   <Kp>-0.05</Kp>      
+   <Kp>-10005</Kp>      
    <beta>1.0</beta>    <!-- input value weighing factor -->
    <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
-   <gamma>0.0</gamma>  <!-- input value weighing factor for -->
-   <Ti>20.0</Ti>       <!-- integrator time  10.0 -->
+   <gamma>1</gamma>  <!-- input value weighing factor for -->
+   <Ti>1.0</Ti>       <!-- integrator time  10.0 -->
+   <Td>0.00001</Td>    <!-- derivator time -->
+   <u_min>-0.35</u_min> <!-- minimum output clamp -->
+   <u_max>0.35</u_max>
+  </config>
+ </pid-controller>
+
+
+   <pid-controller>
+  <name>System Command: Pitch (VTOL)</name>
+  <debug>false</debug>
+  <enable>
+   <condition>
+    <equals>
+	<property>/autopilot/locks/altitude</property>
+      <value>VTOL</value>
+	</equals>
+   </condition>
+  </enable>
+  <input>
+   <property>/orientation/pitch-deg</property>
+  </input>
+  <reference>
+   <property>/autopilot/settings/vtolpitch</property>
+  </reference>
+  <output>
+   <property>/controls/flight/VTOLelevator</property>
+  </output>
+  <config>
+   <Kp>-10005</Kp>      
+   <beta>1.0</beta>    <!-- input value weighing factor -->
+   <alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+   <gamma>1</gamma>  <!-- input value weighing factor for -->
+   <Ti>1.0</Ti>       <!-- integrator time  10.0 -->
    <Td>0.00001</Td>    <!-- derivator time -->
    <u_min>-0.35</u_min> <!-- minimum output clamp -->
    <u_max>0.35</u_max>

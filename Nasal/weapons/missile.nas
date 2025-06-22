@@ -11,7 +11,7 @@ print("LOADING Missiles, Bombs and more!: missile.nas .");
 # Information on how to use!:
 
 # If you want to have missile flight data print out into the console set this to 1
-var debugflight = 0;
+var debugflight = 1;
 
 # if you want to print messages into the console that relate to releasing of the missile, and it hitting set this to 1
 var debugmessages = 0;
@@ -170,7 +170,11 @@ var MISSILE = {
         m.max_detect_rng    = getprop("controls/armament/missile/max-detection-rng-nm");
         m.max_seeker_dev    = getprop("controls/armament/missile/track-max-deg") / 2;
         m.force_lbs         = getprop("controls/armament/missile/thrust-lbs");
+        m.pitbullrngm         = getprop("controls/armament/missile/pbrange");
+        m.pitbull = 0;
+        m.force_lbs_stage2    = getprop("controls/armament/missile/thrust-lbs-stage-2");
         m.thrust_duration   = getprop("controls/armament/missile/thrust-duration-sec");
+        m.thrust_duration_stage2 = getprop("controls/armament/missile/thrust-duration-sec-stage2");
         m.weight_launch_lbs = getprop("controls/armament/missile/weight-launch-lbs");
         m.weight_whead_lbs  = getprop("controls/armament/missile/weight-warhead-lbs");
         m.cd                = getprop("controls/armament/missile/drag-coeff");
@@ -186,9 +190,17 @@ var MISSILE = {
         m.cruisealt         = getprop("controls/armament/missile/cruise_alt");
         m.flareres          = getprop("controls/armament/missile/flareres");
         m.isbomb            = getprop("controls/armament/missile/isbomb");
+        m.messagesent = 0;
+        m.drop_time             = 0;    
+        m.deploy_time           = 0;  
         m.last_coord        = nil;
         m.unique_id         = -100;  # For missile alert to give each missile a number
+        m.targetcallsign    = "nothgi"; # nothing
         m.isradarmissile    = 0;   # again, for missile alert sender to let our target know if this is radar or heat missile
+        m.eject_speed       = 0;
+       # m.ccip_altC = 0;
+       # m.ccip_dens = 0;
+       # m.ccip
         # Find the next index for "models/model" and create property node.
         # Find the next index for "ai/models/missile" and create property node.
         # (M. Franz, see Nasal/tanker.nas)
@@ -211,7 +223,7 @@ var MISSILE = {
         }
         m.ai = n.getChild("missile", i, 1);
         m.ai.getNode("valid", 1).setBoolValue(1);
-        var id_model = m.missile_model;
+        var id_model = m.missile_NoSmoke; # start with no smoke
         m.model.getNode("path", 1).setValue(id_model);
         m.life_time = 0;
         
@@ -447,6 +459,7 @@ var MISSILE = {
    var target = radar.GetTarget();
         if (target == nil) {
        var phrase =  me.fox ~ " at Nothing. Release " ~ me.NameOfMissile; #Missile shot
+
        me.fox = "Fox 1";  # Set only for proximity detect to fire missile with out lock and relock if target is back.
             if (debugmessages == 1) {
                print(phrase);
@@ -456,6 +469,11 @@ var MISSILE = {
         else 
         {
         var phrase =  me.fox ~ " at " ~ me.Tgt.get_Callsign() ~ ". Release " ~ me.NameOfMissile; #Missile shot
+        if (getprop("payload/armament/oldmsg") == 1){
+            setprop("sim/multiplay/chat", phrase);
+        }
+        me.targetcallsign = me.Tgt.get_Callsign();
+        print("Missile away!");
             if (debugmessages == 1) {
                print(phrase);
             }
@@ -540,6 +558,9 @@ if (debugmessages == 1) {
     print("Missile gave up and decided to miss due to flare / chaff.");
 }
             var phrase = me.NameOfMissile ~ " Report : Fooled by enemy's Countermessures and missed.";
+                    if (getprop("payload/armament/oldmsg") == 1){
+            setprop("sim/multiplay/chat", phrase);
+        }
             if(MPMessaging.getValue() == 1)
             {
                 damage.damageLog.push(phrase);
@@ -557,30 +578,24 @@ if (debugmessages == 1) {
         print("Flare detect: There are no deployed flares");
     }
     }
-
-
-
 } else {
     if (debugsysmessages == 1) {
     print("Flare detect: there is no target. Not searching for flares");
+        }
     }
-
-}
-
-
 },
 
 
-                #nil, -1, -1, 0,   tID,  "delete()"
 
 sendinflight: func(call,lat,lon,alt,hdg,ptch,speed,unique,deleted,tid){
     #Missile alert sender/missile smoke over damage MP
     if(getprop("payload/armament/msg")){
 
-    if(me.free == 0) {
+    if(me.free == 1) {
     if (debugsysmessages == 1) {
         print("Missile is currently free, sendinflight()"); 
         }
+        # return;
     }
         if (debugsysmessages == 1) {
 print("Unique ID: ");
@@ -604,40 +619,39 @@ print("Unique ID: ");
     }  else {
         typeID = tid;
     }
-var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted?damage.DESTROY:damage.MOVE, damage.DamageRecipient.typeID2emesaryID(typeID));
+        var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted?damage.DESTROY:damage.MOVE, damage.DamageRecipient.typeID2emesaryID(typeID));
         var altM = alt*FT2M;
         msg.Position.set_latlon(lat,lon,altM);
         if (me.isradarmissile != 0){
+        if (me.pitbullrngm != 0) {
+                if (me.pitbull == 1){
+            #screen.log.write("ALERT!");
+            if (me.messagesent == 0){
+                screen.log.write("" ~ me.NameOfMissile ~ ": Pitbull");
+                me.messagesent = 1;
+            }
+            msg.Flags = 1;#ready
+
+                } else {
+            msg.Flags = 0;#not ready         
+                }
+        } else {
             msg.Flags = 1;#bit # Radar is there
+        }
+
         } else {
             msg.Flags = 0;#bit # Radar isnt' there
         }
-
         msg.Flags = bits.set(msg.Flags, 1); # engine is running
         # Add this to the line if its semi active (todo) msg.Flags = bits.set(msg.Flags, 2);
         msg.IsDistinct = !deleted; # The missile is "Not" dead
-        var target = radar.GetTarget();              # Todo. set that to a property. then leave it be
                 if (call == 1) {
-        if (target == nil) {
-            var callsign = "none";
-        if (debugsysmessages == 1) {
-        print("No target, Missile alert");
-        print("No target, Missile alert");
-        print("No target, Missile alert");
-        print("No target, Missile alert");
-        print("No target, Missile alert");
-        print("No target, Missile alert");
-    }
-
-        msg.RemoteCallsign = "";
-        } else {
-            var callsign = me.Tgt.get_Callsign(); 
-
+                    #print(me.Tgt.get_Callsign());
+            var callsign = me.targetcallsign;
         }
-    } else {
+      else {
             var callsign = ""; 
-
-        }
+           }
         msg.RemoteCallsign = callsign;
         msg.UniqueIndex = ""~typeID~unique; # tid and the current missile number
         msg.Pitch = ptch; # simple
@@ -647,11 +661,34 @@ var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted
         notifications.geoBridgedTransmitter.NotifyAll(msg); # send
                 if (debugsysmessages == 1) {
         print("Missile alert sent successfully");
-    }
-
-    
+        }
     }
 },
+
+
+broddamage: func (cs,dist,msl) {
+    if(msl == "Aim-120"){msl="Aim-120";typeID = 52;}
+    if(msl == "Aim-7"){msl="Aim-7";typeID = 55;}
+    if(msl == "Aim-9x"){msl="Aim-9x";typeID = 98;}
+    if(msl == "GBU-39"){msl="GBU-39";typeID = 18;}  # Missile definitions   
+    if(msl == "JDAM"){msl="JDAM";typeID = 35;}  
+    if(msl == "JDAM"){msl="JDAM";typeID = 6;}  
+    if(msl == "Aim-9m"){msl="Aim-9m";typeID = 69;}  
+    if(msl == "AGM-84"){msl="AGM-84";typeID = 1;}  
+    if(msl == "AGM-154"){msl="AGM-154";typeID = 4;}       
+    if(msl == "AGM-88"){msl="AGM-88";typeID = 2;}    
+    if(msl == "AGM-65"){msl="AGM-65";typeID = 58;}
+    if(msl == "TB-01"){msl="TB-01";typeID = 35;}
+    if(msl == "eject"){msl="eject";typeID = 93;}
+    var msg = notifications.ArmamentNotification.new("mhit", 4, damage.DamageRecipient.typeID2emesaryID(typeID));
+    msg.RelativeAltitude = 0;
+    msg.Bearing = 90;
+    msg.Distance = dist;  # this has been buging alot. so if it hits itll hit good. if not then no hit good
+    msg.RemoteCallsign = cs;
+    notifications.hitBridgedTransmitter.NotifyAll(msg);
+    damage.damageLog.push(sprintf("You hit "~cs~" with "~msl~" at %.1f meters", dist));
+},
+
 
 #setprop("controls/armament/pos/lat",me.coord.lat());
 #setprop("controls/armament/pos/lon",me.coord.lon());
@@ -699,12 +736,18 @@ var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted
                     if (debugsysmessages == 1) {
 -            print("Missile launched from a rail");
                         }
-
+            f_lbs = 0;
             if(me.life_time > 0)
             {
-                f_lbs = me.force_lbs * 0.3;
+                f_lbs = me.force_lbs * 0.1;
+                var Dapath = me.missile_model;
+            if(me.model.getNode("path", 1).getValue() != Dapath)
+                {
+                #print(Dapath);
+                me.reload_model(Dapath);
+                }
             }
-            if(me.life_time > 0.5)
+            if(me.life_time > 0.3)
             {
                 f_lbs = me.force_lbs * 0.3;
             }
@@ -715,14 +758,25 @@ var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted
             {
                 f_lbs = me.force_lbs * 0;
             }
-            if(me.life_time > 1)
+            if(me.life_time > 0.5)
             {
                 f_lbs = me.force_lbs * 0.3;
+                var Dapath = me.missile_model;
+            if(me.model.getNode("path", 1).getValue() != Dapath)
+            {
+                #print(Dapath);
+                me.reload_model(Dapath);
+            }
             }
 
         }
-        # this do work for the moment... need to know how to reload a 3D model...
         if(me.life_time > me.thrust_duration)
+        {
+            f_lbs = me.force_lbs_stage2 * 0.3;
+            print("stage2 active");
+        }
+        # stage 2
+if(me.life_time > me.thrust_duration_stage2)
         {
             var Dapath = me.missile_NoSmoke;
             if(me.model.getNode("path", 1).getValue() != Dapath)
@@ -734,6 +788,8 @@ var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted
             f_lbs = 0;
             #me.smoke_prop.setBoolValue(0);
         }
+        
+        print("Engine thrust:", f_lbs);
         
 # Anti-Rad
 
@@ -804,7 +860,7 @@ var msg = notifications.ArmamentInFlightNotification.new("mfly", unique, deleted
                         setprop("payload/armament/flares", 0);
                                         me.animate_explosion();
                     settimer(func(){ me.del(); }, 1);
-                    setprop("sim/messages/atc", "missile self distructed");
+                    setprop("sim/messages/atc", "Missile self distructed. (too low speed)");
                     return;
             }
         }
@@ -890,7 +946,7 @@ var OurLon       = props.globals.getNode("position/longitude-deg");
 
         if (debugflight == 1) {
 -                print("MSL Still Tracking Target : Elevation ", me.track_signal_e, "Heading ", me.track_signal_h, " Gload : ", myG);
-    }
+                }
 
 
 
@@ -949,7 +1005,7 @@ var OurLon       = props.globals.getNode("position/longitude-deg");
                 # the explosion animation.
                 settimer(func{me.del();}, 4);
                         if (debugmessages == 1) {
--                print("booom he ded like a brick (missile hit target successfully!)");
+                print("booom he ded like a brick (missile hit target successfully!)");
                     }
 
                     setprop("payload/armament/flares", 0);
@@ -1025,7 +1081,7 @@ var mslalt = getprop("controls/armament/pos/alt");
 				}
                     }
                             if (debugflight == 1) {
--                    print("Missile hit the ground");
+                    print("Missile hit the ground");
     }
 
                     me.free = 1;
@@ -1054,17 +1110,17 @@ var mslalt = getprop("controls/armament/pos/alt");
 
     update_track: func()
     {
-
-
-
-
-
         if(me.Tgt == nil)
         {
             me.fox = "Fox 1";
-                            me.free = 1;
+                            
                                 setprop("payload/armament/flares", 0);
-            return(1);
+            print("tgt nil");
+        if (getprop("controls/radar/weaponcoords") == 0) {
+            me.free = 1;
+                    return(1);
+        }
+
         }
         if(me.status == 0)
         {
@@ -1107,22 +1163,85 @@ var mslalt = getprop("controls/armament/pos/alt");
         else
         {
             # status = launched : compute target position relative to seeker head.
-            
             # Get target position.
+            if (getprop("controls/radar/weaponcoords") == 1){
+                            var lat = getprop("controls/radar/gpslock/lat");
+    var lon = getprop("controls/radar/gpslock/lon");
+    var alt = getprop("controls/radar/gpslock/alt");
+    var coord = geo.Coord.new();
+    var gndelev = alt*FT2M;
+    print("coord: lat:" ~ lat);
+    print("coord: lon:" ~ lon);
+    print("coord: alt:" ~ alt);
+    if (gndelev <= 0) {
+        gndelev = geo.elevation(lat, lon);
+       if (gndelev != nil){
+            print("gndelev: " ~ gndelev);
+        }
+       if (gndelev == nil){
+            # oh no
+            gndelev = 0;
+        }
+    }
+    print(gndelev);
+            var t_alt =  gndelev;
+            } else {
+                                            if (me.Tgt == nil) {
+                                me.free = 1;
+                                return;
+                            }
             var t_alt =  me.Tgt.get_altitude();
+            }
+
             
             # problem here : We have to calculate de alt difference before
             # calculate the other coord.
             # Prevision of the next position with speed & heading and dt->time to next position
             # Prevision of the next altitude depend on the target appproch on the next second. dt = 0.1
             #me.vApproch;
-            
-            var next_alt = t_alt - math.sin(me.Tgt.get_Pitch() * D2R) * me.Tgt.get_Speed() * 0.5144 * 0.1;
+                        if (getprop("controls/radar/weaponcoords") == 1){
+                    var next_alt = t_alt;
+                        } else {
+                            if (me.Tgt == nil) {
+                                return;
+                            }
+                     var next_alt = t_alt - math.sin(me.Tgt.get_Pitch() * D2R) * me.Tgt.get_Speed() * 0.5144 * 0.1;
+                        }
+
             
             # nextGeo, depending of the new alt, with a constant speed of the
             # aircraft, 0.2 is the "time"of the precision, in second. This need
             # to be not arbitrary
             
+                    if (getprop("controls/radar/weaponcoords") == 1) {
+                    var lat = getprop("controls/radar/gpslock/lat");
+    var lon = getprop("controls/radar/gpslock/lon");
+    var alt = getprop("controls/radar/gpslock/alt");
+    var coord = geo.Coord.new();
+    var gndelev = alt*FT2M;
+    print("coord: lat:" ~ lat);
+    print("coord: lon:" ~ lon);
+    print("coord: alt:" ~ alt);
+    if (gndelev <= 0) {
+        gndelev = geo.elevation(lat, lon);
+       if (gndelev != nil){
+            print("gndelev: " ~ gndelev);
+        }
+       if (gndelev == nil){
+            # oh no
+            gndelev = 0;
+        }
+    }
+    print(gndelev);
+    
+            var nextGeo = nextGeoloc(lat,
+                lon,
+                0,
+                0,
+                0.1);
+                t_alt = gndelev;
+                print("target set to gps");
+            } else {
             var nextGeo = nextGeoloc(me.Tgt.get_Latitude(),
                 me.Tgt.get_Longitude(),
                 me.Tgt.get_heading(),
@@ -1130,6 +1249,10 @@ var mslalt = getprop("controls/armament/pos/alt");
                 0.1);
             
             t_alt = next_alt;
+            }
+print("target ran");
+
+
             me.t_coord.set_latlon(nextGeo.lat(), nextGeo.lon(), t_alt);
             
             #print("Alt: ", t_alt, " Lat", me.Tgt.get_Latitude(), " Long : ", me.Tgt.get_Longitude());
@@ -1152,11 +1275,10 @@ var mslalt = getprop("controls/armament/pos/alt");
                     {
                         Daground = me.nextGroundElevation; #in meters
                     }
-                    if(t_dist_m > 500)
+                    if(t_dist_m > 5000)
                     {
                         # it's 1 or 2 seconds for this kinds of missiles...
                         var t_alt_delta_m = (me.cruisealt + Daground - me.alt) * FT2M;
-                        #print("var t_alt_delta_m : "~t_alt_delta_m);
                         if(me.cruisealt + Daground > me.alt)
                         {
                             # 200 is for a very short reaction to terrain
@@ -1250,20 +1372,67 @@ var mslalt = getprop("controls/armament/pos/alt");
             me.init_tgt_e = 0; #last_tgt_e;
             me.init_tgt_h = 0; #last_tgt_h;
             #}
-            
+                       if (me.pitbullrngm != 0) {
+
+                print("can pitbull");
+                # can pitbull
+                if (1 == 1) {
+   
+
+
+                    if (t_dist_m > 30000) { # 16nm
+                        # Cruise
+                        e_gain = 0.007;
+                        h_gain = 0.007;                    #    screen.log.write("> 30000!");
+                    } elsif (t_dist_m > 20000) { # 10nm
+                                # Cruise
+                            e_gain = 0.08;
+                            h_gain = 0.08;
+                        }  elsif (t_dist_m > 10000) { # 10nm
+                            e_gain = 0.35;
+                            h_gain = 0.35;
+                            me.pitbull = 1;
+                            #missilealert();
+                        }  elsif (t_dist_m > 9000) { # 10nm
+                            e_gain = 0.7;
+                            h_gain = 0.7;
+                            #missilealert();
+                        }  elsif (t_dist_m > 7000) { # 10nm
+                            e_gain = (me.update_track_time-me.StartTime - 1) / 4;
+                            h_gain = (me.update_track_time-me.StartTime - 1) / 4;
+                            #missilealert();
+                        }
+
+                        if (me.pitbull == 1) {
+                            e_gain = 1;
+                            h_gain = 1;
+                        }
+
+                    }
+                }
             if(me.update_track_time - me.StartTime < 3)
             {
-                e_gain = (me.update_track_time-me.StartTime - 1) / 2;
-                h_gain = (me.update_track_time-me.StartTime - 1) / 2;
+                 if (me.pitbullrngm == 0) {
+                  #  screen.log.write("pitbull is appearntly off");
+                e_gain = (me.update_track_time-me.StartTime - 1) / 4;
+                h_gain = (me.update_track_time-me.StartTime - 1) / 4;
+                 }
+               
+                #e_gain = 0;
+                #h_gain = 0;
+
             }
             if(me.update_track_time - me.StartTime < 1)
             {
                 e_gain = 0;
                 h_gain = 0;
             }
-            #print((me.update_track_time-me.StartTime-1)/2);
+            #screen.log.write(e_gain);
+            print((me.update_track_time-me.StartTime-1)/2);
             # compute target deviation variation then seeker move to keep
             # this deviation constant.
+            # Main Guidance Coeff:
+            
             me.track_signal_e = (me.curr_tgt_e - me.init_tgt_e) * e_gain;
             me.track_signal_h = (me.curr_tgt_h - me.init_tgt_h) * h_gain;
             
@@ -1444,11 +1613,35 @@ var semiactive = 0;
                         msg.RemoteCallsign = me.Tgt.get_Callsign();
                         notifications.hitBridgedTransmitter.NotifyAll(msg);
                         damage.damageLog.push(sprintf("You hit "~me.Tgt.get_Callsign()~" with "~me.NameOfMissile~" at %.1f meters", me.direct_dist_m));
+                        var missilename = "invalid weapon";
+                                                        if (getprop("payload/armament/oldmsg") == 1){
+                                                            if (me.NameOfMissile == "Aim-9x"){
+                                                                missilename = "AIM-9";
+                                                            }
+                                                            if (me.NameOfMissile == "JDAM"){
+                                                                missilename = "GBU-31";
+                                                            }
+                                                            if (me.NameOfMissile == "Aim-120"){
+                                                                missilename = "AIM-120";
+                                                            }
+            setprop("sim/multiplay/chat", sprintf(""~missilename~" exploded: %.1f meters from: "~me.Tgt.get_Callsign()~":.....", 0.3));
+        }
                     
                     }
                     else
                     {
+                        var missilename = "invalid weapon";
                         setprop("/sim/messages/atc", phrase);
+                                                        if (getprop("payload/armament/oldmsg") == 1){
+                                                            if (me.NameOfMissile == "Aim-9x"){
+                                                                missilename = "AIM-9";
+                                                            }
+                                                            if (me.NameOfMissile == "Aim-120"){
+                                                                missilename = "AIM-120";
+                                                            }
+            setprop("sim/multiplay/chat", sprintf(""~missilename~" exploded: %.1f meters from: "~me.Tgt.get_Callsign()~":.....", 0.3));
+        }
+                
                     }
                     me.animate_explosion();
                     me.Tgt = nil;
@@ -1501,7 +1694,13 @@ var semiactive = 0;
     
     search: func(c){
         var tgt = c;
-        var target = radar.GetTarget();
+        if (getprop("controls/radar/weaponcoords") == 1) {
+            #screen.log.write("GPS active");
+            var target = radar.GetTarget();
+        } else {
+            var target = radar.GetTarget();
+        }
+
         if(me.status != 2)
         {
             var tempCoord = geo.aircraft_position();
@@ -1544,12 +1743,24 @@ var semiactive = 0;
         
         me.status = 1;
         me.Tgt = tgt;
-        
-        me.TgtLon_prop       = me.Tgt.get_Longitude; #getprop("/ai/closest/longitude");
-        me.TgtLat_prop       = me.Tgt.get_Latitude;  #getprop("/ai/closest/latitude");
-        me.TgtAlt_prop       = me.Tgt.get_altitude;  #getprop("/ai/closest/altitude");
-        me.TgtHdg_prop       = me.Tgt.get_heading;   #getprop("/ai/closest/heading");
-        #print("TUTUTTUTUTU ", me.Tgt.get_Speed());
+        # Can GPS stuff be here?
+        # if gps slaved override these with gps coords
+        if (getprop("controls/radar/weaponcoords") == 1) {
+ me.TgtLon_prop       = getprop("controls/radar/gpslock/lon");
+ me.TgtLat_prop       = getprop("controls/radar/gpslock/lat");
+ me.TgtAlt_prop       = getprop("controls/radar/gpslock/alt");
+ me.TgtHdg_prop       = 0;   #getprop("/ai/closest/heading");
+        } else {
+#setprop("controls/radar/weaponcoords", 1);
+#setprop("controls/radar/gpslock/lat", lat); 
+#setprop("controls/radar/gpslock/lon", lon); 
+#setprop("controls/radar/gpslock/alt", alt); 
+me.TgtLon_prop       = me.Tgt.get_Longitude; #getprop("/ai/closest/longitude");
+me.TgtLat_prop       = me.Tgt.get_Latitude;  #getprop("/ai/closest/latitude");
+me.TgtAlt_prop       = me.Tgt.get_altitude;  #getprop("/ai/closest/altitude");
+me.TgtHdg_prop       = me.Tgt.get_heading;   #getprop("/ai/closest/heading");
+#print("TUTUTTUTUTU ", me.Tgt.get_Speed());
+        }
         if(me.free == 0 and me.life_time > me.Life)
         {
             settimer(func(){me.update_track()}, 2);
@@ -1583,6 +1794,131 @@ var semiactive = 0;
         }
         return(v);
     },
+
+
+
+    	extrapolate: func (x, x1, x2, y1, y2) {
+    	return y1 + ((x - x1) / (x2 - x1)) * (y2 - y1);
+	},
+
+
+	clamp: func(v, min, max) { v < min ? min : v > max ? max : v },
+
+	getTerrain: func (from, to) {
+		me.xyz = {"x":from.x(),                  "y":from.y(),                 "z":from.z()};
+        me.dir = {"x":to.x()-from.x(),  "y":to.y()-from.y(), "z":to.z()-from.z()};
+        me.v = get_cart_ground_intersection(me.xyz, me.dir);
+        if (me.v != nil) {
+            me.terrain = geo.Coord.new();
+            me.terrain.set_latlon(me.v.lat, me.v.lon, me.v.elevation);
+            return me.terrain;
+        }
+        return nil;
+	},
+
+#missile.MISSILE.getCCIPdv(20,0.2);
+getCCIPdv: func (maxFallTime_sec, timeStep) {
+		# for non flat areas. Lower falltime or higher timestep means using less CPU time.
+		# returns nil for higher than maxFallTime_sec. Else a vector with [Coord, hasTimeToArm].
+        me.ccip_altC = getprop("position/altitude-ft")*FT2M;
+        me.ccip_dens = getprop("fdm/jsbsim/atmosphere/density-altitude");
+        me.ccip_speed_down_fps = getprop("velocities/speed-down-fps");
+        me.ccip_speed_east_fps = getprop("velocities/speed-east-fps");
+        me.ccip_speed_north_fps = getprop("velocities/speed-north-fps");
+
+		#   if (me.eject_speed != 0 and !me.rail) {
+		#   	# add ejector speed down from belly:
+		#   	me.aircraft_vec = [me.ccip_speed_north_fps,-me.ccip_speed_east_fps,-me.ccip_speed_down_fps];
+		#   	me.eject_vec    = me.myMath.normalize(me.myMath.eulerToCartesian3Z(-OurHdg.getValue(),OurPitch.getValue(),OurRoll.getValue()));
+		#   	me.eject_vec    = me.myMath.product(-me.eject_speed, me.eject_vec);
+		#   	me.init_rel_vec = me.myMath.plus(me.aircraft_vec, me.eject_vec);
+		#   	me.ccip_speed_down_fps = -me.init_rel_vec[2];
+		#   	me.ccip_speed_east_fps = -me.init_rel_vec[1];
+		#   	me.ccip_speed_north_fps = me.init_rel_vec[0];
+		#   }
+
+        me.ccip_t = 0.0;
+        me.ccip_dt = timeStep;
+        me.ccip_fps_z = -me.ccip_speed_down_fps;
+        me.ccip_fps_x = math.sqrt(me.ccip_speed_east_fps*me.ccip_speed_east_fps+me.ccip_speed_north_fps*me.ccip_speed_north_fps);
+        me.ccip_bomb = me;
+
+        me.ccip_rs = me.ccip_bomb.rho_sndspeed(getprop("sim/flight-model") == "jsb"?me.ccip_dens:me.ccip_altC*M2FT);
+        me.ccip_rho = me.ccip_rs[0];
+        me.weight_launch_lbs = getprop("controls/armament/missile/weight-launch-lbs");
+        me.ccip_mass = me.weight_launch_lbs * slugs_to_lbs;
+
+        me.ccipPos = geo.Coord.new(geo.aircraft_position());
+
+        # we calc heading from composite speeds, due to alpha and beta might influence direction bombs will fall:
+        if(me.ccip_fps_x == 0) return nil;
+        me.ccip_heading = geo.normdeg(math.atan2(me.ccip_speed_east_fps,me.ccip_speed_north_fps)*R2D);
+        #print();
+       # printf("CCIP     %.1f", me.ccip_heading);
+		me.ccip_pitch = math.atan2(me.ccip_fps_z, me.ccip_fps_x);
+        while (me.ccip_t <= maxFallTime_sec) {
+			me.ccip_t += me.ccip_dt;
+			#me.ccip_bomb.deploy = me.clamp(me.extrapolate(me.ccip_t, me.drop_time, me.drop_time+me.deploy_time,0,1),0,1);
+            me.ccip_bomb.deploy = me.clamp(me.extrapolate(me.ccip_t, 0, 0+0,0,1),0,1);
+			# Apply drag
+			me.ccip_fps = math.sqrt(me.ccip_fps_x*me.ccip_fps_x+me.ccip_fps_z*me.ccip_fps_z);
+			if (me.ccip_fps==0) return nil;
+			me.ccip_q = 0.5 * me.ccip_rho * me.ccip_fps * me.ccip_fps;
+			me.ccip_mach = me.ccip_fps / me.ccip_rs[1];
+            var cdm2 = 0;
+                    me.cd = getprop("controls/armament/missile/drag-coeff");
+                   # print(me.cd);
+            if(me.ccip_mach < 0.7)
+            {
+                cdm2 = 0.0125 * me.ccip_mach  + me.cd;
+            }
+            elsif(me.ccip_mach < 1.2)
+            {
+                cdm2 = 0.3742 * math.pow(me.ccip_mach, 2) - 0.252 * me.ccip_mach + 0.0021 + me.cd;
+            }
+            else
+            {
+                cdm2 = 0.2965 * math.pow(me.ccip_mach, -1.1506) + me.cd;
+            }
+			me.ccip_Cd = cdm2;
+            me.eda = getprop("controls/armament/missile/drag-area");
+			me.ccip_deacc = (me.ccip_Cd * me.ccip_q * me.eda) / me.ccip_mass;
+			me.ccip_fps -= me.ccip_deacc*me.ccip_dt;
+
+			# new components and pitch
+			me.ccip_fps_z = me.ccip_fps*math.sin(me.ccip_pitch);
+			me.ccip_fps_x = me.ccip_fps*math.cos(me.ccip_pitch);
+			me.ccip_fps_z -= g_fps * me.ccip_dt;
+			me.ccip_pitch = math.atan2(me.ccip_fps_z, me.ccip_fps_x);
+
+			# new position
+			me.ccip_altC = me.ccip_altC + me.ccip_fps_z*me.ccip_dt*FT2M;
+			me.ccip_dist = me.ccip_fps_x*me.ccip_dt*FT2M;
+			me.ccip_oldPos = geo.Coord.new(me.ccipPos);
+			me.ccipPos.apply_course_distance(me.ccip_heading, me.ccip_dist);
+			me.ccipPos.set_alt(me.ccip_altC);
+
+			# test terrain
+			me.ccip_grnd = geo.elevation(me.ccipPos.lat(),me.ccipPos.lon());
+			if (me.ccip_grnd != nil) {
+				if (me.ccip_grnd > me.ccip_altC) {
+					#return [me.ccipPos,me.arming_time<me.ccip_t];
+					me.result = me.getTerrain(me.ccip_oldPos, me.ccipPos);
+                            me.arming_time = 1;
+					if (me.result != nil) {
+						return [me.result, me.arming_time<me.ccip_t, me.ccip_t];
+					}
+					return [me.ccipPos,me.arming_time<me.ccip_t, me.ccip_t];
+					#var inter = me.extrapolate(me.ccip_grnd,me.ccip_altC,me.ccip_oldPos.alt(),0,1);
+					#return [me.interpolate(me.ccipPos,me.ccip_oldPos,inter),me.arming_time<me.ccip_t];
+				}
+			} else {
+				return nil;
+			}
+        }
+        return nil;
+},
+
     
 # TODO To be corrected...
     animation_flags_props: func(){

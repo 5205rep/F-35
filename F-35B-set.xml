@@ -18,7 +18,7 @@ Lockheed Martin F-35B Lightning II
     <model type="int">4</model>
   </rating>
 		<description>Lockheed Martin F-35B Lightning II</description>
-		<author>VooDoo, The FGUK Development Team, Geed (Sound), Petar Jedvaj, Detlef Faber, F-GTUX, First Air Force.</author>
+		<author>Phoenix and others</author>
   <variant-of>F-35A</variant-of>
 		<status>Modded to be ready for combat With included VTOLing happiness</status>
 	 	<flight-model>jsb</flight-model>
@@ -411,6 +411,27 @@ Lockheed Martin F-35B Lightning II
             <dialog-name>payload</dialog-name>
         </binding>
 </item>
+
+
+      <item>
+			<label>Jammer: Enable</label>
+			<binding>
+				<command>nasal</command>
+        <script>
+jammer.start();
+				</script>
+			</binding>
+		</item>
+      <item>
+			<label>Jammer: Disable</label>
+			<binding>
+				<command>nasal</command>
+        <script>
+jammer.stop();
+				</script>
+			</binding>
+		</item>
+
 	    </menu>
 	</default>
 	</menubar>
@@ -1304,9 +1325,22 @@ Lockheed Martin F-35B Lightning II
             <file>Aircraft/F-35/Nasal2/ArmamentNotification.nas</file>
             <file>Aircraft/F-35/Nasal2/GeoBridgedTransmitter.nas</file>
         </notifications>
+
+        
+         <vector>
+            <file>Aircraft/F-35/Nasal2/vector.nas</file> <!--math stuff-->
+        </vector>
         <damage>
             <file>Aircraft/F-35/Nasal2/damage.nas</file>
         </damage>
+        
+
+        		        <hudmath>
+            <file>Aircraft/F-35/Nasal/hud_math.nas</file>
+        </hudmath>
+  <canvas_HUD>
+            <file>Aircraft/F-35/Nasal/hudmain.nas</file>
+    </canvas_HUD>
 
 
        
@@ -1337,9 +1371,16 @@ Lockheed Martin F-35B Lightning II
         </rcs>
 
 
-        <datalink>
+
+<datalink>
 <file>Aircraft/F-35/Nasal/datalink.nas</file>
 </datalink>
+        <radar_system>
+        	<file>Aircraft/F-35/Nasal/radar-system-database.nas</file>
+            <file>Aircraft/F-35/Nasal/radar-system.nas</file>
+            <file>Aircraft/F-35/Nasal/rwr-only.nas</file>
+        </radar_system>
+
 		<radardist>
 			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
 		</radardist>
@@ -1428,15 +1469,10 @@ Lockheed Martin F-35B Lightning II
            <guns>
       <file>Aircraft/F-35/Nasal2/weapons.nas</file>
     </guns>
-  <canvas_HUD>
-            <file>Aircraft/F-35/Nasal/hud.nas</file>
-    </canvas_HUD>  
-  <canvas_HUD1>
-            <file>Aircraft/F-35/Nasal/hud2.nas</file>
-    </canvas_HUD1>  
-      <canvas_HUD2>
-            <file>Aircraft/F-35/Nasal/hud3.nas</file>
-    </canvas_HUD2> 
+    
+ <tacview>
+            <file>Aircraft/F-35/Nasal/tacview.nas</file>
+        </tacview>
 
       <dialogs>
             <file>Aircraft/F-35/Nasal2/dialogs.nas</file>
@@ -1455,6 +1491,12 @@ Lockheed Martin F-35B Lightning II
 		<systemalerts>
 			<file>Aircraft/F-35/Nasal/warning.nas</file>
 		</systemalerts>
+    		<fbw>
+			<file>Aircraft/F-35/Nasal/vtolcontrol.nas</file>
+		</fbw>
+    		<jammer>
+			<file>Aircraft/F-35/Nasal/jammer.nas</file>
+		</jammer>
    	</nasal>
 
 

@@ -236,7 +236,7 @@
 
 <!--Fly by wire controller-->
 
-<function name="fcs/pitch-trim-fbw">
+<function name="fcs/pitch-trim-fbw-pre">
             <description>Pitch trim FBW</description>
             <product>
               <table>
@@ -256,6 +256,21 @@
             </product>
           </function>
 
+
+<function name="fcs/pitch-trim-fbw">
+            <description>Pitch trim FBW</description>
+            <sum>
+<property>fcs/pitch-trim-fbw-pre</property>
+    <table>
+            <independentVar lookup="row">/controls/engines/engine/throttle</independentVar>
+            <tableData>
+              0      0.034   
+              0.98   0.034   
+              1      0.055   
+            </tableData>
+          </table>
+            </sum>
+          </function>
 
 
 <!--FBW limiter-->
@@ -285,11 +300,99 @@
 </product>
    </function>
 
+<!--Lef-->
+
+
+   
+   <function name="fcs/elev-ani-main">  <!--Main Elevator POS with Limit-->
+<product>
+      <property>fcs/elevator-pos-norm-limit</property>
+      <value>1</value>
+</product>
+   </function>
+
+
+<function name="fcs/leading-edge-flap">  
+        <table>
+            <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+            <independentVar lookup="column">aero/alpha-deg</independentVar>
+            <tableData>
+                     0    4    7    10   15   20   25   30   35   40   45   50
+              100    1    1    1    1    1    1    1    1    1    1    1    1
+              200    1    1    1    1    1    1    1    1    1    1    1    1
+              250    0    0    0.9  1    1    1    1    1    1    1    1    1
+              300    0    0    0.8  0.9  1    1    1    1    1    1    1    1
+              350    0    0    0.8  0.9  1    1    1    1    1    1    1    1
+              400    0    0    0.7  0.8  0.9  1    1    1    1    1    1    1
+              450    0    0    0.6  0.8  0.8  0.9  1    1    1    1    1    1
+              500    0    0    0.5  0.6  0.7  0.8  0.9  1    1    1    1    1
+              550    0    0    0.4  0.5  0.6  0.7  0.8  0.9  1    1    1    1  
+              600    0    0    0.3  0.4  0.5  0.6  0.7  0.8  0.9  1    1    1  
+              650    0    0    0.2  0.3  0.4  0.5  0.6  0.7  0.4  0.9  1    1
+              700    0    0    0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1  
+            </tableData>
+          </table>
+   </function>
+
+<function name="fcs/leading-edge-flap-gear">  
+
+        <table>
+            <independentVar lookup="row">/gear/gear/position-norm</independentVar>
+            <independentVar lookup="column">fcs/leading-edge-flap</independentVar>
+            <tableData> 
+                    0    1
+               0    0    1  
+               1    1    1  
+            </tableData>
+          </table>
+
+   </function>
+
+
 
   <channel name="Pitch">
 
+   <kinematic name="leading edge flaps">
+     <input>fcs/leading-edge-flap-gear</input> <!--Auto flaps when gear down, Manuel control when up-->
+     <traverse>
+       <setting>
+          <position>  0 </position>
+          <time>      0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>      0.8 </time>
+       </setting>
+
+     </traverse>
+     <output>fcs/leading-edge-flap-main</output>
+   </kinematic>
+
+   <kinematic name="fbwelev">
+     <input>fcs/elevator-cmd-norm</input> <!--Auto flaps when gear down, Manuel control when up-->
+     <traverse>
+       <setting>
+          <position> -1 </position>
+          <time>      0.5 </time>
+       </setting>
+       <setting>
+          <position>  0 </position>
+          <time>      0.5 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>      0.5 </time>
+       </setting>
+
+     </traverse>
+     <output>fcs/horiz-main</output>
+   </kinematic>
+
+
+
+
    <summer name="Pitch Trim Sum">
-      <input>fcs/elevator-cmd-norm</input>
+      <input>fcs/horiz-main</input>
       <input>fcs/pitch-trim-cmd-norm</input>
       <input>fcs/pitch-trim-fbw</input>
       <clipto>
@@ -324,8 +427,30 @@
 
   <channel name="Roll">
 
+
+
+   <kinematic name="fbwelev">
+     <input>fcs/aileron-cmd-norm</input> <!--Auto flaps when gear down, Manuel control when up-->
+     <traverse>
+       <setting>
+          <position> -1 </position>
+          <time>      0.5 </time>
+       </setting>
+       <setting>
+          <position>  0 </position>
+          <time>      0.5 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>      0.5 </time>
+       </setting>
+
+     </traverse>
+     <output>fcs/ailern-main</output>
+   </kinematic>
+
    <summer name="Roll Trim Sum">
-      <input>fcs/aileron-cmd-norm</input>
+      <input>fcs/ailern-main</input>
       <input>fcs/roll-trim-cmd-norm</input>
       <clipto>
         <min> -1 </min>
@@ -653,6 +778,16 @@
            <property>metrics/Sw-sqft</property>
            <property>fcs/flap-pos-deg</property>
            <value> 0.01167 </value>
+       </product>
+    </function>
+
+    <function name="aero/force/Lift_flap_edge">
+       <description>Delta Lift due to leading edge flaps</description>
+       <product>
+           <property>aero/qbar-psf</property>
+           <property>metrics/Sw-sqft</property>
+           <property>fcs/leading-edge-flap-main</property>
+           <value> 0.08167 </value>
        </product>
     </function>
 

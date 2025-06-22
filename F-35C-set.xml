@@ -19,7 +19,7 @@ Lockheed Martin F-35C Lightning II
     <model type="int">4</model>
   </rating>
     <description>Lockheed Martin F-35C Lightning II</description>
-		<author>VooDoo, The FGUK Development Team, Geed (Sound), Petar Jedvaj, Detlef Faber, F-GTUX, First Air Force.</author>
+		<author>Phoenix and others</author>
 		<status>Modded to be ready for combat</status>
   <variant-of>F-35A</variant-of>
 	 	<flight-model>jsb</flight-model>
@@ -409,6 +409,28 @@ Lockheed Martin F-35C Lightning II
             <dialog-name>payload</dialog-name>
         </binding>
 </item>
+
+
+      <item>
+			<label>Jammer: Enable</label>
+			<binding>
+				<command>nasal</command>
+<script>
+jammer.start();
+				</script>
+			</binding>
+		</item>
+      <item>
+			<label>Jammer: Disable</label>
+			<binding>
+				<command>nasal</command>
+<script>
+jammer.stop();
+				</script>
+			</binding>
+		</item>
+
+
 	    </menu>
 	</default>
 	</menubar>
@@ -1447,7 +1469,7 @@ Lockheed Martin F-35C Lightning II
     <doors>
       <file>Aircraft/F-35/Nasal2/doors.nas</file>
     </doors>
-<!--Why do they need so much shit holy lolol
+<!--
     <c421>
       <file>Aircraft/F-35/Nasal2/convert.nas</file>
       <file>Aircraft/F-35/Nasal2/Electrical.nas</file>
@@ -1485,15 +1507,14 @@ Lockheed Martin F-35C Lightning II
  <tacview>
             <file>Aircraft/F-35/Nasal/tacview.nas</file>
         </tacview>
+        		        <hudmath>
+            <file>Aircraft/F-35/Nasal/hud_math.nas</file>
+        </hudmath>
   <canvas_HUD>
-            <file>Aircraft/F-35/Nasal/hud.nas</file>
-    </canvas_HUD>  
-  <canvas_HUD1>
-            <file>Aircraft/F-35/Nasal/hud2.nas</file>
-    </canvas_HUD1>  
-      <canvas_HUD2>
-            <file>Aircraft/F-35/Nasal/hud3.nas</file>
-    </canvas_HUD2>  
+            <file>Aircraft/F-35/Nasal/hudmain.nas</file>
+    </canvas_HUD>
+
+
 
       <dialogs>
             <file>Aircraft/F-35/Nasal2/dialogs.nas</file>
@@ -1512,6 +1533,10 @@ Lockheed Martin F-35C Lightning II
 		<systemalerts>
 			<file>Aircraft/F-35/Nasal/warning.nas</file>
 		</systemalerts>
+
+    		<jammer>
+			<file>Aircraft/F-35/Nasal/jammer.nas</file>
+		</jammer>
    	</nasal>
 
 

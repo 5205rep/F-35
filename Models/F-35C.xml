@@ -536,136 +536,179 @@ Z is Up and down-->
 	</animation>
 
 	<!-- Animations -->
-
-<!--HMCS-->
-
- <animation>
-  <type>rotate</type>
-  <object-name>hudglass3</object-name>
-  <property>sim/current-view/pitch-offset-deg</property>
-  <factor>-1.2</factor>
-
-  <axis>
-  <object-name>hmcs-pitch</object-name>
-  </axis>
+<animation>
+  <type>pick</type>
+   <object-name>FLOOD</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/turn-off-lights</property>
+      </binding>
+       </action>
  </animation>
  <animation>
   <type>rotate</type>
-  <object-name>hudglass3</object-name>
-  <property>sim/current-view/heading-offset-deg</property>
-  <factor>-1.</factor>
+  <object-name>FLOOD</object-name>
+  <property>controls/lighting/turn-off-lights</property>
+  <factor>-40</factor>
 
   <axis>
-  <object-name>hmcs-heading</object-name>
+  <object-name>FLOOD-axis</object-name>
   </axis>
  </animation>
 
-
-
- <animation>
-  <type>rotate</type>
-  <object-name>hudglass</object-name>
-  <property>sim/current-view/pitch-offset-deg</property>
-  <factor>1.15</factor>
-
-  <axis>
-  <object-name>hmcs2-pitch</object-name>
-  </axis>
- </animation>
- <animation>
-  <type>rotate</type>
-  <object-name>hudglass</object-name>
-  <property>sim/current-view/heading-offset-deg</property>
-  <factor>-1.1</factor>
-
-  <axis>
-  <object-name>hmcs-heading</object-name>
-  </axis>
- </animation>
-
- <animation>
-  <type>rotate</type>
-  <object-name>hudglass2</object-name>
-  <property>sim/current-view/pitch-offset-deg</property>
-  <factor>-1.15</factor>
-
-  <axis>
-  <object-name>hmcs2-pitch</object-name>
-  </axis>
+<animation>
+  <type>pick</type>
+   <object-name>STROBE</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/strobe</property>
+      </binding>
+       </action>
  </animation>
  <animation>
   <type>rotate</type>
-  <object-name>hudglass2</object-name>
-  <property>sim/current-view/heading-offset-deg</property>
-  <factor>-0.97</factor>
+  <object-name>STROBE</object-name>
+  <property>controls/lighting/strobe</property>
+  <factor>-40</factor>
 
   <axis>
-  <object-name>hmcs-heading</object-name>
+  <object-name>STROBE-axis</object-name>
   </axis>
  </animation>
 
-<!--270, 90-->
+<animation>
+  <type>pick</type>
+   <object-name>NAV</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/lighting/nav-lights</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>NAV</object-name>
+  <property>controls/lighting/nav-lights</property>
+  <factor>-40</factor>
 
-  <animation>
-    <type>select</type>
-    <object-name>hudglass</object-name>
-    <condition>
-      <less-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>180</value>
-      </less-than>
-	        <greater-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>50</value>
-      </greater-than>
-    </condition>
-  </animation>
-  <animation>
-    <type>select</type>
-    <object-name>hudglass2</object-name>
-    <condition>
-      <greater-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>180</value>
-      </greater-than>
-	        <less-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>290</value>
-      </less-than>
-    </condition>
-  </animation>
+  <axis>
+  <object-name>NAV-axis</object-name>
+  </axis>
+ </animation>
+
+<animation>
+    <type>material</type>
+<object-name>LeftSideConsole_1</object-name>
+<object-name>RightSideConsole_1</object-name>
+<object-name>RightandLeftPanels_1</object-name>
+   <object-name>START</object-name>
+  <object-name>STROBE</object-name>
+  <object-name>NAV</object-name>
+     <object-name>ENG</object-name>
+	      <object-name>ACC1</object-name>
+     <object-name>ACC2</object-name>
+	      <object-name>BATT1</object-name>
+		     <object-name>BATT2</object-name>
+			      <object-name>BATTMAIN</object-name>
+     <object-name>FORM</object-name>
+     <object-name>UPPKNOB</object-name>
+	   <object-name>FLOOD</object-name>
+    <emission>
+      <factor-prop>controls/lighting/turn-off-lights</factor-prop>
+      <red>   0.5 </red>
+      <green> 0.5 </green>
+      <blue>  0.4 </blue>
+    </emission>
+  </animation> 
 
 
-  <animation>
-    <type>select</type>
-    <object-name>hudglass3</object-name>
-    <condition>
-	<or>
-      <greater-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>290</value>
-      </greater-than>
-	        <less-than>
-        <property>sim/current-view/heading-offset-deg</property>
-        <value>50</value>
-      </less-than>
-	  </or>
-    </condition>
-  </animation>
-  <animation>
-    <type>select</type>
-  <object-name>PilotHead</object-name>
-  <object-name>Visor</object-name>
-    <object-name>pilotmain</object-name>
-	    <object-name>SeatandStraps</object-name>
 
-    <condition>
-      <equals>
-        <property>sim/current-view/internal</property>
-        <value>0</value>
-      </equals>
-    </condition>
-  </animation>
+<animation>
+  <type>pick</type>
+   <object-name>START</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/starter</property>
+      </binding>
+	             <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine[1]/starter</property>
+      </binding>
+       </action>
+ </animation>
+
+<animation>
+  <type>pick</type>
+   <object-name>ENG</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/cutoff</property>
+      </binding>
+	             <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine[1]/cutoff</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>ENG</object-name>
+  <property>controls/engines/engine/cutoff</property>
+  <factor>-60</factor>
+
+  <axis>
+  <object-name>ENG-axis</object-name>
+  </axis>
+ </animation>
+
+
+
+
+
+<!--cutoff-->
+<animation>
+  <type>pick</type>
+   <object-name>ACC1</object-name>
+   <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <interval-sec>0.2</interval-sec>
+           <binding>
+        <command>property-toggle</command>
+        <property>controls/engines/engine/ACC</property>
+      </binding>
+       </action>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>ACC1</object-name>
+  <property>controls/engines/engine/ACC</property>
+  <factor>40</factor>
+
+  <axis>
+  <object-name>ACC1-axis</object-name>
+  </axis>
+ </animation>
 
 <!-- Pilot Head -->
 

@@ -8,6 +8,12 @@ var time = getprop("/sim/time/elapsed-sec");
 var weapon = getprop("/controls/armament/selected-weapon-digit");
 
 
+var vtolfbw = func{
+	setprop("/autopilot/settings/target-pitch-deg",getprop("fdm/jsbsim/fcs/fbwvtolelev"));
+}
+
+ #= maketimer(0.1,vtolfbw);
+#vtoltimer.start(); 
 # Open the bay doors
 # Determine weapon
 

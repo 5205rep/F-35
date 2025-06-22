@@ -10,7 +10,7 @@ Lockheed Martin F-35A Lightning II
 	<sim>
 
 		  <long-description>
-  The F-35A Lightning II is a fifth-generation, multi-role stealth fighter aircraft designed for the U.S. Air Force and allied nations. It is the conventional takeoff and landing (CTOL) variant of the F-35 family, featuring advanced stealth capabilities, cutting-edge avionics, and superior situational awareness. The F-35A is equipped with a versatile weapons payload, including air-to-air, air-to-ground, and precision-guided munitions. Its advanced sensor fusion and data sharing capabilities enhance operational effectiveness in modern warfare. Additionally, it is the only variant equipped with an internal gun, the GAU-22/A, for close air support and dogfighting.
+        The F-35 is too slow!! So ill make it faster just for you! Enjoy! :D
   </long-description>
     <rating>
     <FDM type="int">3</FDM>
@@ -18,12 +18,12 @@ Lockheed Martin F-35A Lightning II
     <cockpit type="int">3</cockpit>
     <model type="int">4</model>
   </rating>
-    <description>Lockheed Martin F-35A Lightning II</description>
+    <description>Lockheed Martin F-35A Lightning II (With Unrealistic slightly faster engine)</description>
 		<author>Phoenix and others</author>
 		<status>Modded to be ready for combat</status>
-  <primary-set type="bool">true</primary-set>
+  <variant-of>F-35A</variant-of>
 	 	<flight-model>jsb</flight-model>
-		<aero>F-35A-jsbsim</aero>
+		<aero>F-35Af-jsbsim</aero>
 		<fuel-fraction>0.70</fuel-fraction>
 <rendering>
  <refl_correction type="string">-0.51</refl_correction>
@@ -409,26 +409,6 @@ Lockheed Martin F-35A Lightning II
             <dialog-name>payload</dialog-name>
         </binding>
 </item>
-
-      <item>
-			<label>Jammer: Enable</label>
-			<binding>
-				<command>nasal</command>
-<script>
-jammer.start();
-				</script>
-			</binding>
-		</item>
-      <item>
-			<label>Jammer: Disable</label>
-			<binding>
-				<command>nasal</command>
-        <script>
-jammer.stop();
-				</script>
-			</binding>
-		</item>
-
 	    </menu>
 	</default>
 	</menubar>
@@ -1495,12 +1475,6 @@ jammer.stop();
 		<systemalerts>
 			<file>Aircraft/F-35/Nasal/warning.nas</file>
 		</systemalerts>
-
-
-		<jammer>
-			<file>Aircraft/F-35/Nasal/jammer.nas</file>
-		</jammer>
-
    	</nasal>
 
 

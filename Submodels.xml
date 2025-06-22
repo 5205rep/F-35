@@ -45,44 +45,7 @@
     <submodel-path>Aircraft/F-35/Models/Effects/Submodels.xml</submodel-path>
   </submodel>
   
-  <submodel> 
-    <name>smoke</name>
-    <model>Aircraft/F-35/Models/Effects/Smoke.xml</model>
-    <trigger>controls/armament/trigger</trigger>
-    <speed>5</speed>
-    <repeat>true</repeat>
-    <delay>0</delay>
-    <count>-1</count>
-    <x-offset>-2.50 </x-offset>
-    <y-offset> 1.50 </y-offset>
-    <z-offset> 0.53</z-offset>
-    <pitch-offset> 0 </pitch-offset>
-    <yaw-offset> 0.0 </yaw-offset>
-    <pitch-offset> 0 </pitch-offset>
-    <eda>10</eda>
-    <wind>true</wind>
-    <buoyancy>33</buoyancy>
-    <life>2</life>
-  </submodel>
-    <submodel> 
-    <name>smoke2</name>
-    <model>Aircraft/F-35/Models/Effects/Smoke.xml</model>
-    <trigger>controls/armament/trigger</trigger>
-    <speed>6</speed>
-    <repeat>true</repeat>
-    <delay>0</delay>
-    <count>-1</count>
-    <x-offset>-2.50 </x-offset>
-    <y-offset> 1.50 </y-offset>
-    <z-offset> 0.53</z-offset>
-    <pitch-offset> 0 </pitch-offset>
-    <yaw-offset> 0.0 </yaw-offset>
-    <pitch-offset> 0 </pitch-offset>
-    <eda>10</eda>
-    <wind>true</wind>
-    <buoyancy>33</buoyancy>
-    <life>2</life>
-  </submodel>
+
   
   <!-- Countermeasures -->
 

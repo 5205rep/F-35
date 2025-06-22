@@ -267,6 +267,58 @@
 
 
     <flight_control name="F-35B">
+<property>/controls/engines/engine[0]/mixture</property>
+
+<function name="fcs/arewevtol">  
+          <table>
+            <independentVar lookup="row">/controls/engines/engine/mixture</independentVar>
+              <tableData>
+              0     1
+              0.2   1
+              0.21  0
+              1     0
+            </tableData>
+          </table>
+   </function>
+
+
+<function name="fcs/elevator-cmd-norm-pre">  
+           <table>
+            <independentVar lookup="row">/controls/flight/elevator</independentVar>
+            <independentVar lookup="column">fcs/arewevtol</independentVar>
+            <tableData>
+                     0    1
+              -1    -1    0
+               0     0    0
+               1     1    0
+            </tableData>
+          </table>
+   </function>
+<function name="fcs/vtol-elevator-cmd-norm-pre">  
+           <table>
+            <independentVar lookup="row">/controls/flight/VTOLelevator</independentVar>
+            <independentVar lookup="column">fcs/arewevtol</independentVar>
+            <tableData>
+                     0    1
+              -1     0   -1
+               0     0    0
+               1     0    1
+            </tableData>
+          </table>
+   </function>
+
+
+    <channel name="elevator">
+            <summer name="elev cmd combined">
+                <input>fcs/elevator-cmd-norm-pre</input>
+                <input>fcs/vtol-elevator-cmd-norm-pre</input>
+      <clipto>
+        <min> -1 </min>
+        <max>  1 </max>
+      </clipto>
+            </summer>
+          </channel>
+
 
 
 <function name="fcs/elevator-pos-norm-limit">  
@@ -294,7 +346,17 @@
    </function>
 
 
+<function name="fcs/fbwvtolelev">  
 
+    <table>
+            <independentVar lookup="row">/velocities/speed-north-fps</independentVar>
+              <tableData>
+              -10    10   
+<!--6.2-->    0      0 
+<!--8.6-->    10     -10 
+            </tableData>
+          </table>
+   </function>
 
 
    <function name="fcs/vertlto-pos-norm">  
@@ -356,6 +418,25 @@
 
 
 <!--vtol stuff here-->
+
+
+            <kinematic name="verticalTOL angle2">
+                <input>fcs/fbwvtolelev</input>
+                <traverse>
+                    <setting>
+                        <position>0</position>
+                        <time>.35</time>
+                    </setting>
+                    <setting>
+                        <position>1.5707</position>
+                        <time>0.35</time>
+                    </setting>
+                </traverse>
+                <output>/autopilot/settings/vtol-ptch</output>
+            </kinematic>
+
+
+
 
 
             <kinematic name="verticalTOL angle">
@@ -534,7 +615,7 @@
               -->
 
  <summer name="pitch-trim-sum">
- <input>fcs/elevator-cmd-norm</input>
+ <input>fcs/elev-cmd-combined</input>
  <input>fcs/pitch-trim-cmd-norm</input>
 
  <clipto>
@@ -1196,8 +1277,8 @@
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
                 0.00      0.005
-                0.81      0.060       <!--Tuned for realism-->
-                1.10      0.065
+                0.81      0.040       <!--Tuned for realism-->
+                1.10      0.045
                 1.80      0.018
             </tableData>
           </table>
@@ -1447,7 +1528,7 @@
 
 
           <sin>
-           <property>fcs/elevator-cmd-norm</property>
+           <property>fcs/elev-cmd-combined</property>
 
           </sin>
           <value>-1.8</value>

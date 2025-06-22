@@ -249,7 +249,7 @@ Z is Up and down-->
           </greater-than>
           <greater-than>
            <property>sim/multiplay/generic/float[1]</property>
-           <value>230</value>
+           <value>400</value>
           </greater-than>
        </and>
     </condition>

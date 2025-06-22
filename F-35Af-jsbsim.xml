@@ -80,11 +80,11 @@
 
  <ground_reactions>
 
-   <contact type="BOGEY" name="NOSE">
+  <contact type="BOGEY" name="NOSE">
    <location unit="IN">
      <x>  -79.56 </x>
      <y>   0.00 </y>
-     <z> -75.44 </z>
+     <z> -81.44 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -100,7 +100,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y> -37.80 </y>
-     <z> -78.44 </z>
+     <z> -81.84 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -116,7 +116,7 @@
    <location unit="IN">
      <x> 281.89 </x>
      <y>  37.80 </y>
-     <z> -78.44 </z>
+     <z> -81.84 </z>
    </location>
    <static_friction>  0.80 </static_friction>
    <dynamic_friction> 0.50 </dynamic_friction>
@@ -154,11 +154,10 @@
 
 
  </ground_reactions>
- <system file="hook.xml"/>
- <system file="cat.xml"/>
+
  <propulsion>
 
-        <engine file="F135-PW-600">
+        <engine file="F135-PW-600f">
     <location unit="IN">
       <x> 354.20 </x>
       <y>   0.00 </y>
@@ -302,8 +301,75 @@
 </product>
    </function>
 
+<!--Lef-->
+
+
+   
+   <function name="fcs/elev-ani-main">  <!--Main Elevator POS with Limit-->
+<product>
+      <property>fcs/elevator-pos-norm-limit</property>
+      <value>1</value>
+</product>
+   </function>
+
+
+<function name="fcs/leading-edge-flap">  
+        <table>
+            <independentVar lookup="row">/velocities/airspeed-kt</independentVar>
+            <independentVar lookup="column">aero/alpha-deg</independentVar>
+            <tableData>
+                     0    4    7    10   15   20   25   30   35   40   45   50
+              100    1    1    1    1    1    1    1    1    1    1    1    1
+              200    1    1    1    1    1    1    1    1    1    1    1    1
+              250    0    0    0.9  1    1    1    1    1    1    1    1    1
+              300    0    0    0.8  0.9  1    1    1    1    1    1    1    1
+              350    0    0    0.8  0.9  1    1    1    1    1    1    1    1
+              400    0    0    0.7  0.8  0.9  1    1    1    1    1    1    1
+              450    0    0    0.6  0.8  0.8  0.9  1    1    1    1    1    1
+              500    0    0    0.5  0.6  0.7  0.8  0.9  1    1    1    1    1
+              550    0    0    0.4  0.5  0.6  0.7  0.8  0.9  1    1    1    1  
+              600    0    0    0.3  0.4  0.5  0.6  0.7  0.8  0.9  1    1    1  
+              650    0    0    0.2  0.3  0.4  0.5  0.6  0.7  0.4  0.9  1    1
+              700    0    0    0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1  
+            </tableData>
+          </table>
+   </function>
+
+<function name="fcs/leading-edge-flap-gear">  
+
+        <table>
+            <independentVar lookup="row">/gear/gear/position-norm</independentVar>
+            <independentVar lookup="column">fcs/leading-edge-flap</independentVar>
+            <tableData> 
+                    0    1
+               0    0    1  
+               1    1    1  
+            </tableData>
+          </table>
+
+   </function>
+
+
 
   <channel name="Pitch">
+
+   <kinematic name="leading edge flaps">
+     <input>fcs/leading-edge-flap-gear</input> <!--Auto flaps when gear down, Manuel control when up-->
+     <traverse>
+       <setting>
+          <position>  0 </position>
+          <time>      0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>      0.8 </time>
+       </setting>
+
+     </traverse>
+     <output>fcs/leading-edge-flap-main</output>
+   </kinematic>
+
+
 
    <kinematic name="fbwelev">
      <input>fcs/elevator-cmd-norm</input> <!--Auto flaps when gear down, Manuel control when up-->
@@ -363,6 +429,7 @@
   </channel>
 
   <channel name="Roll">
+
 
    <kinematic name="fbwelev">
      <input>fcs/aileron-cmd-norm</input> <!--Auto flaps when gear down, Manuel control when up-->
@@ -716,6 +783,16 @@
        </product>
     </function>
 
+    <function name="aero/force/Lift_flap_edge">
+       <description>Delta Lift due to leading edge flaps</description>
+       <product>
+           <property>aero/qbar-psf</property>
+           <property>metrics/Sw-sqft</property>
+           <property>fcs/leading-edge-flap-main</property>
+           <value> 0.08167 </value>
+       </product>
+    </function>
+
     <function name="aero/force/Lift_speedbrake">
        <description>Delta Lift due to speedbrake</description>
        <product>
@@ -752,7 +829,7 @@
              -0.26    0.027
               0.00    0.021
               0.26    0.027
-              1.57    0.600
+              1.57    0.700
             </tableData>
           </table>
        </product>
@@ -778,8 +855,9 @@
             <tableData>
                 0.00      0.000
                 0.51      0.001
-                1.10      0.035
-                1.80      0.015
+                1.10      0.001
+                1.80      0.008
+                2.00      0.000 <!--Yay!-->
             </tableData>
           </table>
         </product>
@@ -1028,31 +1106,7 @@
  </aerodynamics>
 
  <external_reactions>
-    <force name="hook" frame="BODY">
-   <location unit="FT">
-    <x> 23.601 </x>
-    <y> 0 </y>
-    <z> -1.1334</z>
-   </location>
-   <direction>
-    <x>-0.9995</x>
-    <y> 0 </y>
-    <z> 0.01 </z>
-   </direction>
-  </force>
 
-  <force name="catapult" frame="BODY">
-   <location unit="IN">
-    <x> 0 </x>
-    <y> 0 </y>
-    <z> 0 </z>
-   </location>
-   <direction>
-    <x> 1 </x>
-    <y> 0 </y>
-    <z> 0 </z>
-   </direction>
-  </force>
  </external_reactions>
 
 </fdm_config>
