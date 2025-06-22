@@ -198,6 +198,7 @@ var MISSILE = {
         m.targetcallsign    = "nothgi"; # nothing
         m.isradarmissile    = 0;   # again, for missile alert sender to let our target know if this is radar or heat missile
         m.eject_speed       = 0;
+        m.divedist    = getprop("controls/armament/missile/divedist");
        # m.ccip_altC = 0;
        # m.ccip_dens = 0;
        # m.ccip
@@ -611,6 +612,7 @@ print("Unique ID: ");
                         if(me.NameOfMissile == "Aim-9m"){me.NameOfMissile="Aim-9m";typeID = 69;me.isradarmissile = 0;}  
                         if(me.NameOfMissile == "XMAA"){me.NameOfMissile="XMAA";typeID = 59;me.isradarmissile = 1;}  # Aim-132 This XMAA is tempory. testing a longrange BVR missile Can only be accessed if the callsign is the developers callsign. AKA: me :D
                         if(me.NameOfMissile == "AGM-154"){me.NameOfMissile="AGM-154";typeID = 4;me.isradarmissile = 2;}
+                        if(me.NameOfMissile == "AGM-158"){me.NameOfMissile="AGM-158";typeID = 6;me.isradarmissile = 2;}
                         if(me.NameOfMissile == "AGM-84"){me.NameOfMissile="AGM-84";typeID = 1;me.isradarmissile = 2;}         
                         if(me.NameOfMissile == "AGM-88"){me.NameOfMissile="AGM-88";typeID = 2;me.isradarmissile = 2;}    
                         if(me.NameOfMissile == "AGM-65"){me.NameOfMissile="AGM-65";typeID = 58;me.isradarmissile = 2;}
@@ -676,6 +678,7 @@ broddamage: func (cs,dist,msl) {
     if(msl == "Aim-9m"){msl="Aim-9m";typeID = 69;}  
     if(msl == "AGM-84"){msl="AGM-84";typeID = 1;}  
     if(msl == "AGM-154"){msl="AGM-154";typeID = 4;}       
+    if(msl == "AGM-158"){msl="AGM-158";typeID = 6;}  
     if(msl == "AGM-88"){msl="AGM-88";typeID = 2;}    
     if(msl == "AGM-65"){msl="AGM-65";typeID = 58;}
     if(msl == "TB-01"){msl="TB-01";typeID = 35;}
@@ -1275,7 +1278,7 @@ print("target ran");
                     {
                         Daground = me.nextGroundElevation; #in meters
                     }
-                    if(t_dist_m > 5000)
+                    if(t_dist_m > me.divedist)
                     {
                         # it's 1 or 2 seconds for this kinds of missiles...
                         var t_alt_delta_m = (me.cruisealt + Daground - me.alt) * FT2M;
@@ -1505,7 +1508,9 @@ var semiactive = 0;
 -                    print("poximity_detection(): Fox isnt 1 so Tgt exists: Checking if we hit");    
     }
 
-
+        if (me.Tgt == nil){
+            return 1; # aight
+        }
         me.t_coord.set_latlon(me.Tgt.get_Latitude(), me.Tgt.get_Longitude(), me.Tgt.get_altitude());
         var cur_dir_dist_m = me.coord.direct_distance_to(me.t_coord);
         var BC = cur_dir_dist_m;
@@ -1600,6 +1605,7 @@ var semiactive = 0;
                         if(me.NameOfMissile == "XMAA"){me.NameOfMissile="XMAA";typeID = 59;}  # Aim-132 This XMAA is tempory. testing a longrange BVR missile Can only be accessed if the callsign is the developers callsign. AKA: me :D
                         if(me.NameOfMissile == "AGM-84"){me.NameOfMissile="AGM-84";typeID = 1;}  
                         if(me.NameOfMissile == "AGM-154"){me.NameOfMissile="AGM-154";typeID = 4;}       
+                        if(me.NameOfMissile == "AGM-158"){me.NameOfMissile="AGM-158";typeID = 6;} 
                         if(me.NameOfMissile == "AGM-88"){me.NameOfMissile="AGM-88";typeID = 2;}    
                         if(me.NameOfMissile == "AGM-65"){me.NameOfMissile="AGM-65";typeID = 58;}
                         if(me.NameOfMissile == "TB-01"){me.NameOfMissile="TB-01";typeID = 35;}

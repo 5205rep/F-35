@@ -132,6 +132,99 @@
 		</condition>
 	</animation>
 
+
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM12021</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[12]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[12]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM12022</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[13]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[13]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM12023</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[14]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[14]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AIM12024</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[15]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[15]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+
+
+
+
+	<animation>
+		<type>select</type>
+		<object-name>tank</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[2]/selected</property>
+					<value>tank</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[2]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
 <!--AGM Right-->
 	<animation>
 		<type>select</type>
@@ -166,6 +259,80 @@
 			</and>
 		</condition>
 	</animation>
+
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1581</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[1]/selected</property>
+					<value>AGM-158</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[1]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1582</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[2]/selected</property>
+					<value>AGM-158</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[2]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+
+	<animation>
+		<type>select</type>
+		<object-name>JDAM1</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[1]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[1]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>JDAM2</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[2]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[2]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+
 
 
 	<animation>
@@ -207,11 +374,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>sim/weight[6]/selected</property>
+					<property>sim/weight[8]/selected</property>
 					<value>Aim-120</value>
 				</equals>
 				<equals>
-					<property>controls/armament/station[6]/release</property>
+					<property>controls/armament/station[8]/release</property>
 					<value>false</value>
 				</equals>
 			</and>
@@ -267,6 +434,43 @@
 		</condition>
 	</animation>
 
+
+
+	<animation>
+		<type>select</type>
+		<object-name>JDAM3</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[9]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[9]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>JDAM4</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[10]/selected</property>
+					<value>JDAM</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[10]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
 <!--AGM left wing-->
 	<animation>
 		<type>select</type>
@@ -301,6 +505,50 @@
 			</and>
 		</condition>
 	</animation>
+
+
+
+
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1583</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[9]/selected</property>
+					<value>AGM-158</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[9]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>AGM1584</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[10]/selected</property>
+					<value>AGM-158</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[10]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+
+
+
+
 		<animation>
 		<type>select</type>
 		<object-name>AIM9XL</object-name>      

@@ -45,6 +45,7 @@ var Loading_missile = func(name)
     var flareres      = 0;          # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares
     var isbomb        = 0; # if this weapon is a bomb
     var pbrange       = 0; # in meters
+    var divedist      = 5000; # Distance the bomb goes into "Dive" mode if the curise alt is enabled. 
     
     
     if(name == "Aim-120")
@@ -54,7 +55,7 @@ var Loading_missile = func(name)
         address = "Aircraft/F-35/Models/Stores/Missiles/AIM-120/AIM120-smoke.xml";
         NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM-120/AIM120.xml";
         Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
-        flareres = 0.9900; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares. Because flares are checked every 0.1 seconds a high number is needed because this variable is sensitve
+        flareres = 0.98; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares. Because flares are checked every 0.1 seconds a high number is needed because this variable is sensitve
         maxdetectionrngnm = 38.8;                    #  
         fovdeg = 360;                                #
         detectionfovdeg = 360;                       # TODO implent data link system so we can control these variables while missile is in flight
@@ -83,7 +84,7 @@ var Loading_missile = func(name)
     {
         # AIM-9X:short-range A2A,IR seeker,
 	    typeid = 98;
-        flareres = 0.990; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares
+        flareres = 0.98; # Flare and chaff resistance. from 0 to 1 (decimals included) The closer to 1. the harder it is for the missile to fall for enemy chaff and flares
         address = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9-smoke.xml";
         NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM-9/AIM-9.xml";
         Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
@@ -193,8 +194,8 @@ var Loading_missile = func(name)
      thrustdurationsec = 100;                        #
      weightlaunchlbs = 186;
      weightwarheadlbs = 1000;
-     dragcoeff = 0.05;                              # guess; original 0.05
-     dragarea = 0;                             # sq ft
+     dragcoeff = 0.03;                                # guess; original 0.05
+     dragarea = 0.0236;                          # sq ft
      maxExplosionRange = 50;                       
      maxspeed = 5;                                 # In Mach
      life = 80000000000000;
@@ -203,6 +204,70 @@ var Loading_missile = func(name)
      cruisealt = 0;
      sdspeed = 0;
      chute = 0;
+     isbomb = 1;
+ }
+
+
+  elsif(name == "AGM-154")
+ {
+
+     flareres = 1;
+	 typeid = 18;
+     address = "Aircraft/F-35/Models/Stores/Missiles/AGM154/AGM154.xml"; 
+     NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AGM154/AGM154.xml"; # for now
+     Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
+     maxdetectionrngnm = 63;                       # 
+     #GPS system
+     fovdeg = 360;                                 # seeker optical FOV
+     detectionfovdeg = 360;                        # Search pattern diameter (rosette scan)
+     trackmaxdeg = 360;                            # Seeker max total angular rotation
+     maxg = 2;                                    # 
+     thrustlbs = 0.00;                             # 
+     thrustdurationsec = 100;                        #
+     weightlaunchlbs = 286;
+     weightwarheadlbs = 1000;
+     dragcoeff = 0.03;                                 # guess; original 0.05
+     dragarea = 0.0236;                           # sq ft
+     maxExplosionRange = 50;                       
+     maxspeed = 5;                                 # In Mach
+     life = 80000000000000;
+     fox = "A/G";   
+     rail = "true";
+     cruisealt = getprop("/position/altitude-ft");
+     sdspeed = 0;
+     chute = 0; 
+     isbomb = 1;
+ }
+
+
+  elsif(name == "AGM-158")
+ {
+
+     flareres = 1;
+	 typeid = 18;
+     address = "Aircraft/F-35/Models/Stores/Missiles/AGM158/AGM-158.xml"; 
+     NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AGM158/AGM-158.xml"; # for now
+     Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosionGBU.xml";
+     maxdetectionrngnm = 400;                       # 
+     #GPS system
+     fovdeg = 360;                                 # seeker optical FOV
+     detectionfovdeg = 360;                        # Search pattern diameter (rosette scan)
+     trackmaxdeg = 360;                            # Seeker max total angular rotation
+     maxg = 2;                                    # 
+     thrustlbs = 500;                             # 
+     thrustdurationsec = 100000000000;            # Yes
+     weightlaunchlbs = 286;
+     weightwarheadlbs = 1000;
+     dragcoeff = 0.01;                                 # guess; original 0.05
+     dragarea = 0.00236;                           # sq ft
+     maxExplosionRange = 50;                       
+     maxspeed = 5;                                 # In Mach
+     life = 80000000000000;
+     fox = "A/G";   
+     rail = "true";
+     cruisealt = getprop("/position/altitude-ft");
+     sdspeed = 0;
+     chute = 0; 
      isbomb = 1;
  }
 
@@ -220,7 +285,7 @@ var Loading_missile = func(name)
     elsif(name == "Aim-7") #Debug missile
     {
                               flareres = 0.8;
-  	typeid = 52; #Overridden at the end of missile.nas
+  	    typeid = 52; #Overridden at the end of missile.nas
         address = "Aircraft/F-35/Models/Stores/Missiles/AIM7/AIM7-smoke.xml";
         NoSmoke = "Aircraft/F-35/Models/Stores/Missiles/AIM7/AIM7.xml";
         Explosion = "Aircraft/F-35/Models/Effects/MissileExplosion/explosion.xml";
@@ -378,6 +443,7 @@ var Loading_missile = func(name)
     setprop("controls/armament/missile/flareres", flareres);
     setprop("controls/armament/missile/isbomb", isbomb);
     setprop("controls/armament/missile/pbrange", pbrange);
+    setprop("controls/armament/missile/divedist", divedist);
     return 1;
 }
 

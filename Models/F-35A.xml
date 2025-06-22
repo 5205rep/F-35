@@ -1726,7 +1726,42 @@ Z is Up and down-->
 	</animation>
 	
 	
-				
+				<animation>
+		<type>select</type>
+		<object-name>120L</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[6]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[6]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+				<animation>
+		<type>select</type>
+		<object-name>120R</object-name>      
+		<condition>
+			<and>
+				<equals>
+					<property>sim/weight[5]/selected</property>
+					<value>Aim-120</value>
+				</equals>
+				<equals>
+					<property>controls/armament/station[5]/release</property>
+					<value>false</value>
+				</equals>
+			</and>
+		</condition>
+	</animation>
+
+
+
+
 	<!-- Weapon Bay Doors -->
 
 	<animation>

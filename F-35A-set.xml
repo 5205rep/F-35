@@ -604,7 +604,10 @@ jammer.stop();
       </offsets>
     </weight>
 
-<!--
+
+<!--For extra 4 aim-120-->
+
+
     <weight n="12">
       <name>pylon10-2</name>
       <weight-lb type="double"> 0 </weight-lb>
@@ -639,7 +642,22 @@ jammer.stop();
     <z-m type="double"> 0 </z-m>
       </offsets>
 
-    </weight> -->
+    </weight> 
+    
+    
+        <weight n="15">
+      <name>pylon2ex-1</name>
+      <weight-lb type="double"> 0 </weight-lb>
+      <selected>none</selected>
+      <offsets>
+    <x-m type="double"> 0  </x-m>
+    <y-m type="double"> 0 </y-m>
+    <z-m type="double"> 0 </z-m>
+      </offsets>
+
+    </weight>
+    
+
 
       </sim>
 
@@ -855,7 +873,7 @@ jammer.stop();
     </station>
 
 
-    <!--Double GBUs-->
+    <!--Extra Aim-120s 12 - 15-->
 
     <station n="11">  
       <release type="bool">true</release>
@@ -867,6 +885,9 @@ jammer.stop();
       <release type="bool">true</release>
     </station>
         <station n="14">  
+      <release type="bool">true</release>
+    </station>
+        <station n="15">  
       <release type="bool">true</release>
     </station>
     </armament>
@@ -1226,6 +1247,7 @@ jammer.stop();
  <value>GBU-39</value>
  <value>JDAM</value>
  <value>AGM-154</value>
+ <value>AGM-158</value>
 </binding>
   <binding>
  <command>property-cycle</command>
@@ -1235,10 +1257,11 @@ jammer.stop();
 
   <value>4</value>
  <value>5</value>
+ <value>6</value>
 
 </binding>
   <binding><command>nasal</command><script>screen.log.write("Selected " ~ getprop("controls/armament/selected-weapon"),0.5,0.5,1);</script></binding>
-   <binding><command>nasal</command><script>setprop("/controls/baydoors/AIM120", 1)</script></binding>
+   <binding><command>nasal</command><script>setprop("/controls/baydoors/AIM120", 0)</script></binding>
       <binding><command>nasal</command><script>setprop("/controls/missile", 3)</script></binding>
  </key> 
 

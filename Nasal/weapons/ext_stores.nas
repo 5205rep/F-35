@@ -734,7 +734,7 @@ var SelectNextPylon = func()
 		var SelectedPylon	= props.globals.getNode("controls/armament/missile/current-pylon", 1);
 		var Selectedweapon	= getprop("controls/armament/selected-weapon");
 		
-		for(var i = 0 ; i < 12 ; i += 1)
+		for(var i = 0 ; i < 16 ; i += 1) # i < total number <weight>'s - 1
         {
 					print(i);
 					print("Selected at i :  " ~ getprop("sim/weight["~ i ~"]/selected"));

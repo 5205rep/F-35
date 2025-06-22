@@ -92,7 +92,12 @@
             <legend>Stealthy Air to Air</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.saa();</script>
+                <script>pylons.saa();
+
+setprop("sim/weight[12]/selected", "none");
+setprop("sim/weight[13]/selected", "none"); # DAMN THATS ALOT
+setprop("sim/weight[14]/selected", "none");
+setprop("sim/weight[15]/selected", "none");</script>
             </binding>
         </button>
 
@@ -100,10 +105,11 @@
             <pref-width>225</pref-width><pref-height>23</pref-height>
             <row>0</row>
             <col>2</col>
-            <legend>Non Stealthy Air to Air</legend>
+            <legend>Non Stealthy Air to Air 14 Aim-120!</legend>
             <binding>
                 <command>nasal</command>
-                <script>setprop("sim/weight[0]/selected", "Aim-9x");
+                <script>
+setprop("sim/weight[0]/selected", "Aim-9x");
 setprop("sim/weight[1]/selected", "Aim-120");
 setprop("sim/weight[2]/selected", "Aim-120");
 setprop("sim/weight[3]/selected", "Aim-120");
@@ -115,6 +121,13 @@ setprop("sim/weight[8]/selected", "Aim-120");
 setprop("sim/weight[9]/selected", "Aim-120");
 setprop("sim/weight[10]/selected", "Aim-120");
 setprop("sim/weight[11]/selected", "Aim-9x");
+
+
+setprop("sim/weight[12]/selected", "Aim-120");
+setprop("sim/weight[13]/selected", "Aim-120"); # DAMN THATS ALOT
+setprop("sim/weight[14]/selected", "Aim-120");
+setprop("sim/weight[15]/selected", "Aim-120");
+
 setprop("controls/armament/station[0]/release", "false");
 setprop("controls/armament/station[1]/release", "false");
 setprop("controls/armament/station[2]/release", "false");
@@ -126,7 +139,14 @@ setprop("controls/armament/station[7]/release", "false");
 setprop("controls/armament/station[8]/release", "false");
 setprop("controls/armament/station[9]/release", "false");
 setprop("controls/armament/station[10]/release", "false");
-setprop("controls/armament/station[11]/release", "false");</script>
+setprop("controls/armament/station[11]/release", "false");
+
+setprop("controls/armament/station[12]/release", "false");
+setprop("controls/armament/station[13]/release", "false");
+setprop("controls/armament/station[14]/release", "false");
+setprop("controls/armament/station[15]/release", "false");
+
+</script>
             </binding>
         </button>
 
@@ -198,7 +218,7 @@ setprop("controls/armament/station[11]/release", "false");</script>
 setprop("sim/weight[1]/selected", "none");
 setprop("sim/weight[2]/selected", "none");
 setprop("sim/weight[3]/selected", "JDAM");
-setprop("sim/weight[4]/selected",  "Aim-120");
+setprop("sim/weight[4]/selected",  "");
 setprop("sim/weight[5]/selected", "Aim-120");
 setprop("sim/weight[6]/selected", "Aim-120");
 setprop("sim/weight[7]/selected", "");
@@ -225,10 +245,35 @@ setprop("controls/armament/station[11]/release", "false");</script>
             <pref-width>225</pref-width><pref-height>23</pref-height>
             <row>2</row>
             <col>4</col>
-            <legend>Place holder</legend>
+            <legend>A/G AGM-158C LRASM</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.b10_a2g_strike2();</script>
+                <script>
+ setprop("sim/weight[0]/selected", "Aim-9x");
+ setprop("sim/weight[1]/selected", "AGM-158");
+ setprop("sim/weight[2]/selected", "AGM-158");
+ setprop("sim/weight[3]/selected", "Aim-120");
+ setprop("sim/weight[4]/selected", "Aim-120");
+ setprop("sim/weight[5]/selected", "Aim-120");
+ setprop("sim/weight[6]/selected", "Aim-120");
+ setprop("sim/weight[7]/selected", "Aim-120");
+ setprop("sim/weight[8]/selected", "Aim-120");
+ setprop("sim/weight[9]/selected", "AGM-158");
+setprop("sim/weight[10]/selected", "AGM-158");
+setprop("sim/weight[11]/selected", "Aim-9x");
+setprop("controls/armament/station[0]/release", "false");
+setprop("controls/armament/station[1]/release", "false");
+setprop("controls/armament/station[2]/release", "false");
+setprop("controls/armament/station[3]/release", "false");
+setprop("controls/armament/station[4]/release", "false");
+setprop("controls/armament/station[5]/release", "false");
+setprop("controls/armament/station[6]/release", "false");
+setprop("controls/armament/station[7]/release", "false");
+setprop("controls/armament/station[8]/release", "false");
+setprop("controls/armament/station[9]/release", "false");
+setprop("controls/armament/station[10]/release", "false");
+setprop("controls/armament/station[11]/release", "false");
+</script>
             </binding>
         </button>
 
@@ -236,10 +281,35 @@ setprop("controls/armament/station[11]/release", "false");</script>
             <pref-width>225</pref-width><pref-height>23</pref-height>
             <row>4</row>
             <col>0</col>
-            <legend>Place holder</legend>
+            <legend>Add EXT Tanks</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.ferry1();</script>
+                <script>
+#setprop("sim/weight[0]/selected", "Aim-9x");
+#setprop("sim/weight[1]/selected", "AGM-154");
+setprop("sim/weight[2]/selected", "tank");
+#setprop("sim/weight[3]/selected", "Aim-120");
+#setprop("sim/weight[4]/selected", "Aim-120");
+#setprop("sim/weight[5]/selected", "Aim-120");
+#setprop("sim/weight[6]/selected", "Aim-120");
+#setprop("sim/weight[7]/selected", "Aim-120");
+#setprop("sim/weight[8]/selected", "Aim-120");
+setprop("sim/weight[9]/selected", "tank");
+#setprop("sim/weight[10]/selected", "AGM-154");
+#setprop("sim/weight[11]/selected", "Aim-9x");
+setprop("controls/armament/station[0]/release", "false");
+setprop("controls/armament/station[1]/release", "false");
+setprop("controls/armament/station[2]/release", "false");
+setprop("controls/armament/station[3]/release", "false");
+setprop("controls/armament/station[4]/release", "false");
+setprop("controls/armament/station[5]/release", "false");
+setprop("controls/armament/station[6]/release", "false");
+setprop("controls/armament/station[7]/release", "false");
+setprop("controls/armament/station[8]/release", "false");
+setprop("controls/armament/station[9]/release", "false");
+setprop("controls/armament/station[10]/release", "false");
+setprop("controls/armament/station[11]/release", "false");
+</script>
             </binding>
         </button>
 
@@ -247,10 +317,35 @@ setprop("controls/armament/station[11]/release", "false");</script>
             <pref-width>225</pref-width><pref-height>23</pref-height>
             <row>4</row>
             <col>2</col>
-            <legend>Place holder</legend>
+            <legend>I LOVE JDAM!!!</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.b10_a2g_strikeair();</script>
+                <script>
+#setprop("sim/weight[0]/selected", "Aim-9x");
+setprop("sim/weight[1]/selected", "JDAM");
+setprop("sim/weight[2]/selected", "JDAM");
+setprop("sim/weight[3]/selected", "JDAM");
+setprop("sim/weight[4]/selected",  "");
+setprop("sim/weight[5]/selected", "Aim-120");
+setprop("sim/weight[6]/selected", "Aim-120");
+setprop("sim/weight[7]/selected", "");
+setprop("sim/weight[8]/selected", "JDAM");
+setprop("sim/weight[9]/selected", "JDAM");
+setprop("sim/weight[10]/selected", "JDAM");
+#setprop("sim/weight[11]/selected", "Aim-9x");
+setprop("controls/armament/station[0]/release", "false");
+setprop("controls/armament/station[1]/release", "false");
+setprop("controls/armament/station[2]/release", "false");
+setprop("controls/armament/station[3]/release", "false");
+setprop("controls/armament/station[4]/release", "false");
+setprop("controls/armament/station[5]/release", "false");
+setprop("controls/armament/station[6]/release", "false");
+setprop("controls/armament/station[7]/release", "false");
+setprop("controls/armament/station[8]/release", "false");
+setprop("controls/armament/station[9]/release", "false");
+setprop("controls/armament/station[10]/release", "false");
+setprop("controls/armament/station[11]/release", "false");
+</script>
             </binding>
         </button>
 
@@ -258,10 +353,35 @@ setprop("controls/armament/station[11]/release", "false");</script>
             <pref-width>225</pref-width><pref-height>23</pref-height>
             <row>4</row>
             <col>4</col>
-            <legend>Place holder</legend>
+            <legend>Add JDAM</legend>
             <binding>
                 <command>nasal</command>
-                <script>pylons.ferry2();</script>
+                <script>
+#setprop("sim/weight[0]/selected", "Aim-9x");
+#setprop("sim/weight[1]/selected", "AGM-154");
+setprop("sim/weight[2]/selected", "JDAM");
+#setprop("sim/weight[3]/selected", "Aim-120");
+#setprop("sim/weight[4]/selected", "Aim-120");
+#setprop("sim/weight[5]/selected", "Aim-120");
+#setprop("sim/weight[6]/selected", "Aim-120");
+#setprop("sim/weight[7]/selected", "Aim-120");
+#setprop("sim/weight[8]/selected", "Aim-120");
+setprop("sim/weight[9]/selected", "JDAM");
+#setprop("sim/weight[10]/selected", "AGM-154");
+#setprop("sim/weight[11]/selected", "Aim-9x");
+setprop("controls/armament/station[0]/release", "false");
+setprop("controls/armament/station[1]/release", "false");
+setprop("controls/armament/station[2]/release", "false");
+setprop("controls/armament/station[3]/release", "false");
+setprop("controls/armament/station[4]/release", "false");
+setprop("controls/armament/station[5]/release", "false");
+setprop("controls/armament/station[6]/release", "false");
+setprop("controls/armament/station[7]/release", "false");
+setprop("controls/armament/station[8]/release", "false");
+setprop("controls/armament/station[9]/release", "false");
+setprop("controls/armament/station[10]/release", "false");
+setprop("controls/armament/station[11]/release", "false");
+</script>
             </binding>
         </button>
 
